@@ -7,13 +7,195 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/background_color"
+        android:paddingHorizontal="17dp"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_line_horizontal_header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_line_horizontal_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.35" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_line_vertical_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_settings"
+            android:textColor="@color/primary_text_color"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/guide_line_horizontal_header"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guide_line_horizontal_header" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="119dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bordered_button_transparent_light"
+            android:text="@string/btn_log_out"
+            android:textAllCaps="false"
+            android:textColor="@color/secondary_text_color"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/guide_line_horizontal_header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guide_line_horizontal_header" />
+
+        <ImageView
+            android:id="@+id/iv_photo_profile"
+            android:layout_width="113dp"
+            android:layout_height="113dp"
+            android:contentDescription="@string/iv_photo_profile"
+            android:src="@drawable/person_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/guide_line_horizontal_photo"
+            app:layout_constraintEnd_toEndOf="@+id/guide_line_vertical_photo"
+            app:layout_constraintStart_toStartOf="@+id/guide_line_vertical_photo"
+            app:layout_constraintTop_toTopOf="@+id/guide_line_horizontal_photo" />
+
+        <TextView
+            android:id="@+id/tv_name_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/tv_name_person"
+            android:textColor="@color/primary_text_color"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/guide_line_vertical_photo"
+            app:layout_constraintStart_toStartOf="@+id/guide_line_vertical_photo"
+            app:layout_constraintTop_toBottomOf="@+id/iv_photo_profile" />
+
+
+        <TextView
+            android:id="@+id/tv_career_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/tv_career"
+            android:textColor="@color/secondary_text_color"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/guide_line_vertical_photo"
+            app:layout_constraintStart_toStartOf="@+id/guide_line_vertical_photo"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_profile" />
+
+        <TextView
+            android:id="@+id/tv_address_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/tv_home_address"
+            android:textColor="@color/secondary_text_color"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/guide_line_vertical_photo"
+            app:layout_constraintStart_toStartOf="@+id/guide_line_vertical_photo"
+            app:layout_constraintTop_toBottomOf="@+id/tv_career_profile" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_line_vertical_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_line_horizontal_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guide_line_horizontal_icon">
+
+            <ImageView
+                style="@style/ImageViewSocialMedia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/iv_facebook_icon"
+                android:src="@drawable/facebook_icon" />
+
+            <ImageView
+                style="@style/ImageViewSocialMedia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/iv_linkedin_icon"
+                android:src="@drawable/linkedin_icon" />
+
+            <ImageView
+                style="@style/ImageViewSocialMedia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/iv_instagram_icon"
+                android:src="@drawable/instagram_icon" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_edit_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bordered_button_transparent_dark"
+            android:text="@string/btn_edit_profile"
+            android:textAllCaps="false"
+            android:textColor="@color/dark_text_color"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/btn_view_contacts"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_view_contacts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_orange"
+            android:text="@string/btn_view_my_contacts"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
