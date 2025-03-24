@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ProfileHub"
+rootProject.name = "My Profile"
 include(":app")
  
