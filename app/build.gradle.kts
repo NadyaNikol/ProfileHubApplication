@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.androiddev.myprofile"
+    namespace = "com.androiddev.profilehub"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.androiddev.myprofile"
+        applicationId = "com.androiddev.profilehub"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
