@@ -1,4 +1,4 @@
-package com.androiddev.myprofile
+package com.androiddev.profilehub
 
 import org.junit.Test
 
