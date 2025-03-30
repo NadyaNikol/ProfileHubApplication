@@ -3,13 +3,13 @@
     <item>
         <shape android:shape="oval">
             <solid android:color="@color/background_color_person_icon"/>
-            <size android:width="100dp" android:height="100dp" />
+            <size android:width="152dp" android:height="152dp" />
         </shape>
     </item>
 
     <item
-        android:width="40dp"
-        android:height="40dp"
+        android:width="48dp"
+        android:height="48dp"
         android:gravity="center"
         android:drawable="@drawable/person_icon_transparent">
     </item>
