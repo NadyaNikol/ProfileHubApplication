@@ -24,19 +24,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide_line_horizontal_photo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.35" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide_line_vertical_photo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
     <TextView
         android:id="@+id/tv_settings"
         android:layout_width="wrap_content"
@@ -67,14 +54,17 @@
 
     <ImageView
         android:id="@+id/iv_photo_profile"
-        android:layout_width="113dp"
-        android:layout_height="113dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:contentDescription="@string/iv_photo_profile"
         android:src="@drawable/person_icon"
-        app:layout_constraintBottom_toBottomOf="@+id/guide_line_horizontal_photo"
-        app:layout_constraintEnd_toEndOf="@+id/guide_line_vertical_photo"
-        app:layout_constraintStart_toStartOf="@+id/guide_line_vertical_photo"
-        app:layout_constraintTop_toTopOf="@+id/guide_line_horizontal_photo" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4" />
 
     <TextView
         android:id="@+id/tv_name_profile"
