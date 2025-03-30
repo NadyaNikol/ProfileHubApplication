@@ -25,13 +25,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide_line_horizontal_header"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
-
-    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide_line_horizontal_photo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -44,28 +37,33 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
-
     <TextView
+        android:id="@+id/tv_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
         android:text="@string/tv_settings"
         android:textColor="@color/primary_text_color"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/guide_line_horizontal_header"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guide_line_horizontal_header" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="119dp"
+        android:id="@+id/btn_log_out"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/bordered_button_transparent_light"
         android:text="@string/btn_log_out"
         android:textAllCaps="false"
         android:textColor="@color/secondary_text_color"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/guide_line_horizontal_header"
+        app:layout_constraintWidth_percent="0.2"
+        app:layout_constraintWidth_min="136dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guide_line_horizontal_header" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/iv_photo_profile"
