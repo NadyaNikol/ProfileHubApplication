@@ -102,56 +102,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_career_profile" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide_line_vertical_icon"
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_social_media_icons"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide_line_horizontal_icon"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guide_line_horizontal_icon">
-    <LinearLayout
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        app:constraint_referenced_ids="iv_facebook_icon,iv_linkedin_icon,iv_instagram_icon"
+        app:flow_horizontalGap="40dp"
+        app:flow_horizontalStyle="packed"
+        app:flow_wrapMode="chain"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guide_line_horizontal_icon">
+        app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal"
+        app:layout_constraintVertical_bias="0.3" />
 
-        <ImageView
-            style="@style/ImageViewSocialMedia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/iv_facebook_icon"
-            android:src="@drawable/facebook_icon" />
+    <ImageView
+        android:id="@+id/iv_facebook_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/iv_facebook_icon"
+        android:src="@drawable/facebook_icon" />
 
-        <ImageView
-            style="@style/ImageViewSocialMedia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/iv_linkedin_icon"
-            android:src="@drawable/linkedin_icon" />
+    <ImageView
+        android:id="@+id/iv_linkedin_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/iv_linkedin_icon"
+        android:src="@drawable/linkedin_icon" />
 
-        <ImageView
-            style="@style/ImageViewSocialMedia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/iv_instagram_icon"
-            android:src="@drawable/instagram_icon" />
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/iv_instagram_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/iv_instagram_icon"
+        android:src="@drawable/instagram_icon" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_edit_profile"
