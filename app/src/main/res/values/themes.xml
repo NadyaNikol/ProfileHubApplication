@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Base.Theme.ProfileHub" parent="android:Theme.Material.Light.NoActionBar">
+    <style name="Base.Theme.ProfileHub" parent="Theme.AppCompat.Light">
         <item name="android:fontFamily">@font/open_sans_semi_bold</item>
     </style>
 
