@@ -105,7 +105,7 @@
         android:id="@+id/flow_social_media_icons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="iv_facebook_icon,iv_linkedin_icon,iv_instagram_icon"
+        app:constraint_referenced_ids="img_btn_facebook_icon,img_btn_linkedin_icon,img_btn_instagram_icon"
         app:flow_horizontalGap="40dp"
         app:flow_horizontalStyle="packed"
         app:flow_wrapMode="chain"
@@ -115,22 +115,22 @@
         app:layout_constraintTop_toBottomOf="@id/guideline_horizontal"
         app:layout_constraintVertical_bias="0.3" />
 
-    <ImageView
-        android:id="@+id/iv_facebook_icon"
+    <ImageButton
+        android:id="@+id/img_btn_facebook_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/iv_facebook_icon"
         android:src="@drawable/facebook_icon" />
 
-    <ImageView
-        android:id="@+id/iv_linkedin_icon"
+    <ImageButton
+        android:id="@+id/img_btn_linkedin_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/iv_linkedin_icon"
         android:src="@drawable/linkedin_icon" />
 
-    <ImageView
-        android:id="@+id/iv_instagram_icon"
+    <ImageButton
+        android:id="@+id/img_btn_instagram_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/iv_instagram_icon"
