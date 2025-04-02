@@ -38,10 +38,11 @@
 
     <Button
         android:id="@+id/btn_log_out"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
+        android:paddingHorizontal="40dp"
         android:background="@drawable/bordered_button_transparent_light"
         android:text="@string/btn_log_out"
         android:textAllCaps="false"
