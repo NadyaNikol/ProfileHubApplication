@@ -14,4 +14,5 @@
 
     <color name="light_border_color">#B2B2B3</color>
     <color name="dark_border_color">#242235</color>
+    <color name="dark_border_color_pressed">#d4dbff</color>
 </resources>
