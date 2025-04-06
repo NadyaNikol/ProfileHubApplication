@@ -12,40 +12,41 @@
         android:id="@+id/authTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:text="@string/tv_lets_get_acquainted"
         android:textColor="@color/primary_text_color"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@id/authSubtitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/authSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="24dp"
         android:text="@string/tv_fill_out_the_profile"
         android:textColor="@color/primary_text_color"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@id/textInputLayoutEmail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/authTitle" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_horizontal_small"
+        android:layout_marginTop="24dp"
         android:hint="@string/text_input_layout_hint_email"
         android:textColorHint="@color/secondary_text_color"
         app:layout_constraintBottom_toTopOf="@id/textInputLayoutPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintVertical_chainStyle="packed">
+        app:layout_constraintTop_toBottomOf="@id/authSubtitle">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextEmailAddress"
