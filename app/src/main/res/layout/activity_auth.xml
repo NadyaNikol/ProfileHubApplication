@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="@string/tv_lets_get_acquainted"
         android:textColor="@color/primary_text_color"
-        android:textSize="24sp"
+        android:textSize="@dimen/header_one_text_size"
         app:layout_constraintBottom_toTopOf="@id/authSubtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,56 +29,80 @@
         android:layout_marginTop="8dp"
         android:text="@string/tv_fill_out_the_profile"
         android:textColor="@color/primary_text_color"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@id/textInputLayoutEmail"
+        android:textSize="@dimen/header_four_text_size"
+        app:layout_constraintBottom_toTopOf="@id/tvEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/authTitle" />
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_small"
+        android:layout_marginTop="24dp"
+        android:text="@string/tv_e_mail"
+        android:textColor="@color/secondary_text_color"
+        android:textSize="@dimen/header_three_text_size"
+        app:layout_constraintBottom_toTopOf="@id/textInputLayoutEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/authSubtitle" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_horizontal_small"
-        android:layout_marginTop="24dp"
-        android:hint="@string/text_input_layout_hint_email"
-        android:textColorHint="@color/secondary_text_color"
-        app:layout_constraintBottom_toTopOf="@id/textInputLayoutPassword"
+        app:layout_constraintBottom_toTopOf="@id/tvPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/authSubtitle">
+        app:layout_constraintTop_toBottomOf="@id/tvEmail">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:autofillHints="emailAddress"
+            android:backgroundTint="@color/secondary_background_color"
             android:inputType="textEmailAddress"
             android:textColor="@color/primary_text_color"
-            android:textSize="18sp" />
+            android:textSize="@dimen/header_two_text_size" />
     </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/tvPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_small"
+        android:layout_marginTop="24dp"
+        android:text="@string/tv_password"
+        android:textColor="@color/secondary_text_color"
+        android:textSize="@dimen/header_three_text_size"
+        app:layout_constraintBottom_toTopOf="@id/textInputLayoutPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutEmail" />
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_horizontal_small"
-        android:layout_marginTop="24dp"
-        android:hint="@string/text_input_layout_password"
-        android:textColorHint="@color/secondary_text_color"
         app:layout_constraintBottom_toTopOf="@id/checkBoxRememberMe"
         app:layout_constraintEnd_toEndOf="@id/textInputLayoutEmail"
         app:layout_constraintStart_toStartOf="@id/textInputLayoutEmail"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayoutEmail">
+        app:layout_constraintTop_toBottomOf="@id/tvPassword">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:autofillHints="emailAddress"
+            android:backgroundTint="@color/secondary_background_color"
             android:inputType="textPassword"
             android:textColor="@color/primary_text_color"
-            android:textSize="18sp" />
+            android:textSize="@dimen/header_two_text_size" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <CheckBox
@@ -87,24 +111,23 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_horizontal_small"
         android:layout_marginTop="16dp"
-        android:buttonTint="@color/light_border_color"
+        android:buttonTint="@color/primary_border_color"
         android:text="@string/check_box_remember_me"
         android:textColor="@color/secondary_text_color"
-        android:textSize="14sp"
+        android:textSize="@dimen/header_three_text_size"
         app:layout_constraintBottom_toTopOf="@id/btnGoogle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutPassword" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnGoogle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_horizontal_small"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/button_primary_color"
-        android:drawableStart="@drawable/google_icon"
-        android:gravity="center"
-        android:text="@string/btn_google"
+        android:background="@drawable/button_google"
+        android:contentDescription="@string/btn_google"
+        android:src="@drawable/button_google"
         app:layout_constraintBottom_toTopOf="@id/tvOr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -116,7 +139,7 @@
         android:layout_marginBottom="8dp"
         android:text="@string/tv_or"
         android:textColor="@color/primary_text_color"
-        android:textSize="18sp"
+        android:textSize="@dimen/header_two_text_size"
         app:layout_constraintBottom_toTopOf="@id/btnRegister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -130,7 +153,7 @@
         android:background="@drawable/bordered_button_transparent_orange"
         android:text="@string/btn_register"
         android:textColor="@color/primary_text_color"
-        android:textSize="16sp"
+        android:textSize="@dimen/btn_large_text_size_upper_case"
         app:layout_constraintBottom_toTopOf="@id/tvTermsAndConditions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -144,8 +167,8 @@
         android:gravity="center"
         android:minLines="2"
         android:text="@string/tv_terms_and_conditions"
-        android:textColor="@color/secondary_text_color"
-        android:textSize="12sp"
+        android:textColor="@color/primary_text_color"
+        android:textSize="@dimen/header_four_text_size"
         app:layout_constraintBottom_toTopOf="@id/tvAlreadyHaveAnAccount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -155,10 +178,10 @@
         android:id="@+id/tvAlreadyHaveAnAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_horizontal_small"
+        android:layout_marginBottom="16dp"
         android:text="@string/tv_already_have_an_account"
         android:textColor="@color/secondary_text_color"
-        android:textSize="14sp"
+        android:textSize="@dimen/header_three_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -170,10 +193,10 @@
         android:layout_marginStart="12dp"
         android:clickable="true"
         android:text="@string/tv_sign_in"
-        android:textColor="@color/primary_text_color"
-        android:textSize="14sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/tvAlreadyHaveAnAccount"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvAlreadyHaveAnAccount" />
+        android:textColor="@color/white"
+        android:textSize="@dimen/header_three_text_size"
+        app:layout_constraintBottom_toBottomOf="@id/tvAlreadyHaveAnAccount"
+        app:layout_constraintStart_toEndOf="@id/tvAlreadyHaveAnAccount"
+        app:layout_constraintTop_toTopOf="@id/tvAlreadyHaveAnAccount" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
