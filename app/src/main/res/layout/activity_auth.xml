@@ -119,15 +119,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutPassword" />
 
-    <ImageButton
+    <Button
         android:id="@+id/btnGoogle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_horizontal_small"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/button_google"
+        app:icon="@drawable/google_icon"
+        app:iconTint="@null"
+        app:iconGravity="textStart"
+        android:text="@string/btn_google"
+        android:letterSpacing="0.09"
+        android:backgroundTint="@color/primary_color"
+        android:textColor="@color/dark_text_color"
         android:contentDescription="@string/btn_google"
-        android:src="@drawable/button_google"
+        app:cornerRadius="@dimen/btn_corner_radius"
         app:layout_constraintBottom_toTopOf="@id/tvOr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -147,16 +153,20 @@
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_marginHorizontal="@dimen/margin_horizontal_small"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/bordered_button_transparent_orange"
         android:text="@string/btn_register"
         android:textColor="@color/primary_color"
         android:textSize="@dimen/btn_large_text_size_upper_case"
+        android:letterSpacing="0.09"
+        app:backgroundTint="@color/transparent"
+        app:cornerRadius="@dimen/btn_corner_radius"
         app:layout_constraintBottom_toTopOf="@id/tvTermsAndConditions"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/orange"
+        app:strokeWidth="@dimen/btn_stroke_width" />
 
     <TextView
         android:id="@+id/tvTermsAndConditions"
