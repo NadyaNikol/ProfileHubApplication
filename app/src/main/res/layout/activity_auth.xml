@@ -110,11 +110,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_horizontal_small"
-        android:layout_marginTop="16dp"
-        android:buttonTint="@color/primary_border_color"
+        android:checked="true"
         android:text="@string/check_box_remember_me"
         android:textColor="@color/secondary_color"
         android:textSize="@dimen/header_three_text_size"
+        app:buttonIcon="@drawable/custom_checkbox"
         app:layout_constraintBottom_toTopOf="@id/btnGoogle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutPassword" />
