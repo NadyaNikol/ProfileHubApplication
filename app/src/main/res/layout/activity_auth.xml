@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_blue_color"
+    tools:context=".AuthActivity">
+
+    <TextView
+        android:id="@+id/authTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_lets_get_acquainted"
+        android:textColor="@color/primary_color"
+        android:textSize="@dimen/header_one_text_size"
+        app:layout_constraintBottom_toTopOf="@id/authSubtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/authSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/open_sans_regular"
+        android:text="@string/tv_fill_out_the_profile"
+        android:textColor="@color/primary_color"
+        android:textSize="@dimen/header_four_text_size"
+        app:layout_constraintBottom_toTopOf="@id/textInputLayoutEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/authTitle" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutEmail"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_small"
+        android:layout_marginTop="24dp"
+        android:hint="@string/text_input_layout_hint_e_mail"
+        app:errorTextAppearance="@style/ErrorTextSizeStyle"
+        app:hintTextAppearance="@style/HintTextSizeStyle"
+        app:layout_constraintBottom_toTopOf="@id/textInputLayoutPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/authSubtitle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textEmailAddress"
+            android:text="blabla@gmail.com"
+            android:textColor="@color/primary_color"
+            android:textSize="@dimen/header_two_text_size" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutPassword"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_small"
+        android:hint="@string/text_input_layout_hint_password"
+        app:errorTextAppearance="@style/ErrorTextSizeStyle"
+        app:hintTextAppearance="@style/HintTextSizeStyle"
+        app:layout_constraintBottom_toTopOf="@id/checkBoxRememberMe"
+        app:layout_constraintEnd_toEndOf="@id/textInputLayoutEmail"
+        app:layout_constraintStart_toStartOf="@id/textInputLayoutEmail"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutEmail">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPassword"
+            android:text="12345"
+            android:textColor="@color/primary_color"
+            android:textSize="@dimen/header_two_text_size" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <CheckBox
+        android:id="@+id/checkBoxRememberMe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_small"
+        android:checked="true"
+        android:text="@string/check_box_remember_me"
+        android:textColor="@color/secondary_color"
+        android:textSize="@dimen/header_three_text_size"
+        app:buttonIcon="@drawable/custom_checkbox"
+        app:layout_constraintBottom_toTopOf="@id/btnGoogle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutPassword" />
+
+    <Button
+        android:id="@+id/btnGoogle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_small"
+        android:layout_marginBottom="8dp"
+        app:icon="@drawable/google_icon"
+        app:iconTint="@null"
+        app:iconGravity="textStart"
+        android:text="@string/btn_google"
+        android:letterSpacing="0.09"
+        android:backgroundTint="@color/primary_color"
+        android:textColor="@color/dark_text_color"
+        android:contentDescription="@string/btn_google"
+        app:cornerRadius="@dimen/btn_corner_radius"
+        app:layout_constraintBottom_toTopOf="@id/tvOr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvOr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/tv_or"
+        android:textColor="@color/primary_color"
+        android:textSize="@dimen/header_two_text_size"
+        app:layout_constraintBottom_toTopOf="@id/btnRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_small"
+        android:layout_marginBottom="16dp"
+        android:text="@string/btn_register"
+        android:textColor="@color/primary_color"
+        android:textSize="@dimen/btn_large_text_size_upper_case"
+        android:letterSpacing="0.09"
+        app:backgroundTint="@color/transparent"
+        app:cornerRadius="@dimen/btn_corner_radius"
+        app:layout_constraintBottom_toTopOf="@id/tvTermsAndConditions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/orange"
+        app:strokeWidth="@dimen/btn_stroke_width" />
+
+    <TextView
+        android:id="@+id/tvTermsAndConditions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:breakStrategy="simple"
+        android:gravity="center"
+        android:minLines="2"
+        android:text="@string/tv_terms_and_conditions"
+        android:textColor="@color/primary_color"
+        android:textSize="@dimen/header_four_text_size"
+        app:layout_constraintBottom_toTopOf="@id/tvAlreadyHaveAnAccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <TextView
+        android:id="@+id/tvAlreadyHaveAnAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/tv_already_have_an_account"
+        android:textColor="@color/secondary_color"
+        android:textSize="@dimen/header_three_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tvSignIn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"/>
+
+    <TextView
+        android:id="@+id/tvSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:clickable="true"
+        android:text="@string/tv_sign_in"
+        android:textColor="@color/white"
+        android:textSize="@dimen/header_three_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/tvAlreadyHaveAnAccount"
+        app:layout_constraintStart_toEndOf="@id/tvAlreadyHaveAnAccount"
+        app:layout_constraintTop_toTopOf="@id/tvAlreadyHaveAnAccount" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <color name="primary_color">#FAFAFA</color>
+    <color name="secondary_color">#B2B2B3</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+    <color name="orange">#FB5E06</color>
+    <color name="dark_blue_color">#242235</color>
+
+    <color name="error_edit_text_color">#F93E3E</color>
+    <color name="dark_text_color">#18181F</color>
+
+    <color name="dark_border_color_pressed">#d4dbff</color>
 </resources>

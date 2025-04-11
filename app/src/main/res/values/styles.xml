@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="cursorColor">@color/primary_color</item>
+        <item name="expandedHintEnabled">false</item>
+        <item name="hintTextColor">@color/secondary_color</item>
+        <item name="android:textColorHint">@color/secondary_color</item>
+        <item name="errorEnabled">true</item>
+        <item name="errorTextColor">@color/error_edit_text_color</item>
+        <item name="boxBackgroundColor">@color/dark_blue_color</item>
+        <item name="boxStrokeColor">@color/text_input_box_stroke_color</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
+        <item name="boxCollapsedPaddingTop">0dp</item>
+
+    </style>
+
+    <style name="HintTextSizeStyle" >
+        <item name="android:textSize">@dimen/header_three_text_size</item>
+    </style>
+
+    <style name="ErrorTextSizeStyle">
+        <item name="android:textSize">@dimen/header_four_text_size</item>
+    </style>
+
+<!--    app:boxBackgroundColor="@color/background_color"-->
+<!--    app:boxStrokeColor="@color/secondary_color"-->
+<!--    android:textColorHint="@color/secondary_text_color"-->
+<!--    <item name="helperTextEnabled">true</item>-->
+
+</resources>
