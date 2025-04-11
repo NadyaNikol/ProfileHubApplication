@@ -30,77 +30,56 @@
         android:text="@string/tv_fill_out_the_profile"
         android:textColor="@color/primary_color"
         android:textSize="@dimen/header_four_text_size"
-        app:layout_constraintBottom_toTopOf="@id/tvEmail"
+        app:layout_constraintBottom_toTopOf="@id/textInputLayoutEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/authTitle" />
 
-    <TextView
-        android:id="@+id/tvEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_horizontal_small"
-        android:layout_marginTop="24dp"
-        android:text="@string/tv_e_mail"
-        android:textColor="@color/secondary_text_color"
-        android:textSize="@dimen/header_three_text_size"
-        app:layout_constraintBottom_toTopOf="@id/textInputLayoutEmail"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/authSubtitle" />
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutEmail"
+        style="@style/TextInputLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_horizontal_small"
-        app:layout_constraintBottom_toTopOf="@id/tvPassword"
+        android:layout_marginTop="24dp"
+        android:hint="@string/text_input_layout_hint_e_mail"
+        app:errorTextAppearance="@style/ErrorTextSizeStyle"
+        app:hintTextAppearance="@style/HintTextSizeStyle"
+        app:layout_constraintBottom_toTopOf="@id/textInputLayoutPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvEmail">
+        app:layout_constraintTop_toBottomOf="@id/authSubtitle">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:autofillHints="emailAddress"
-            android:backgroundTint="@color/secondary_background_color"
             android:inputType="textEmailAddress"
+            android:text="blabla@gmail.com"
             android:textColor="@color/primary_color"
             android:textSize="@dimen/header_two_text_size" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
-    <TextView
-        android:id="@+id/tvPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_horizontal_small"
-        android:layout_marginTop="24dp"
-        android:text="@string/tv_password"
-        android:textColor="@color/secondary_text_color"
-        android:textSize="@dimen/header_three_text_size"
-        app:layout_constraintBottom_toTopOf="@id/textInputLayoutPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayoutEmail" />
-
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutPassword"
+        style="@style/TextInputLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_horizontal_small"
+        android:hint="@string/text_input_layout_hint_password"
+        app:errorTextAppearance="@style/ErrorTextSizeStyle"
+        app:hintTextAppearance="@style/HintTextSizeStyle"
         app:layout_constraintBottom_toTopOf="@id/checkBoxRememberMe"
         app:layout_constraintEnd_toEndOf="@id/textInputLayoutEmail"
         app:layout_constraintStart_toStartOf="@id/textInputLayoutEmail"
-        app:layout_constraintTop_toBottomOf="@id/tvPassword">
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutEmail">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:autofillHints="emailAddress"
-            android:backgroundTint="@color/secondary_background_color"
             android:inputType="textPassword"
+            android:text="12345"
             android:textColor="@color/primary_color"
             android:textSize="@dimen/header_two_text_size" />
     </com.google.android.material.textfield.TextInputLayout>
