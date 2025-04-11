@@ -173,8 +173,9 @@
         android:textColor="@color/secondary_color"
         android:textSize="@dimen/header_three_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@id/tvSignIn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"/>
 
     <TextView
         android:id="@+id/tvSignIn"
@@ -185,6 +186,7 @@
         android:text="@string/tv_sign_in"
         android:textColor="@color/white"
         android:textSize="@dimen/header_three_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/tvAlreadyHaveAnAccount"
         app:layout_constraintStart_toEndOf="@id/tvAlreadyHaveAnAccount"
         app:layout_constraintTop_toTopOf="@id/tvAlreadyHaveAnAccount" />
