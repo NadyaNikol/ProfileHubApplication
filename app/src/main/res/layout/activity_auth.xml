@@ -5,7 +5,7 @@
     android:id="@+id/auth"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
+    android:background="@color/dark_blue_color"
     tools:context=".AuthActivity">
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tv_lets_get_acquainted"
-        android:textColor="@color/primary_text_color"
+        android:textColor="@color/primary_color"
         android:textSize="@dimen/header_one_text_size"
         app:layout_constraintBottom_toTopOf="@id/authSubtitle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/tv_fill_out_the_profile"
-        android:textColor="@color/primary_text_color"
+        android:textColor="@color/primary_color"
         android:textSize="@dimen/header_four_text_size"
         app:layout_constraintBottom_toTopOf="@id/tvEmail"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +65,7 @@
             android:autofillHints="emailAddress"
             android:backgroundTint="@color/secondary_background_color"
             android:inputType="textEmailAddress"
-            android:textColor="@color/primary_text_color"
+            android:textColor="@color/primary_color"
             android:textSize="@dimen/header_two_text_size" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,7 +101,7 @@
             android:autofillHints="emailAddress"
             android:backgroundTint="@color/secondary_background_color"
             android:inputType="textPassword"
-            android:textColor="@color/primary_text_color"
+            android:textColor="@color/primary_color"
             android:textSize="@dimen/header_two_text_size" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,7 +113,7 @@
         android:layout_marginTop="16dp"
         android:buttonTint="@color/primary_border_color"
         android:text="@string/check_box_remember_me"
-        android:textColor="@color/secondary_text_color"
+        android:textColor="@color/secondary_color"
         android:textSize="@dimen/header_three_text_size"
         app:layout_constraintBottom_toTopOf="@id/btnGoogle"
         app:layout_constraintStart_toStartOf="parent"
@@ -138,7 +138,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="@string/tv_or"
-        android:textColor="@color/primary_text_color"
+        android:textColor="@color/primary_color"
         android:textSize="@dimen/header_two_text_size"
         app:layout_constraintBottom_toTopOf="@id/btnRegister"
         app:layout_constraintEnd_toEndOf="parent"
@@ -152,7 +152,7 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/bordered_button_transparent_orange"
         android:text="@string/btn_register"
-        android:textColor="@color/primary_text_color"
+        android:textColor="@color/primary_color"
         android:textSize="@dimen/btn_large_text_size_upper_case"
         app:layout_constraintBottom_toTopOf="@id/tvTermsAndConditions"
         app:layout_constraintEnd_toEndOf="parent"
@@ -167,7 +167,7 @@
         android:gravity="center"
         android:minLines="2"
         android:text="@string/tv_terms_and_conditions"
-        android:textColor="@color/primary_text_color"
+        android:textColor="@color/primary_color"
         android:textSize="@dimen/header_four_text_size"
         app:layout_constraintBottom_toTopOf="@id/tvAlreadyHaveAnAccount"
         app:layout_constraintEnd_toEndOf="parent"
@@ -180,7 +180,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="@string/tv_already_have_an_account"
-        android:textColor="@color/secondary_text_color"
+        android:textColor="@color/secondary_color"
         android:textSize="@dimen/header_three_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
