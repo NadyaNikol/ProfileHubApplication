@@ -2,13 +2,13 @@
 <resources>
 
     <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
-        <item name="cursorColor">@color/primary_color</item>
+        <item name="cursorColor">@color/colorOnBackground</item>
         <item name="expandedHintEnabled">false</item>
-        <item name="hintTextColor">@color/secondary_color</item>
-        <item name="android:textColorHint">@color/secondary_color</item>
+        <item name="hintTextColor">@color/colorOnSurface</item>
+        <item name="android:textColorHint">@color/colorOnSurface</item>
         <item name="errorEnabled">true</item>
-        <item name="errorTextColor">@color/error_edit_text_color</item>
-        <item name="boxBackgroundColor">@color/dark_blue_color</item>
+        <item name="errorTextColor">@color/colorError</item>
+        <item name="boxBackgroundColor">@color/colorBackground</item>
         <item name="boxStrokeColor">@color/text_input_box_stroke_color</item>
         <item name="boxStrokeWidthFocused">1dp</item>
         <item name="boxCollapsedPaddingTop">0dp</item>

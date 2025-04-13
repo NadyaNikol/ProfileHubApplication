@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--    main  -->
+    <color name="colorPrimary">#FB5E06</color>
+    <color name="colorSecondary">#FAFAFA</color>
 
-    <color name="primary_color">#FAFAFA</color>
-    <color name="secondary_color">#B2B2B3</color>
+    <!--    fons -->
+    <color name="colorBackground">#242235</color>
+    <color name="colorSurface">#B2B2B3</color>
 
-    <color name="white">#FFFFFF</color>
-    <color name="transparent">#00000000</color>
-    <color name="orange">#FB5E06</color>
-    <color name="dark_blue_color">#242235</color>
+    <!--    text and content-->
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorOnSecondary">#18181F</color>
+    <color name="colorOnBackground">#FAFAFA</color>
+    <color name="colorOnSurface">#B2B2B3</color>
 
-    <color name="error_edit_text_color">#F93E3E</color>
-    <color name="dark_text_color">#18181F</color>
+    <!--    errors -->
+    <color name="colorError">#F93E3E</color>
 
-    <color name="dark_border_color_pressed">#d4dbff</color>
+    <!--    states -->
+    <color name="colorAccent">#B2B2B3</color>
+    <color name="colorControlActivated">#FAFAFA</color>
+    <color name="buttonBorderPressedColor">#d4dbff</color>
+
 </resources>
