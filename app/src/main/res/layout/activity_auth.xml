@@ -90,14 +90,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_horizontal_small"
+        android:button="@drawable/custom_checkbox"
         android:checked="true"
+        android:paddingHorizontal="8dp"
         android:text="@string/check_box_remember_me"
         android:textColor="@color/colorOnSurface"
         android:textSize="@dimen/header_three_text_size"
-        app:buttonIcon="@drawable/custom_checkbox"
         app:layout_constraintBottom_toTopOf="@id/btnGoogle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayoutPassword" />
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutPassword"
+        app:useMaterialThemeColors="false" />
 
     <Button
         android:id="@+id/btnGoogle"
