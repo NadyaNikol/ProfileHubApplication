@@ -11,7 +11,8 @@
 
 
     <!-- margins -->
-    <dimen name="margin_horizontal_small">16dp</dimen>
+    <dimen name="margin_start">16dp</dimen>
+    <dimen name="margin_end">16dp</dimen>
 
 
     <!-- buttons -->
