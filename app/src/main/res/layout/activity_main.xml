@@ -18,7 +18,7 @@
         android:id="@+id/viewProfile"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/background_color"
+        android:background="@color/colorBackground"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,8 +30,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/tv_settings"
-        android:textColor="@color/primary_text_color"
         android:textSize="24sp"
+        android:textColor="@color/colorOnBackground"
         app:layout_constraintBaseline_toBaselineOf="@id/btnLogOut"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,13 +43,15 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/bordered_button_transparent_light"
+        android:backgroundTint="@color/colorBackground"
         android:paddingHorizontal="32dp"
         android:text="@string/btn_log_out"
         android:textAllCaps="false"
-        android:textColor="@color/secondary_text_color"
         android:textSize="14sp"
+        android:textColor="@color/colorOnSurface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+        app:strokeColor="@color/colorSurface"
 
     <ImageView
         android:id="@+id/ivPhotoProfile"
@@ -71,8 +73,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/tv_name_person"
-        android:textColor="@color/primary_text_color"
         android:textSize="18sp"
+        android:textColor="@color/colorOnBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivPhotoProfile" />
@@ -83,8 +85,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/tv_career"
-        android:textColor="@color/secondary_text_color"
         android:textSize="14sp"
+        android:textColor="@color/colorOnSurface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvNameProfile" />
@@ -95,8 +97,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/tv_home_address"
-        android:textColor="@color/secondary_text_color"
         android:textSize="14sp"
+        android:textColor="@color/colorOnSurface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvCareerProfile" />
@@ -119,7 +121,7 @@
         android:id="@+id/imgBtnFacebookIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/transparent"
+        android:background="@android:color/transparent"
         android:contentDescription="@string/iv_facebook_icon"
         android:src="@drawable/facebook_icon" />
 
@@ -127,7 +129,7 @@
         android:id="@+id/imgBtnLinkedinIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/transparent"
+        android:background="@android:color/transparent"
         android:contentDescription="@string/iv_linkedin_icon"
         android:src="@drawable/linkedin_icon" />
 
@@ -135,7 +137,7 @@
         android:id="@+id/imgBtnInstagramIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/transparent"
+        android:background="@android:color/transparent"
         android:contentDescription="@string/iv_instagram_icon"
         android:src="@drawable/instagram_icon" />
 
@@ -145,15 +147,16 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/btn_background_selector"
+        android:backgroundTint="@color/colorSecondary"
         android:text="@string/btn_edit_profile"
         android:textAllCaps="false"
-        android:textColor="@color/dark_text_color"
         android:textSize="14sp"
+        android:textColor="@color/colorOnSecondary"
         app:layout_constraintBottom_toTopOf="@id/btnViewContacts"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_max="600dp" />
+        app:strokeColor="@color/colorBackground"
 
     <Button
         android:id="@+id/btnViewContacts"
@@ -162,9 +165,10 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/button_orange"
+        android:backgroundTint="@color/colorPrimary"
         android:text="@string/btn_view_my_contacts"
-        android:textColor="@color/white"
         android:textSize="16sp"
+        android:textColor="@color/colorOnPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

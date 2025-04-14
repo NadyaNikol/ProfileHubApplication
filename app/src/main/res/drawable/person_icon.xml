@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="oval">
-            <solid android:color="@color/background_color_person_icon"/>
+            <solid android:color="@color/colorSurface"/>
             <size android:width="152dp" android:height="152dp" />
         </shape>
     </item>
