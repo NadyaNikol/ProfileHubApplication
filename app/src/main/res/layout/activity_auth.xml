@@ -175,7 +175,7 @@
         android:id="@+id/tvAlreadyHaveAnAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="@dimen/margin_bottom"
         android:text="@string/tv_already_have_an_account"
         android:textColor="@color/colorOnSurface"
         android:textSize="@dimen/header_three_text_size"
