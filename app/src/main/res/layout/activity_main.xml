@@ -7,13 +7,178 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <View
+        android:id="@+id/viewProfile"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorBackground"
+        app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start"
+        android:text="@string/tv_settings"
+        android:textColor="@color/colorOnBackground"
+        android:textSize="@dimen/header_one_text_size"
+        app:layout_constraintBaseline_toBaselineOf="@id/btnLogOut"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnLogOut"
+        style="@style/AppButtonStyle.FlatInsetButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top"
+        android:layout_marginEnd="@dimen/margin_end"
+        android:backgroundTint="@color/colorBackground"
+        android:paddingHorizontal="32dp"
+        android:text="@string/btn_log_out"
+        android:textAllCaps="false"
+        android:textColor="@color/colorOnSurface"
+        android:textSize="@dimen/header_three_text_size"
+        app:cornerRadius="@dimen/btn_corner_radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/colorSurface"
+        app:strokeWidth="@dimen/btn_stroke_width" />
+
+    <ImageView
+        android:id="@+id/ivPhotoProfile"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/iv_photo_profile"
+        android:src="@drawable/person_icon"
+        app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <TextView
+        android:id="@+id/tvNameProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/tv_name_person"
+        android:textColor="@color/colorOnBackground"
+        android:textSize="@dimen/header_two_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivPhotoProfile" />
+
+    <TextView
+        android:id="@+id/tvCareerProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/tv_career"
+        android:textColor="@color/colorOnSurface"
+        android:textSize="@dimen/header_three_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvNameProfile" />
+
+    <TextView
+        android:id="@+id/tvAddressProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/tv_home_address"
+        android:textColor="@color/colorOnSurface"
+        android:textSize="@dimen/header_three_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCareerProfile" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flowSocialMediaIcons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="imgBtnFacebookIcon,imgBtnLinkedinIcon,imgBtnInstagramIcon"
+        app:flow_horizontalGap="40dp"
+        app:flow_horizontalStyle="packed"
+        app:flow_wrapMode="chain"
+        app:layout_constraintBottom_toTopOf="@id/btnEditProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <ImageButton
+        android:id="@+id/imgBtnFacebookIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/iv_facebook_icon"
+        android:src="@drawable/facebook_icon" />
+
+    <ImageButton
+        android:id="@+id/imgBtnLinkedinIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/iv_linkedin_icon"
+        android:src="@drawable/linkedin_icon" />
+
+    <ImageButton
+        android:id="@+id/imgBtnInstagramIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/iv_instagram_icon"
+        android:src="@drawable/instagram_icon" />
+
+    <Button
+        android:id="@+id/btnEditProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start"
+        android:layout_marginEnd="@dimen/margin_end"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/colorSecondary"
+        android:text="@string/btn_edit_profile"
+        android:textAllCaps="false"
+        android:textColor="@color/colorOnSecondary"
+        android:textSize="@dimen/header_three_text_size"
+        app:cornerRadius="@dimen/btn_corner_radius"
+        app:layout_constraintBottom_toTopOf="@id/btnViewContacts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/colorBackground"
+        app:strokeWidth="@dimen/btn_stroke_width" />
+
+    <Button
+        android:id="@+id/btnViewContacts"
+        style="@style/AppButtonStyle.FlatInsetButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start"
+        android:layout_marginEnd="@dimen/margin_end"
+        android:layout_marginBottom="@dimen/margin_bottom"
+        android:backgroundTint="@color/colorPrimary"
+        android:letterSpacing="@dimen/letter_spacing"
+        android:text="@string/btn_view_my_contacts"
+        android:textColor="@color/colorOnPrimary"
+        android:textSize="@dimen/btn_large_text_size_upper_case"
+        app:cornerRadius="@dimen/btn_corner_radius"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
