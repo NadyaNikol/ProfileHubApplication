@@ -149,7 +149,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start"
         android:layout_marginEnd="@dimen/margin_end"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="12dp"
         android:backgroundTint="@color/colorSecondary"
         android:text="@string/btn_edit_profile"
         android:textAllCaps="false"
