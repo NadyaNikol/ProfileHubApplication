@@ -132,6 +132,7 @@
         android:textColor="@color/colorOnBackground"
         android:textSize="@dimen/header_two_text_size"
         app:cornerRadius="@dimen/btn_corner_radius"
+        android:backgroundTint="@color/colorSecondary"
         app:layout_constraintBottom_toTopOf="@id/btnRegister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
