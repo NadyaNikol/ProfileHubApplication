@@ -109,7 +109,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start"
         android:layout_marginEnd="@dimen/margin_end"
-        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/colorSecondary"
         android:contentDescription="@string/btn_google"
         android:letterSpacing="@dimen/letter_spacing"
@@ -128,6 +127,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:text="@string/tv_or"
         android:textColor="@color/colorOnBackground"
         android:textSize="@dimen/header_two_text_size"
@@ -138,8 +138,9 @@
 
     <Button
         android:id="@+id/btnRegister"
+        style="@style/AppButtonStyle.FlatInsetButtonStyle"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start"
         android:layout_marginEnd="@dimen/margin_end"
         android:layout_marginBottom="16dp"
