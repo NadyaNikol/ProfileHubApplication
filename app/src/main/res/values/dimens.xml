@@ -23,6 +23,6 @@
 
 
     <!-- letter spacing -->
-    <dimen name="letter_spacing">0.09</dimen>
+    <dimen name="letter_spacing">0.15</dimen>
 
 </resources>
