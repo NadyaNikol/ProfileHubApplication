@@ -38,6 +38,7 @@
 
     <Button
         android:id="@+id/btnLogOut"
+        style="@style/AppButtonStyle.FlatInsetButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_top"
@@ -163,6 +164,7 @@
 
     <Button
         android:id="@+id/btnViewContacts"
+        style="@style/AppButtonStyle.FlatInsetButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start"

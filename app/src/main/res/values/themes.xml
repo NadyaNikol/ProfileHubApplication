@@ -3,7 +3,7 @@
     <style name="Base.Theme.ProfileHub" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:fontFamily">@font/open_sans_semi_bold</item>
 
-        <item name="materialButtonStyle">@style/BaseMaterialButtonStyle</item>
+        <item name="materialButtonStyle">@style/AppButtonStyle</item>
     </style>
 
 </resources>
