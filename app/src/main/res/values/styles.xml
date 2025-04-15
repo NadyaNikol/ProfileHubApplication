@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="cursorColor">@color/colorOnBackground</item>
+        <item name="expandedHintEnabled">false</item>
+        <item name="hintTextColor">@color/colorOnSurface</item>
+        <item name="android:textColorHint">@color/colorOnSurface</item>
+        <item name="errorEnabled">true</item>
+        <item name="errorTextColor">@color/colorError</item>
+        <item name="boxBackgroundColor">@color/colorBackground</item>
+        <item name="boxStrokeColor">@color/text_input_box_stroke_color</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
+        <item name="boxCollapsedPaddingTop">0dp</item>
+
+    </style>
+
+    <style name="HintTextSizeStyle" >
+        <item name="android:textSize">@dimen/header_three_text_size</item>
+    </style>
+
+    <style name="ErrorTextSizeStyle">
+        <item name="android:textSize">@dimen/header_four_text_size</item>
+    </style>
+
+    <style name="AppButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="AppButtonStyle.FlatInsetButtonStyle">
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+
+<!--    app:boxBackgroundColor="@color/background_color"-->
+<!--    app:boxStrokeColor="@color/secondary_color"-->
+<!--    android:textColorHint="@color/secondary_text_color"-->
+<!--    <item name="helperTextEnabled">true</item>-->
+
+</resources>
