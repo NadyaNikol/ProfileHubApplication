@@ -1,4 +1,4 @@
-package com.androiddev.profilehub
+package com.androiddev.profilehub.ui.main
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
