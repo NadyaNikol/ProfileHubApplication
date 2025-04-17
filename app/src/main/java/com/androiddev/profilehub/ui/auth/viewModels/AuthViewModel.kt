@@ -46,13 +46,14 @@ class AuthViewModel(
         val emailError = (emailValidationResult as? ValidationResult.Error)?.errorMessage?.message
         val passwordError = (passwordValidationResult as? ValidationResult.Error)?.errorMessage?.message
 
+        _uiState.update {
+            it.copy(
+                emailError = emailError,
+                passwordError = passwordError
+            )
+        }
+
         if (emailError != null || passwordError != null) {
-            _uiState.update {
-                it.copy(
-                    emailError = (emailValidationResult as? ValidationResult.Error)?.errorMessage?.message,
-                    passwordError = (passwordValidationResult as? ValidationResult.Error)?.errorMessage?.message
-                )
-            }
             return
         }
 
