@@ -22,4 +22,7 @@
     <color name="colorControlActivated">#FAFAFA</color>
     <color name="buttonBorderPressedColor">#d4dbff</color>
 
+    <!-- overlay -->
+    <color name="colorBackgroundOverlay">#66242235</color>
+
 </resources>

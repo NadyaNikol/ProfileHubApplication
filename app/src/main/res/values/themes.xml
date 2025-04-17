@@ -6,6 +6,9 @@
         <item name="android:colorControlActivated">@color/colorControlActivated</item>
 
         <item name="materialButtonStyle">@style/AppButtonStyle</item>
+
+        <item name="circularProgressIndicatorStyle">@style/CircularProgressIndicatorStyle</item>
+
     </style>
 
 </resources>
