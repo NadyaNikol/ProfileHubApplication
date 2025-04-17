@@ -6,8 +6,7 @@
         <item name="expandedHintEnabled">false</item>
         <item name="hintTextColor">@color/colorOnSurface</item>
         <item name="android:textColorHint">@color/colorOnSurface</item>
-        <item name="errorEnabled">true</item>
-        <item name="errorTextColor">@color/colorError</item>
+        <item name="helperTextTextColor">@color/colorError</item>
         <item name="boxBackgroundColor">@color/colorBackground</item>
         <item name="boxStrokeColor">@color/text_input_box_stroke_color</item>
         <item name="boxStrokeWidthFocused">1dp</item>
@@ -19,7 +18,7 @@
         <item name="android:textSize">@dimen/header_three_text_size</item>
     </style>
 
-    <style name="ErrorTextSizeStyle">
+    <style name="HelperTextSizeStyle">
         <item name="android:textSize">@dimen/header_four_text_size</item>
     </style>
 
