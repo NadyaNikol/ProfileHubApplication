@@ -1,5 +1,6 @@
 package com.androiddev.profilehub.ui.auth
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -14,6 +15,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.androiddev.profilehub.R
 import com.androiddev.profilehub.databinding.ActivityAuthBinding
 import com.androiddev.profilehub.ui.auth.viewModels.AuthViewModel
+import com.androiddev.profilehub.ui.main.MainActivity
+import com.androiddev.profilehub.utils.EmailParser
 import com.androiddev.profilehub.utils.customSnackbar
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -89,15 +92,15 @@ class AuthActivity : AppCompatActivity() {
                         is AuthViewModel.AuthEvent.Success -> {
                             binding.groupProgressBar.isVisible = false
 
-//                            val intentToMain =
-//                                Intent(this@AuthActivity, MainActivity::class.java)
-//                                    .apply {
-//                                        putExtra(
-//                                            "user_email",
-//                                            EmailParser.extractName(binding.editTextEmailAddress.text.toString())
-//                                        )
-//                                    }
-//                            startActivity(intentToMain)
+                            val intentToMain =
+                                Intent(this@AuthActivity, MainActivity::class.java)
+                                    .apply {
+                                        putExtra(
+                                            "user_email",
+                                            EmailParser.extractName(binding.editTextEmailAddress.text.toString())
+                                        )
+                                    }
+                            startActivity(intentToMain)
                         }
 
                         is AuthViewModel.AuthEvent.Error -> {
