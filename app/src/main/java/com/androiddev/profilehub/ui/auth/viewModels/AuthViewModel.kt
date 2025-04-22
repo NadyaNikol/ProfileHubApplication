@@ -59,9 +59,11 @@ class AuthViewModel(
 
         viewModelScope.launch {
             _authEvent.emit(AuthEvent.Loading)
+            _uiState.update { it.copy(isLoading = true) }
 
             delay(3000)
 
+            _uiState.update { it.copy(isLoading = false) }
             _authEvent.emit(AuthEvent.Success)
         }
     }

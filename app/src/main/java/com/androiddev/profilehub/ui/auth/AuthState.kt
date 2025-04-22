@@ -8,4 +8,5 @@ data class AuthState(
     val emailError: String? = "",
     val password: String = "",
     val passwordError: String? = "",
+    val isLoading: Boolean = false,
 )
