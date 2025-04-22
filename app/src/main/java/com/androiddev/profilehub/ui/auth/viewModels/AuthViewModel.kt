@@ -7,11 +7,13 @@ import com.androiddev.profilehub.domain.useCases.ValidationPasswordUseCase
 import com.androiddev.profilehub.domain.useCases.ValidationResult
 import com.androiddev.profilehub.ui.auth.AuthFormEvent
 import com.androiddev.profilehub.ui.auth.AuthState
+import com.androiddev.profilehub.ui.auth.events.AuthEvent
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -58,7 +60,6 @@ class AuthViewModel(
         }
 
         viewModelScope.launch {
-            _authEvent.emit(AuthEvent.Loading)
             _uiState.update { it.copy(isLoading = true) }
 
             delay(3000)
@@ -67,12 +68,5 @@ class AuthViewModel(
             _authEvent.emit(AuthEvent.Success)
         }
     }
-
-    sealed class AuthEvent{
-        data object Loading: AuthEvent()
-        data object Success: AuthEvent()
-        data class Error(val errorMessage: String): AuthEvent()
-    }
-
 
 }

@@ -7,18 +7,19 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.widget.doOnTextChanged
 import androidx.core.view.isGone
+import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.androiddev.profilehub.R
 import com.androiddev.profilehub.databinding.ActivityAuthBinding
+import com.androiddev.profilehub.ui.auth.events.AuthEvent
 import com.androiddev.profilehub.ui.auth.viewModels.AuthViewModel
 import com.androiddev.profilehub.ui.main.MainActivity
 import com.androiddev.profilehub.utils.EmailParser
-import com.androiddev.profilehub.utils.customSnackbar
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 /**
@@ -49,17 +50,18 @@ class AuthActivity : AppCompatActivity() {
     private fun initListeners() {
         binding.apply {
 
-            viewModel.apply {
+            with(viewModel) {
 
-                editTextEmailAddress.doOnTextChanged { text, _, _, _ ->
-                    if (text?.isNotBlank() == true) {
-                        onEvent(AuthFormEvent.EmailChanged(text.toString()))
+                editTextEmailAddress.doAfterTextChanged { editable  ->
+
+                    if (!editable.isNullOrBlank()) {
+                        onEvent(AuthFormEvent.EmailChanged(editable.toString()))
                     }
                 }
 
-                editTextPassword.doOnTextChanged { text, _, _, _ ->
-                    if (text?.isNotBlank() == true) {
-                        onEvent(AuthFormEvent.PasswordChanged(text.toString()))
+                editTextPassword.doAfterTextChanged { editable ->
+                    if (!editable.isNullOrBlank()) {
+                        onEvent(AuthFormEvent.PasswordChanged(editable.toString()))
                     }
                 }
 
@@ -72,47 +74,43 @@ class AuthActivity : AppCompatActivity() {
 
     private fun initObserves() {
         lifecycleScope.launch {
-            viewModel.uiState.collectLatest { state ->
-                binding.apply {
-                    textInputLayoutEmail.helperText = state.emailError
-                    textInputLayoutPassword.helperText = state.passwordError
-                }
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+                viewModel.uiState.onEach { state ->
+                    binding.apply {
+                        textInputLayoutEmail.helperText = state.emailError
+                        textInputLayoutPassword.helperText = state.passwordError
                         binding.groupProgressBar.isGone = !state.isLoading
+                    }
+                }.launchIn(this)
             }
         }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.authEvent.collectLatest { event ->
+                viewModel.authEvent.onEach { event ->
 
-                    when (event) {
-                        is AuthViewModel.AuthEvent.Loading -> {
-                            binding.groupProgressBar.isVisible = true
-                        }
+                    if (event is AuthEvent.Success) {
 
-                        is AuthViewModel.AuthEvent.Success -> {
-                            binding.groupProgressBar.isVisible = false
-
-                            val intentToMain =
-                                Intent(this@AuthActivity, MainActivity::class.java)
-                                    .apply {
-                                        putExtra(
-                                            "user_email",
-                                            EmailParser.extractName(binding.editTextEmailAddress.text.toString())
-                                        )
-                                    }
-                            startActivity(intentToMain)
-                        }
-
-                        is AuthViewModel.AuthEvent.Error -> {
-                            binding.apply {
-                                groupProgressBar.isVisible = false
-                                root.customSnackbar(this@AuthActivity, event.errorMessage)
-                                    .show()
-                            }
-                        }
+                        val intentToMain =
+                            Intent(this@AuthActivity, MainActivity::class.java)
+                                .apply {
+                                    putExtra(
+                                        "user_name",
+                                        EmailParser.extractName(binding.editTextEmailAddress.text.toString())
+                                    )
+                                }
+                        startActivity(intentToMain)
                     }
-                }
+
+
+//                        is AuthEvent.Error -> {
+//                            binding.apply {
+//                                root.customSnackbar(this@AuthActivity, event.errorMessage)
+//                                    .show()
+//                            }
+//                        }
+                }.launchIn(this)
             }
         }
     }
