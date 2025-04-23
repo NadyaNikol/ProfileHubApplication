@@ -1,10 +1,13 @@
 package com.androiddev.profilehub.domain.useCases
 
+import android.content.Context
+import com.androiddev.profilehub.R
+
 
 /**
  * Created by Nadya N. on 07.04.2025.
  */
-class ValidationPasswordUseCase {
+class ValidationPasswordUseCase(private val context: Context) {
 
     operator fun invoke(password: String): ValidationResult {
         val containsLetters = password.any { it.isLetter() }
@@ -12,18 +15,18 @@ class ValidationPasswordUseCase {
         val containsUppercase = password.any { it.isUpperCase() }
 
         return when {
-            password.length < 8 -> ValidationResult.Error("Your password must include a minimum of 8 characters.")
+            password.length < 8 -> ValidationResult.Error(context.getString(R.string.password_must_include_a_minimum_characters))
             !containsLetters && !containsDigits -> ValidationResult.Error(
-                "Your password need to contain at least one letter or digit"
+                context.getString(R.string.password_need_to_contain_at_least_one_letter_or_digit)
             )
 
             !containsUppercase ->
                 ValidationResult.Error(
-                    "Your password must contain at least one uppercase letter"
+                    context.getString(R.string.password_must_contain_at_least_one_uppercase_letter)
                 )
 
             password.contains(" ") -> ValidationResult.Error(
-                "Your password must not contain spaces"
+                context.getString(R.string.password_must_not_contain_spaces)
             )
 
             else -> ValidationResult.Success

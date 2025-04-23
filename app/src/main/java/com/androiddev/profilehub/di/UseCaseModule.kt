@@ -1,10 +1,12 @@
 package com.androiddev.profilehub.di
 
+import android.content.Context
 import com.androiddev.profilehub.domain.useCases.ValidationEmailUseCase
 import com.androiddev.profilehub.domain.useCases.ValidationPasswordUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -17,11 +19,12 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideValidationPasswordUseCase() = ValidationPasswordUseCase()
+    fun provideValidationPasswordUseCase(@ApplicationContext context: Context) =
+        ValidationPasswordUseCase(context)
 
     @Provides
     @Singleton
-    fun provideValidationEmailUseCase() = ValidationEmailUseCase()
-
+    fun provideValidationEmailUseCase(@ApplicationContext context: Context) =
+        ValidationEmailUseCase(context)
 
 }
