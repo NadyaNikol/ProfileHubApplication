@@ -8,6 +8,7 @@ import com.androiddev.profilehub.domain.useCases.ValidationResult
 import com.androiddev.profilehub.ui.auth.AuthFormEvent
 import com.androiddev.profilehub.ui.auth.AuthState
 import com.androiddev.profilehub.ui.auth.events.AuthEvent
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,13 +17,15 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * Created by Nadya N. on 07.04.2025.
  */
-class AuthViewModel(
-    private val validationEmailUseCase: ValidationEmailUseCase=ValidationEmailUseCase(),
-    private val validationPasswordUseCase: ValidationPasswordUseCase=ValidationPasswordUseCase(),
+@HiltViewModel
+class AuthViewModel @Inject constructor(
+    private val validationEmailUseCase: ValidationEmailUseCase,
+    private val validationPasswordUseCase: ValidationPasswordUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(AuthState())
