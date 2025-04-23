@@ -7,9 +7,9 @@ import com.androiddev.profilehub.domain.repositories.UserPreferencesRepository
 import com.androiddev.profilehub.domain.useCases.ValidationEmailUseCase
 import com.androiddev.profilehub.domain.useCases.ValidationPasswordUseCase
 import com.androiddev.profilehub.domain.useCases.ValidationResult
-import com.androiddev.profilehub.ui.auth.events.AuthFormEvent
 import com.androiddev.profilehub.ui.auth.AuthState
 import com.androiddev.profilehub.ui.auth.events.AuthEvent
+import com.androiddev.profilehub.ui.auth.events.AuthFormEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -41,7 +41,7 @@ class AuthViewModel @Inject constructor(
         fillCredentials()
     }
 
-    private fun fillCredentials(){
+    private fun fillCredentials() {
         viewModelScope.launch {
             val credentials = userPreferencesRepository.savedCredentials.first()
             if (credentials != null) {
@@ -60,8 +60,10 @@ class AuthViewModel @Inject constructor(
         when (event) {
             is AuthFormEvent.EmailChanged ->
                 _uiState.update { it.copy(email = event.email) }
+
             is AuthFormEvent.PasswordChanged ->
                 _uiState.update { it.copy(password = event.password) }
+
             is AuthFormEvent.RememberMeChanged ->
                 _uiState.update { it.copy(rememberMe = event.isChecked) }
 

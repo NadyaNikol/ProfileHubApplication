@@ -55,8 +55,7 @@ class AuthActivity : AppCompatActivity() {
 
             with(viewModel) {
 
-                editTextEmailAddress.doAfterTextChanged { editable  ->
-
+                editTextEmailAddress.doAfterTextChanged { editable ->
                     if (!editable.isNullOrBlank()) {
                         onEvent(AuthFormEvent.EmailChanged(editable.toString()))
                     }
@@ -87,7 +86,7 @@ class AuthActivity : AppCompatActivity() {
                     binding.apply {
                         textInputLayoutEmail.helperText = state.emailError
                         textInputLayoutPassword.helperText = state.passwordError
-                        binding.groupProgressBar.isGone = !state.isLoading
+                        groupProgressBar.isGone = !state.isLoading
                     }
                 }.launchIn(this)
             }

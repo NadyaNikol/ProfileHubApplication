@@ -13,7 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 fun View.customSnackbar(
     context: Context,
     message: String,
-    duration: Int = Snackbar.LENGTH_LONG
+    duration: Int = Snackbar.LENGTH_LONG,
 ): Snackbar {
     val snackbar = Snackbar.make(this, message, duration)
 
