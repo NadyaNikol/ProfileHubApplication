@@ -15,6 +15,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.androiddev.profilehub.R
 import com.androiddev.profilehub.databinding.ActivityAuthBinding
 import com.androiddev.profilehub.ui.auth.events.AuthEvent
+import com.androiddev.profilehub.ui.auth.events.AuthFormEvent
 import com.androiddev.profilehub.ui.auth.viewModels.AuthViewModel
 import com.androiddev.profilehub.ui.main.MainActivity
 import com.androiddev.profilehub.utils.EmailParser
@@ -67,6 +68,10 @@ class AuthActivity : AppCompatActivity() {
                     }
                 }
 
+                checkBoxRememberMe.setOnCheckedChangeListener { _, isChecked ->
+                    onEvent(AuthFormEvent.RememberMeChanged(isChecked))
+                }
+
                 btnRegister.setOnClickListener {
                     onEvent(AuthFormEvent.Submit)
                 }
@@ -92,17 +97,27 @@ class AuthActivity : AppCompatActivity() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.authEvent.onEach { event ->
 
-                    if (event is AuthEvent.Success) {
+                    when (event) {
+                        is AuthEvent.NavigateToMain -> {
 
-                        val intentToMain =
-                            Intent(this@AuthActivity, MainActivity::class.java)
-                                .apply {
-                                    putExtra(
-                                        "user_name",
-                                        EmailParser.extractName(binding.editTextEmailAddress.text.toString())
-                                    )
-                                }
-                        startActivity(intentToMain)
+                            val intentToMain =
+                                Intent(this@AuthActivity, MainActivity::class.java)
+                                    .apply {
+                                        putExtra(
+                                            "user_name",
+                                            EmailParser.extractName(binding.editTextEmailAddress.text.toString())
+                                        )
+                                    }
+                            startActivity(intentToMain)
+                        }
+
+                        is AuthEvent.FillSavedCredentials -> {
+                            binding.apply {
+                                editTextEmailAddress.setText(event.email)
+                                editTextPassword.setText(event.password)
+                                checkBoxRememberMe.isChecked = event.rememberMe
+                            }
+                        }
                     }
 
 

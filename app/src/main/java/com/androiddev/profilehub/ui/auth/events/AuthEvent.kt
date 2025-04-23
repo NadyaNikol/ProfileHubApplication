@@ -5,7 +5,13 @@ package com.androiddev.profilehub.ui.auth.events
  */
 
 sealed class AuthEvent {
-    data object Success: AuthEvent()
+    data object NavigateToMain: AuthEvent()
+
+    data class FillSavedCredentials(
+        val email: String,
+        val password: String,
+        val rememberMe: Boolean
+    ) : AuthEvent()
 
 //    data class Error(val errorMessage: String): AuthEvent()
 }

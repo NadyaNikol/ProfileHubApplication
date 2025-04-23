@@ -9,4 +9,5 @@ data class AuthState(
     val password: String = "",
     val passwordError: String? = "",
     val isLoading: Boolean = false,
+    val rememberMe: Boolean = false,
 )

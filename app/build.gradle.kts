@@ -50,6 +50,8 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
 
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.datastore.preferences)
+
     // hilt
     ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
