@@ -8,13 +8,17 @@
     android:background="@color/colorBackground"
     tools:context=".AuthActivity">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/authTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start"
+        android:layout_marginEnd="@dimen/margin_end"
+        android:gravity="center"
         android:text="@string/tv_lets_get_acquainted"
         android:textColor="@color/colorOnBackground"
         android:textSize="@dimen/header_one_text_size"
+        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/authSubtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,15 +26,19 @@
         app:layout_constraintVertical_bias="0.4"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/authSubtitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/open_sans_regular"
+        android:layout_marginEnd="@dimen/margin_end"
+        app:fontFamily="@font/open_sans_regular"
+        android:gravity="center"
         android:text="@string/tv_fill_out_the_profile"
         android:textColor="@color/colorOnBackground"
         android:textSize="@dimen/header_four_text_size"
+        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/textInputLayoutEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,8 +50,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start"
-        android:layout_marginEnd="@dimen/margin_end"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="@dimen/margin_end"
         android:hint="@string/text_input_layout_hint_e_mail"
         app:errorTextAppearance="@style/ErrorTextSizeStyle"
         app:hintTextAppearance="@style/HintTextSizeStyle"
@@ -57,9 +65,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="textEmailAddress"
-            android:text="blabla@gmail.com"
             android:textColor="@color/colorOnBackground"
-            android:textSize="@dimen/header_two_text_size" />
+            android:textSize="@dimen/header_two_text_size"
+            tools:text="test_text@gmail.com" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -82,18 +90,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="textPassword"
-            android:text="12345"
             android:textColor="@color/colorOnBackground"
-            android:textSize="@dimen/header_two_text_size" />
+            android:textSize="@dimen/header_two_text_size"
+            tools:text="12345" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <CheckBox
+    <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/checkBoxRememberMe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start"
         android:button="@drawable/custom_checkbox"
-        android:checked="true"
+        android:minHeight="16dp"
         android:paddingHorizontal="8dp"
         android:text="@string/check_box_remember_me"
         android:textColor="@color/colorOnSurface"
@@ -101,17 +109,21 @@
         app:layout_constraintBottom_toTopOf="@id/btnGoogle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutPassword"
-        app:useMaterialThemeColors="false" />
+        app:useMaterialThemeColors="false"
+        tools:checked="true" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnGoogle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start"
         android:layout_marginEnd="@dimen/margin_end"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/colorSecondary"
         android:contentDescription="@string/btn_google"
         android:letterSpacing="@dimen/letter_spacing"
+        android:minHeight="40dp"
+        android:paddingVertical="8dp"
         android:text="@string/btn_google"
         android:textColor="@color/colorOnSecondary"
         app:cornerRadius="@dimen/btn_corner_radius"
@@ -122,30 +134,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvOr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/colorSecondary"
         android:text="@string/tv_or"
         android:textColor="@color/colorOnBackground"
         android:textSize="@dimen/header_two_text_size"
         app:cornerRadius="@dimen/btn_corner_radius"
-        android:backgroundTint="@color/colorSecondary"
         app:layout_constraintBottom_toTopOf="@id/btnRegister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnRegister"
-        style="@style/AppButtonStyle.FlatInsetButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start"
         android:layout_marginEnd="@dimen/margin_end"
         android:layout_marginBottom="16dp"
         android:letterSpacing="@dimen/letter_spacing"
+        android:minHeight="56dp"
+        android:paddingVertical="16dp"
         android:text="@string/btn_register"
         android:textColor="@color/colorOnBackground"
         android:textSize="@dimen/btn_large_text_size_upper_case"
@@ -157,45 +169,51 @@
         app:strokeColor="@color/colorPrimary"
         app:strokeWidth="@dimen/btn_stroke_width" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTermsAndConditions"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start"
+        android:layout_marginEnd="@dimen/margin_end"
         android:layout_marginBottom="8dp"
         android:breakStrategy="simple"
-        android:fontFamily="@font/open_sans_regular"
+        app:fontFamily="@font/open_sans_regular"
         android:gravity="center"
-        android:minLines="2"
         android:text="@string/tv_terms_and_conditions"
         android:textColor="@color/colorOnBackground"
         android:textSize="@dimen/header_four_text_size"
+        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/tvAlreadyHaveAnAccount"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.7" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvAlreadyHaveAnAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start"
         android:layout_marginBottom="@dimen/margin_bottom"
+        android:gravity="center"
         android:text="@string/tv_already_have_an_account"
         android:textColor="@color/colorOnSurface"
         android:textSize="@dimen/header_three_text_size"
+        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tvSignIn"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
+        android:layout_marginEnd="@dimen/margin_end"
         android:clickable="true"
         android:text="@string/tv_sign_in"
         android:textColor="@color/colorOnPrimary"
         android:textSize="@dimen/header_three_text_size"
+        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@id/tvAlreadyHaveAnAccount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tvAlreadyHaveAnAccount"

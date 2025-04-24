@@ -3,7 +3,7 @@
     <string name="tv_lets_get_acquainted">Let\'s get acquainted</string>
     <string name="tv_fill_out_the_profile">Fill out the profile and go to the application!</string>
     <string name="check_box_remember_me">Remember me</string>
-    <string name="tv_terms_and_conditions">By clicking Register you agree to our Terms and Conditions</string>
+    <string name="tv_terms_and_conditions">By clicking Register you agree to our Terms \nand Conditions</string>
     <string name="tv_already_have_an_account">Already have an account?</string>
     <string name="tv_sign_in">Sign in</string>
     <string name="tv_or">or</string>
