@@ -24,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,15 +36,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogOut"
-        style="@style/AppButtonStyle.FlatInsetButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_top"
         android:layout_marginEnd="@dimen/margin_end"
         android:backgroundTint="@color/colorBackground"
-        android:paddingHorizontal="32dp"
+        android:paddingHorizontal="36dp"
+        android:paddingVertical="12dp"
         android:text="@string/btn_log_out"
         android:textAllCaps="false"
         android:textColor="@color/colorOnSurface"
@@ -55,55 +55,78 @@
         app:strokeColor="@color/colorSurface"
         app:strokeWidth="@dimen/btn_stroke_width" />
 
-    <ImageView
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrierBottomGroupSettingsLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="tvSettings,btnLogOut" />
+
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivPhotoProfile"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/iv_photo_profile"
         android:src="@drawable/person_icon"
-        app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
+        app:layout_constraintBottom_toTopOf="@id/tvNameProfile"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.16"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintTop_toBottomOf="@id/barrierBottomGroupSettingsLogout"
+        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintVertical_chainStyle="packed" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvNameProfile"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start"
         android:layout_marginTop="24dp"
-        android:text="@string/tv_name_person"
+        android:layout_marginEnd="@dimen/margin_end"
+        android:gravity="center"
         android:textColor="@color/colorOnBackground"
         android:textSize="@dimen/header_two_text_size"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@id/tvCareerProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivPhotoProfile" />
+        app:layout_constraintTop_toBottomOf="@id/ivPhotoProfile"
+        tools:text="Lucile Alvarado" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvCareerProfile"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start"
         android:layout_marginTop="8dp"
-        android:text="@string/tv_career"
+        android:layout_marginEnd="@dimen/margin_end"
+        android:gravity="center"
         android:textColor="@color/colorOnSurface"
         android:textSize="@dimen/header_three_text_size"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@id/tvAddressProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvNameProfile" />
+        app:layout_constraintTop_toBottomOf="@id/tvNameProfile"
+        tools:text="Graphic designer" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvAddressProfile"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start"
         android:layout_marginTop="16dp"
-        android:text="@string/tv_home_address"
+        android:layout_marginEnd="@dimen/margin_end"
+        android:gravity="center"
         android:textColor="@color/colorOnSurface"
         android:textSize="@dimen/header_three_text_size"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvCareerProfile" />
+        app:layout_constraintTop_toBottomOf="@id/tvCareerProfile"
+        tools:text="5295 Gaylord Walks Apk. 110" />
 
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/flowSocialMediaIcons"
@@ -119,7 +142,7 @@
         app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal"
         app:layout_constraintVertical_bias="0.4" />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/imgBtnFacebookIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -127,7 +150,7 @@
         android:contentDescription="@string/iv_facebook_icon"
         android:src="@drawable/facebook_icon" />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/imgBtnLinkedinIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -135,7 +158,7 @@
         android:contentDescription="@string/iv_linkedin_icon"
         android:src="@drawable/linkedin_icon" />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/imgBtnInstagramIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -143,7 +166,7 @@
         android:contentDescription="@string/iv_instagram_icon"
         android:src="@drawable/instagram_icon" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnEditProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -151,6 +174,8 @@
         android:layout_marginEnd="@dimen/margin_end"
         android:layout_marginBottom="12dp"
         android:backgroundTint="@color/colorSecondary"
+        android:minHeight="40dp"
+        android:paddingVertical="12dp"
         android:text="@string/btn_edit_profile"
         android:textAllCaps="false"
         android:textColor="@color/colorOnSecondary"
@@ -162,9 +187,8 @@
         app:strokeColor="@color/colorBackground"
         app:strokeWidth="@dimen/btn_stroke_width" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnViewContacts"
-        style="@style/AppButtonStyle.FlatInsetButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start"
@@ -172,6 +196,7 @@
         android:layout_marginBottom="@dimen/margin_bottom"
         android:backgroundTint="@color/colorPrimary"
         android:letterSpacing="@dimen/letter_spacing"
+        android:paddingVertical="16dp"
         android:text="@string/btn_view_my_contacts"
         android:textColor="@color/colorOnPrimary"
         android:textSize="@dimen/btn_large_text_size_upper_case"
