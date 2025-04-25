@@ -6,5 +6,5 @@ package com.androiddev.profilehub.data.local
 data class AuthCredentials(
     val email: String,
     val password: String,
-    val rememberMe: Boolean,
+    val isRememberMe: Boolean,
 )

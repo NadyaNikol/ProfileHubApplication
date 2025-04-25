@@ -14,7 +14,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.androiddev.profilehub.R
 import com.androiddev.profilehub.databinding.ActivityAuthBinding
-import com.androiddev.profilehub.ui.auth.events.AuthEvent
 import com.androiddev.profilehub.ui.auth.events.AuthFormEvent
 import com.androiddev.profilehub.ui.auth.viewModels.AuthViewModel
 import com.androiddev.profilehub.ui.main.MainActivity
@@ -87,48 +86,38 @@ class AuthActivity : AppCompatActivity() {
                         textInputLayoutEmail.helperText = state.emailError
                         textInputLayoutPassword.helperText = state.passwordError
                         groupProgressBar.isGone = !state.isLoading
+
+                        if (editTextEmailAddress.text.toString() != state.email) {
+                            editTextEmailAddress.setText(state.email)
+                        }
+
+                        if (editTextPassword.text.toString() != state.password) {
+                            editTextPassword.setText(state.password)
+                        }
+
+                        if (checkBoxRememberMe.isChecked != state.isRememberMe) {
+                            checkBoxRememberMe.isChecked = state.isRememberMe
+                        }
+
+                        if (state.submitEvent != null) {
+                            navigateToMain()
+                        }
                     }
                 }.launchIn(this)
             }
         }
+    }
 
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.authEvent.onEach { event ->
-
-                    when (event) {
-                        is AuthEvent.NavigateToMain -> {
-
-                            val intentToMain =
-                                Intent(this@AuthActivity, MainActivity::class.java)
-                                    .apply {
-                                        putExtra(
-                                            "user_name",
-                                            EmailParser.extractName(binding.editTextEmailAddress.text.toString())
-                                        )
-                                    }
-                            startActivity(intentToMain)
-                        }
-
-                        is AuthEvent.FillSavedCredentials -> {
-                            binding.apply {
-                                editTextEmailAddress.setText(event.email)
-                                editTextPassword.setText(event.password)
-                                checkBoxRememberMe.isChecked = event.rememberMe
-                            }
-                        }
-                    }
-
-
-//                        is AuthEvent.Error -> {
-//                            binding.apply {
-//                                root.customSnackbar(this@AuthActivity, event.errorMessage)
-//                                    .show()
-//                            }
-//                        }
-                }.launchIn(this)
-            }
-        }
+    private fun navigateToMain() {
+        val intentToMain =
+            Intent(this@AuthActivity, MainActivity::class.java)
+                .apply {
+                    putExtra(
+                        "user_name",
+                        EmailParser.extractName(binding.editTextEmailAddress.text.toString())
+                    )
+                }
+        startActivity(intentToMain)
     }
 }
 

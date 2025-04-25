@@ -5,9 +5,11 @@ package com.androiddev.profilehub.ui.auth
  */
 data class AuthState(
     val email: String = "",
-    val emailError: String? = "",
+    val emailError: String = "",
     val password: String = "",
-    val passwordError: String? = "",
+    val passwordError: String = "",
     val isLoading: Boolean = false,
-    val rememberMe: Boolean = false,
+    val isRememberMe: Boolean = false,
+
+    val submitEvent: Unit? = null,
 )

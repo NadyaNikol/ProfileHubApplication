@@ -25,7 +25,7 @@ class UserPreferences @Inject constructor(
         AuthCredentials(
             email = prefs[EMAIL_KEY].orEmpty(),
             password = prefs[PASSWORD_KEY].orEmpty(),
-            rememberMe = prefs[REMEMBER_ME_KEY] ?: false
+            isRememberMe = prefs[REMEMBER_ME_KEY] ?: false
         )
     }
 
@@ -41,7 +41,7 @@ class UserPreferences @Inject constructor(
         context.dataStore.edit { prefs ->
             prefs[EMAIL_KEY] = credentials.email
             prefs[PASSWORD_KEY] = credentials.password
-            prefs[REMEMBER_ME_KEY] = credentials.rememberMe
+            prefs[REMEMBER_ME_KEY] = credentials.isRememberMe
         }
     }
 

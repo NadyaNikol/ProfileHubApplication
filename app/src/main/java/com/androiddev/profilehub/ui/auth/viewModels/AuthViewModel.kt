@@ -8,13 +8,10 @@ import com.androiddev.profilehub.domain.useCases.ValidationEmailUseCase
 import com.androiddev.profilehub.domain.useCases.ValidationPasswordUseCase
 import com.androiddev.profilehub.domain.useCases.ValidationResult
 import com.androiddev.profilehub.ui.auth.AuthState
-import com.androiddev.profilehub.ui.auth.events.AuthEvent
 import com.androiddev.profilehub.ui.auth.events.AuthFormEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
@@ -34,24 +31,22 @@ class AuthViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(AuthState())
     val uiState = _uiState.asStateFlow()
 
-    private val _authEvent = MutableSharedFlow<AuthEvent>()
-    val authEvent = _authEvent.asSharedFlow()
-
     init {
-        fillCredentials()
+        getCredentials()
     }
 
-    private fun fillCredentials() {
+    private fun getCredentials() {
         viewModelScope.launch {
+
             val credentials = userPreferencesRepository.savedCredentials.first()
             if (credentials != null) {
-                _authEvent.emit(
-                    AuthEvent.FillSavedCredentials(
+                _uiState.update {
+                    it.copy(
                         email = credentials.email,
                         password = credentials.password,
-                        rememberMe = credentials.rememberMe
+                        isRememberMe = credentials.isRememberMe,
                     )
-                )
+                }
             }
         }
     }
@@ -65,7 +60,7 @@ class AuthViewModel @Inject constructor(
                 _uiState.update { it.copy(password = event.password) }
 
             is AuthFormEvent.RememberMeChanged ->
-                _uiState.update { it.copy(rememberMe = event.isChecked) }
+                _uiState.update { it.copy(isRememberMe = event.isChecked) }
 
             is AuthFormEvent.Submit -> submitData()
         }
@@ -80,8 +75,8 @@ class AuthViewModel @Inject constructor(
 
         _uiState.update {
             it.copy(
-                emailError = emailError,
-                passwordError = passwordError
+                emailError = emailError.orEmpty(),
+                passwordError = passwordError.orEmpty()
             )
         }
 
@@ -93,12 +88,12 @@ class AuthViewModel @Inject constructor(
             _uiState.update { it.copy(isLoading = true) }
 
             val state = uiState.value
-            if (state.rememberMe) {
+            if (state.isRememberMe) {
                 userPreferencesRepository.saveCredentials(
                     AuthCredentials(
                         email = state.email,
                         password = state.password,
-                        rememberMe = state.rememberMe
+                        isRememberMe = state.isRememberMe
                     )
                 )
             } else {
@@ -107,8 +102,7 @@ class AuthViewModel @Inject constructor(
 
             delay(3000)
 
-            _uiState.update { it.copy(isLoading = false) }
-            _authEvent.emit(AuthEvent.NavigateToMain)
+            _uiState.update { it.copy(isLoading = false, submitEvent = Unit) }
         }
     }
 
