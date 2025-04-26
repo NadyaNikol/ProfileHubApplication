@@ -52,7 +52,7 @@
         app:cornerRadius="@dimen/btn_corner_radius"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/colorSurface"
+        app:strokeColor="@color/colorOutlineOnDark"
         app:strokeWidth="@dimen/btn_stroke_width" />
 
     <androidx.constraintlayout.widget.Barrier
@@ -184,7 +184,7 @@
         app:layout_constraintBottom_toTopOf="@id/btnViewContacts"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:strokeColor="@color/colorBackground"
+        app:strokeColor="@color/colorOutlineOnLight"
         app:strokeWidth="@dimen/btn_stroke_width" />
 
     <com.google.android.material.button.MaterialButton
