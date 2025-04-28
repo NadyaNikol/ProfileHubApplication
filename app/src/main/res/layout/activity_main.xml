@@ -5,15 +5,205 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.main.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <View
+        android:id="@+id/viewProfile"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorBackground"
+        app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start"
+        android:text="@string/tv_settings"
+        android:textColor="@color/colorOnBackground"
+        android:textSize="@dimen/header_one_text_size"
+        app:layout_constraintBaseline_toBaselineOf="@id/btnLogOut"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLogOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top"
+        android:layout_marginEnd="@dimen/margin_end"
+        android:backgroundTint="@color/colorBackground"
+        android:paddingHorizontal="36dp"
+        android:paddingVertical="12dp"
+        android:text="@string/btn_log_out"
+        android:textAllCaps="false"
+        android:textColor="@color/colorOnSurface"
+        android:textSize="@dimen/header_three_text_size"
+        app:cornerRadius="@dimen/btn_corner_radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/colorOutlineOnDark"
+        app:strokeWidth="@dimen/btn_stroke_width" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrierBottomGroupSettingsLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="tvSettings,btnLogOut" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivPhotoProfile"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/iv_photo_profile"
+        android:src="@drawable/person_icon"
+        app:layout_constraintBottom_toTopOf="@id/tvNameProfile"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrierBottomGroupSettingsLogout"
+        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNameProfile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="@dimen/margin_end"
+        android:gravity="center"
+        android:textColor="@color/colorOnBackground"
+        android:textSize="@dimen/header_two_text_size"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@id/tvCareerProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivPhotoProfile"
+        tools:text="Lucile Alvarado" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCareerProfile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/margin_end"
+        android:gravity="center"
+        android:textColor="@color/colorOnSurface"
+        android:textSize="@dimen/header_three_text_size"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@id/tvAddressProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvNameProfile"
+        tools:text="Graphic designer" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAddressProfile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="@dimen/margin_end"
+        android:gravity="center"
+        android:textColor="@color/colorOnSurface"
+        android:textSize="@dimen/header_three_text_size"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCareerProfile"
+        tools:text="5295 Gaylord Walks Apk. 110" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flowSocialMediaIcons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="imgBtnFacebookIcon,imgBtnLinkedinIcon,imgBtnInstagramIcon"
+        app:flow_horizontalGap="40dp"
+        app:flow_horizontalStyle="packed"
+        app:flow_wrapMode="chain"
+        app:layout_constraintBottom_toTopOf="@id/btnEditProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/imgBtnFacebookIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/iv_facebook_icon"
+        android:src="@drawable/facebook_icon" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/imgBtnLinkedinIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/iv_linkedin_icon"
+        android:src="@drawable/linkedin_icon" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/imgBtnInstagramIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/iv_instagram_icon"
+        android:src="@drawable/instagram_icon" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnEditProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start"
+        android:layout_marginEnd="@dimen/margin_end"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/colorSecondary"
+        android:minHeight="40dp"
+        android:paddingVertical="12dp"
+        android:text="@string/btn_edit_profile"
+        android:textAllCaps="false"
+        android:textColor="@color/colorOnSecondary"
+        android:textSize="@dimen/header_three_text_size"
+        app:cornerRadius="@dimen/btn_corner_radius"
+        app:layout_constraintBottom_toTopOf="@id/btnViewContacts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/colorOutlineOnLight"
+        app:strokeWidth="@dimen/btn_stroke_width" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnViewContacts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start"
+        android:layout_marginEnd="@dimen/margin_end"
+        android:layout_marginBottom="@dimen/margin_bottom"
+        android:backgroundTint="@color/colorPrimary"
+        android:letterSpacing="@dimen/letter_spacing"
+        android:paddingVertical="16dp"
+        android:text="@string/btn_view_my_contacts"
+        android:textColor="@color/colorOnPrimary"
+        android:textSize="@dimen/btn_large_text_size_upper_case"
+        app:cornerRadius="@dimen/btn_corner_radius"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

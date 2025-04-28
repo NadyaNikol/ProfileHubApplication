@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Profile Hub</string>
+    <string name="btn_log_out">Log out</string>
+    <string name="iv_photo_profile">photo profile</string>
+    <string name="tv_settings">Settings</string>
+    <string name="iv_facebook_icon">Facebook icon</string>
+    <string name="iv_linkedin_icon">Linkedin icon</string>
+    <string name="iv_instagram_icon">Instagram icon</string>
+    <string name="btn_edit_profile">Edit profile</string>
+    <string name="btn_view_my_contacts">View my contacts</string>
 </resources>

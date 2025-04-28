@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.MyProfile" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+    <style name="Base.Theme.ProfileHub" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="fontFamily">@font/open_sans_semi_bold</item>
+
+        <item name="materialButtonStyle">@style/AppButtonStyle.FlatInsetButtonStyle</item>
     </style>
 
-    <style name="Theme.MyProfile" parent="Base.Theme.MyProfile" />
 </resources>
