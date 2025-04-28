@@ -1,10 +1,11 @@
-package com.androiddev.profilehub
+package com.androiddev.profilehub.ui.auth
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.androiddev.profilehub.R
 
 /**
  * Created by Nadya N. on 06.04.2025.
