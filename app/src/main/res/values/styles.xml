@@ -31,4 +31,15 @@
         <item name="android:insetBottom">0dp</item>
     </style>
 
+    <style name="CircularProgressIndicatorStyle" parent="Widget.MaterialComponents.CircularProgressIndicator">
+        <item name="trackThickness">20dp</item>
+        <item name="indicatorColor">@color/colorPrimary</item>
+    </style>
+
+
+<!--    app:boxBackgroundColor="@color/background_color"-->
+<!--    app:boxStrokeColor="@color/secondary_color"-->
+<!--    android:textColorHint="@color/secondary_text_color"-->
+<!--    <item name="helperTextEnabled">true</item>-->
+
 </resources>
