@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Profile Hub</string>
+    <string name="app_name" translatable="false">Profile Hub</string>
     <string name="btn_log_out">Log out</string>
     <string name="iv_photo_profile">photo profile</string>
     <string name="tv_settings">Settings</string>

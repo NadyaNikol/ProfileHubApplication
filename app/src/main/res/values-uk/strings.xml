@@ -1,0 +1,10 @@
+<resources>
+    <string name="btn_log_out">Вийти</string>
+    <string name="iv_photo_profile">Фото профілю</string>
+    <string name="tv_settings">Налаштування</string>
+    <string name="iv_facebook_icon">Іконка Facebook</string>
+    <string name="iv_linkedin_icon">Іконка LinkedIn</string>
+    <string name="iv_instagram_icon">Іконка Instagram</string>
+    <string name="btn_edit_profile">Редагувати профіль</string>
+    <string name="btn_view_my_contacts">Переглянути мої контакти</string>
+</resources>
