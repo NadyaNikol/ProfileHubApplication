@@ -14,7 +14,7 @@
 
     </style>
 
-    <style name="HintTextSizeStyle" >
+    <style name="HintTextSizeStyle">
         <item name="android:textSize">@dimen/header_three_text_size</item>
     </style>
 
@@ -36,10 +36,15 @@
         <item name="indicatorColor">@color/colorPrimary</item>
     </style>
 
+    <style name="CircleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 
-<!--    app:boxBackgroundColor="@color/background_color"-->
-<!--    app:boxStrokeColor="@color/secondary_color"-->
-<!--    android:textColorHint="@color/secondary_text_color"-->
-<!--    <item name="helperTextEnabled">true</item>-->
+
+    <!--    app:boxBackgroundColor="@color/background_color"-->
+    <!--    app:boxStrokeColor="@color/secondary_color"-->
+    <!--    android:textColorHint="@color/secondary_text_color"-->
+    <!--    <item name="helperTextEnabled">true</item>-->
 
 </resources>

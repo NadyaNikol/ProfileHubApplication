@@ -9,10 +9,13 @@ import com.androiddev.profilehub.R
  */
 class ValidationPasswordUseCase(private val context: Context) {
 
-    private val uppercasePattern = Regex(".*[A-Z].*")                // Contains at least one uppercase letter
-    private val englishLetterPattern = Regex(".*[a-zA-Z].*")         // Contains at least one English letter
+    private val uppercasePattern =
+        Regex(".*[A-Z].*")                // Contains at least one uppercase letter
+    private val englishLetterPattern =
+        Regex(".*[a-zA-Z].*")         // Contains at least one English letter
     private val digitPattern = Regex(".*\\d.*")                      // Contains at least one digit
-    private val noSpacePattern = Regex("^\\S*$")                     // No whitespace anywhere in the string
+    private val noSpacePattern =
+        Regex("^\\S*$")                     // No whitespace anywhere in the string
 
     private fun Char.isAsciiLetterOrDigit(): Boolean {
         return this.isLetterOrDigit() && this.code < 128

@@ -1,23 +1,22 @@
 package com.androiddev.profilehub.ui.auth
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.widget.EditText
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isGone
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.androiddev.profilehub.R
 import com.androiddev.profilehub.databinding.ActivityAuthBinding
+import com.androiddev.profilehub.ui.BaseActivity
 import com.androiddev.profilehub.ui.auth.events.AuthFormEvent
 import com.androiddev.profilehub.ui.auth.viewModels.AuthViewModel
 import com.androiddev.profilehub.ui.main.MainActivity
 import com.androiddev.profilehub.utils.EmailParser
+import com.androiddev.profilehub.utils.IntentKeys.EXTRA_USER_NAME
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -27,23 +26,12 @@ import kotlinx.coroutines.launch
  * Created by Nadya N. on 06.04.2025.
  */
 @AndroidEntryPoint
-class AuthActivity : AppCompatActivity() {
+class AuthActivity : BaseActivity<ActivityAuthBinding>(ActivityAuthBinding::inflate) {
 
-    private lateinit var binding: ActivityAuthBinding
     private val viewModel: AuthViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-
-        binding = ActivityAuthBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.auth)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
         initListeners()
         initObserves()
@@ -51,28 +39,27 @@ class AuthActivity : AppCompatActivity() {
 
     private fun initListeners() {
         binding.apply {
+            setUpTextChangedListener(editTextEmailAddress) { editable ->
+                AuthFormEvent.EmailChanged(editable)
+            }
+            setUpTextChangedListener(editTextPassword) { editable ->
+                AuthFormEvent.PasswordChanged(editable)
+            }
 
-            with(viewModel) {
+            checkBoxRememberMe.setOnCheckedChangeListener { _, isChecked ->
+                viewModel.onEvent(AuthFormEvent.RememberMeChanged(isChecked))
+            }
 
-                editTextEmailAddress.doAfterTextChanged { editable ->
-                    if (!editable.isNullOrBlank()) {
-                        onEvent(AuthFormEvent.EmailChanged(editable.toString()))
-                    }
-                }
+            btnRegister.setOnClickListener {
+                viewModel.onEvent(AuthFormEvent.Submit)
+            }
+        }
+    }
 
-                editTextPassword.doAfterTextChanged { editable ->
-                    if (!editable.isNullOrBlank()) {
-                        onEvent(AuthFormEvent.PasswordChanged(editable.toString()))
-                    }
-                }
-
-                checkBoxRememberMe.setOnCheckedChangeListener { _, isChecked ->
-                    onEvent(AuthFormEvent.RememberMeChanged(isChecked))
-                }
-
-                btnRegister.setOnClickListener {
-                    onEvent(AuthFormEvent.Submit)
-                }
+    private fun setUpTextChangedListener(editText: EditText, event: (String) -> AuthFormEvent) {
+        editText.doAfterTextChanged { editable ->
+            if (!editable.isNullOrBlank()) {
+                viewModel.onEvent(event(editable.toString()))
             }
         }
     }
@@ -100,7 +87,11 @@ class AuthActivity : AppCompatActivity() {
                         }
 
                         if (state.submitEvent != null) {
-                            navigateToMain()
+                            val intent = newIntentToMain(
+                                this@AuthActivity,
+                                EmailParser.extractName(binding.editTextEmailAddress.text.toString())
+                            )
+                            startActivity(intent)
                         }
                     }
                 }.launchIn(this)
@@ -108,16 +99,13 @@ class AuthActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateToMain() {
-        val intentToMain =
-            Intent(this@AuthActivity, MainActivity::class.java)
-                .apply {
-                    putExtra(
-                        "user_name",
-                        EmailParser.extractName(binding.editTextEmailAddress.text.toString())
-                    )
-                }
-        startActivity(intentToMain)
+    companion object {
+        fun newIntentToMain(context: Context, userName: String): Intent {
+            return Intent(context, MainActivity::class.java).apply {
+                putExtra(EXTRA_USER_NAME, userName)
+            }
+        }
     }
+
 }
 

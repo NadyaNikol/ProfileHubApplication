@@ -1,15 +1,15 @@
 package com.androiddev.profilehub.ui.main
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.androiddev.profilehub.R
+import com.androiddev.profilehub.databinding.ActivityMainBinding
+import com.androiddev.profilehub.ui.BaseActivity
+import com.androiddev.profilehub.utils.IntentKeys.EXTRA_USER_NAME
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

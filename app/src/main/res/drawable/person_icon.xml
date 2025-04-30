@@ -3,8 +3,7 @@
     <item
         android:drawable="@color/colorSurface"
         android:width="152dp"
-        android:height="152dp">
-    </item>
+        android:height="152dp"/>
 
     <item
         android:width="48dp"
