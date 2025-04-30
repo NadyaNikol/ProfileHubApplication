@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape android:shape="oval">
-            <solid android:color="@color/colorSurface"/>
-            <size android:width="152dp" android:height="152dp" />
-        </shape>
+    <item
+        android:drawable="@color/colorSurface"
+        android:width="152dp"
+        android:height="152dp">
     </item>
 
     <item
         android:width="48dp"
         android:height="48dp"
         android:gravity="center"
-        android:drawable="@drawable/person_icon_transparent">
-    </item>
+        android:drawable="@drawable/person_icon_transparent" />
 </layer-list>
