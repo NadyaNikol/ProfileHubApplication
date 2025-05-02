@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- main -->
+    <color name="colorPrimary">#E95A04</color>
+    <color name="colorSecondary">#121212</color>
+
+    <!-- fons -->
+    <color name="colorBackground">#302e42</color>
+    <color name="colorSurface">#929097</color>
+
+    <!-- text and content -->
+    <color name="colorOnSecondary">#E0E0E0</color>
+
+    <!-- errors -->
+    <color name="colorError">#ff544f</color>
+
+    <!-- states -->
+    <color name="colorAccent">#FFFFFF</color>
+    <color name="colorControlActivated">#FAFAFA</color>
+    <color name="buttonBorderPressedColor">#d4dbff</color>
+
+    <!--    button strokes -->
+    <color name="colorOutlineOnLight">#929097</color>
+    <color name="colorOutlineOnDark">#E0E0E0</color>
+</resources>
