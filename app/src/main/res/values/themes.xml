@@ -2,6 +2,8 @@
 
     <style name="Base.Theme.ProfileHub" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="fontFamily">@font/open_sans_semi_bold</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorControlActivated">@color/colorControlActivated</item>
 
         <item name="materialButtonStyle">@style/AppButtonStyle.FlatInsetButtonStyle</item>
     </style>
