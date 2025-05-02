@@ -11,5 +11,5 @@ data class AuthState(
     val isLoading: Boolean = false,
     val isRememberMe: Boolean = false,
 
-    val submitEvent: Unit? = null,
+    val submitDataEvent: Unit? = null,
 )

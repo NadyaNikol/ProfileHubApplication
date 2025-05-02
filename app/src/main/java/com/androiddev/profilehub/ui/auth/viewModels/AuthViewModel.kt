@@ -102,7 +102,7 @@ class AuthViewModel @Inject constructor(
 
             delay(3000)
 
-            _uiState.update { it.copy(isLoading = false, submitEvent = Unit) }
+            _uiState.update { it.copy(isLoading = false, submitDataEvent = Unit) }
         }
     }
 

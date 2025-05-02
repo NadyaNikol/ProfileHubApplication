@@ -86,7 +86,7 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>(ActivityAuthBinding::infl
                             checkBoxRememberMe.isChecked = state.isRememberMe
                         }
 
-                        if (state.submitEvent != null) {
+                        if (state.submitDataEvent != null) {
                             val intent = newIntentToMain(
                                 this@AuthActivity,
                                 EmailParser.extractName(binding.editTextEmailAddress.text.toString())
