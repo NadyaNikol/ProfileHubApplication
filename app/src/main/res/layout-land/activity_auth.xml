@@ -8,6 +8,13 @@
     android:background="@color/colorBackground"
     tools:context=".ui.auth.AuthActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/authTitle"
         android:layout_width="0dp"
@@ -20,10 +27,10 @@
         android:textSize="@dimen/header_one_text_size"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/authSubtitle"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guidelineVertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintVertical_bias="0.3"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -42,14 +49,14 @@
         app:fontFamily="@font/open_sans_regular"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/textInputLayoutEmail"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guidelineVertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/authTitle" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutEmail"
         style="@style/TextInputLayoutStyle"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start"
         android:layout_marginTop="24dp"
@@ -58,7 +65,7 @@
         app:helperTextTextAppearance="@style/HelperTextSizeStyle"
         app:hintTextAppearance="@style/HintTextSizeStyle"
         app:layout_constraintBottom_toTopOf="@id/textInputLayoutPassword"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guidelineVertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/authSubtitle">
 
@@ -75,7 +82,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutPassword"
         style="@style/TextInputLayoutStyle"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start"
         android:layout_marginTop="24dp"
@@ -84,8 +91,8 @@
         app:helperTextTextAppearance="@style/HelperTextSizeStyle"
         app:hintTextAppearance="@style/HintTextSizeStyle"
         app:layout_constraintBottom_toTopOf="@id/checkBoxRememberMe"
-        app:layout_constraintEnd_toEndOf="@id/textInputLayoutEmail"
-        app:layout_constraintStart_toStartOf="@id/textInputLayoutEmail"
+        app:layout_constraintEnd_toStartOf="@id/guidelineVertical"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutEmail">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -109,7 +116,7 @@
         android:text="@string/check_box_remember_me"
         android:textColor="@color/colorOnSurface"
         android:textSize="@dimen/header_three_text_size"
-        app:layout_constraintBottom_toTopOf="@id/btnGoogle"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutPassword"
         app:useMaterialThemeColors="false"
@@ -117,7 +124,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnGoogle"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start"
         android:layout_marginEnd="@dimen/margin_end"
@@ -135,25 +142,30 @@
         app:iconTint="@null"
         app:layout_constraintBottom_toTopOf="@id/tvOr"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/guidelineVertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvOr"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:backgroundTint="@color/colorSecondary"
+        android:gravity="center"
         android:text="@string/tv_or"
         android:textColor="@color/colorOnBackground"
         android:textSize="@dimen/header_two_text_size"
         app:cornerRadius="@dimen/btn_corner_radius"
         app:layout_constraintBottom_toTopOf="@id/btnRegister"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/guidelineVertical"
+        app:layout_constraintTop_toBottomOf="@id/btnGoogle" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnRegister"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start"
         android:layout_marginEnd="@dimen/margin_end"
@@ -168,7 +180,8 @@
         app:cornerRadius="@dimen/btn_corner_radius"
         app:layout_constraintBottom_toTopOf="@id/tvTermsAndConditions"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guidelineVertical"
+        app:layout_constraintTop_toBottomOf="@id/tvOr"
         app:strokeColor="@color/colorPrimary"
         app:strokeWidth="@dimen/btn_stroke_width" />
 
@@ -188,7 +201,7 @@
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/tvAlreadyHaveAnAccount"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/guidelineVertical" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvAlreadyHaveAnAccount"
@@ -204,7 +217,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tvSignIn"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/guidelineVertical" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvSignIn"
@@ -221,5 +234,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tvAlreadyHaveAnAccount"
         app:layout_constraintTop_toTopOf="@id/tvAlreadyHaveAnAccount" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
