@@ -13,9 +13,7 @@ class UserPreferencesRepositoryImpl @Inject constructor(
     private val userPreferences: UserPreferences,
 ) : UserPreferencesRepository {
 
-    override val savedCredentials: Flow<AuthCredentials?> = userPreferences.savedCredentials
-    override val savedEmail: Flow<String?> = userPreferences.savedEmail
-    override val savedPassword: Flow<String?> = userPreferences.savedPassword
+    override val savedCredentials: Flow<AuthCredentials> = userPreferences.savedCredentials
 
     override suspend fun saveCredentials(credentials: AuthCredentials) {
         userPreferences.saveCredentials(credentials)

@@ -6,7 +6,6 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -25,16 +24,8 @@ class UserPreferences @Inject constructor(
         AuthCredentials(
             email = prefs[EMAIL_KEY].orEmpty(),
             password = prefs[PASSWORD_KEY].orEmpty(),
-            isRememberMe = prefs[REMEMBER_ME_KEY] ?: false
+            isRememberMe = prefs[REMEMBER_ME_KEY] == true
         )
-    }
-
-    val savedEmail: Flow<String?> = context.dataStore.data.map { prefs ->
-        prefs[EMAIL_KEY]
-    }
-
-    val savedPassword: Flow<String?> = context.dataStore.data.map { prefs ->
-        prefs[PASSWORD_KEY]
     }
 
     suspend fun saveCredentials(credentials: AuthCredentials) {

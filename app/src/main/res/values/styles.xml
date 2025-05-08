@@ -41,10 +41,4 @@
         <item name="cornerSize">50%</item>
     </style>
 
-
-    <!--    app:boxBackgroundColor="@color/background_color"-->
-    <!--    app:boxStrokeColor="@color/secondary_color"-->
-    <!--    android:textColorHint="@color/secondary_text_color"-->
-    <!--    <item name="helperTextEnabled">true</item>-->
-
 </resources>

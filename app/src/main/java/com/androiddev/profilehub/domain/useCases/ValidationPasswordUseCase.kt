@@ -1,13 +1,13 @@
 package com.androiddev.profilehub.domain.useCases
 
-import android.content.Context
+import android.content.res.Resources
 import com.androiddev.profilehub.R
 
 
 /**
  * Created by Nadya N. on 07.04.2025.
  */
-class ValidationPasswordUseCase(private val context: Context) {
+class ValidationPasswordUseCase(private val resources: Resources) {
 
     private val uppercasePattern =
         Regex(".*[A-Z].*")                // Contains at least one uppercase letter
@@ -28,25 +28,25 @@ class ValidationPasswordUseCase(private val context: Context) {
     operator fun invoke(password: String): ValidationResult {
         return when {
             password.isBlank() ->
-                ValidationResult.Error(context.getString(R.string.password_must_not_be_blank))
+                ValidationResult.Error(resources.getString(R.string.password_must_not_be_blank))
 
             password.length < 8 ->
-                ValidationResult.Error(context.getString(R.string.password_must_include_a_minimum_characters))
+                ValidationResult.Error(resources.getString(R.string.password_must_include_a_minimum_characters))
 
             !containsOnlyEnglishLettersAndDigits(password) ->
-                ValidationResult.Error(context.getString(R.string.password_must_contain_only_english_letters_and_digits))
+                ValidationResult.Error(resources.getString(R.string.password_must_contain_only_english_letters_and_digits))
 
             !uppercasePattern.containsMatchIn(password) ->
-                ValidationResult.Error(context.getString(R.string.password_must_contain_at_least_one_uppercase_letter))
+                ValidationResult.Error(resources.getString(R.string.password_must_contain_at_least_one_uppercase_letter))
 
             !englishLetterPattern.containsMatchIn(password) ->
-                ValidationResult.Error(context.getString(R.string.password_need_to_contain_at_least_one_letter))
+                ValidationResult.Error(resources.getString(R.string.password_need_to_contain_at_least_one_letter))
 
             !digitPattern.containsMatchIn(password) ->
-                ValidationResult.Error(context.getString(R.string.password_must_contain_at_least_one_digit))
+                ValidationResult.Error(resources.getString(R.string.password_must_contain_at_least_one_digit))
 
             !noSpacePattern.matches(password) ->
-                ValidationResult.Error(context.getString(R.string.password_must_not_contain_spaces))
+                ValidationResult.Error(resources.getString(R.string.password_must_not_contain_spaces))
 
             else -> ValidationResult.Success
         }

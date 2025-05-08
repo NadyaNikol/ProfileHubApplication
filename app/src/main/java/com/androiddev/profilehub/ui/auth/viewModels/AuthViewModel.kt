@@ -10,6 +10,7 @@ import com.androiddev.profilehub.domain.useCases.ValidationResult
 import com.androiddev.profilehub.ui.auth.AuthState
 import com.androiddev.profilehub.ui.auth.events.AuthFormEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -36,17 +37,15 @@ class AuthViewModel @Inject constructor(
     }
 
     private fun getCredentials() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
 
             val credentials = userPreferencesRepository.savedCredentials.first()
-            if (credentials != null) {
-                _uiState.update {
-                    it.copy(
-                        email = credentials.email,
-                        password = credentials.password,
-                        isRememberMe = credentials.isRememberMe,
-                    )
-                }
+            _uiState.update {
+                it.copy(
+                    email = credentials.email,
+                    password = credentials.password,
+                    isRememberMe = credentials.isRememberMe,
+                )
             }
         }
     }
@@ -67,6 +66,21 @@ class AuthViewModel @Inject constructor(
     }
 
     private fun submitData() {
+        if (!validateData()) {
+            return
+        }
+
+        viewModelScope.launch(Dispatchers.IO) {
+            _uiState.update { it.copy(isLoading = true) }
+
+            changeCredentialsByRememberMe()
+            delay(3000)
+
+            _uiState.update { it.copy(isLoading = false, submitDataEvent = Unit) }
+        }
+    }
+
+    private fun validateData(): Boolean {
         val emailValidationResult = validationEmailUseCase(email = uiState.value.email)
         val passwordValidationResult = validationPasswordUseCase(password = uiState.value.password)
 
@@ -80,29 +94,21 @@ class AuthViewModel @Inject constructor(
             )
         }
 
-        if (emailError != null || passwordError != null) {
-            return
-        }
+        return emailError == null && passwordError == null
+    }
 
-        viewModelScope.launch {
-            _uiState.update { it.copy(isLoading = true) }
-
-            val state = uiState.value
-            if (state.isRememberMe) {
-                userPreferencesRepository.saveCredentials(
-                    AuthCredentials(
-                        email = state.email,
-                        password = state.password,
-                        isRememberMe = state.isRememberMe
-                    )
+    private suspend fun changeCredentialsByRememberMe() {
+        val state = uiState.value
+        if (state.isRememberMe) {
+            userPreferencesRepository.saveCredentials(
+                AuthCredentials(
+                    email = state.email,
+                    password = state.password,
+                    isRememberMe = state.isRememberMe
                 )
-            } else {
-                userPreferencesRepository.clearCredentials()
-            }
-
-            delay(3000)
-
-            _uiState.update { it.copy(isLoading = false, submitDataEvent = Unit) }
+            )
+        } else {
+            userPreferencesRepository.clearCredentials()
         }
     }
 
