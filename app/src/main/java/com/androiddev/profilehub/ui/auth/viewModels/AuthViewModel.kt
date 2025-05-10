@@ -25,7 +25,6 @@ class AuthViewModel @Inject constructor(
     private val validationEmailUseCase: ValidationEmailUseCase,
     private val validationPasswordUseCase: ValidationPasswordUseCase,
     private val userPreferencesRepository: UserPreferencesRepository,
-    private val errorMessageResolver: AuthErrorMessageResolver,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(AuthState())
@@ -88,8 +87,8 @@ class AuthViewModel @Inject constructor(
 
         _uiState.update {
             it.copy(
-                emailError = errorMessageResolver.resolve(emailError),
-                passwordError = errorMessageResolver.resolve(passwordError)
+                emailError = emailError,
+                passwordError = passwordError
             )
         }
 
