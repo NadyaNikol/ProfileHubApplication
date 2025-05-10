@@ -58,9 +58,7 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>(ActivityAuthBinding::infl
 
     private fun setUpTextChangedListener(editText: EditText, event: (String) -> AuthFormEvent) {
         editText.doAfterTextChanged { editable ->
-            if (!editable.isNullOrBlank()) {
-                viewModel.onEvent(event(editable.toString()))
-            }
+            viewModel.onEvent(event(editable.toString()))
         }
     }
 

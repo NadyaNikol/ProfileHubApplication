@@ -2,7 +2,9 @@ package com.androiddev.profilehub.domain.repositories
 
 import com.androiddev.profilehub.data.local.AuthCredentials
 import com.androiddev.profilehub.data.local.UserPreferences
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 /**
@@ -13,14 +15,18 @@ class UserPreferencesRepositoryImpl @Inject constructor(
     private val userPreferences: UserPreferences,
 ) : UserPreferencesRepository {
 
-    override val savedCredentials: Flow<AuthCredentials> = userPreferences.savedCredentials
+    override suspend fun saveCredentials(credentials: AuthCredentials) =
+        withContext(Dispatchers.Default) {
+            userPreferences.saveCredentials(credentials)
+        }
 
-    override suspend fun saveCredentials(credentials: AuthCredentials) {
-        userPreferences.saveCredentials(credentials)
+    override suspend fun getSavedCredentials() = withContext(Dispatchers.Default) {
+        return@withContext runCatching {
+            userPreferences.savedCredentials.first()
+        }
     }
 
-    override suspend fun clearCredentials() {
+    override suspend fun clearCredentials() = withContext(Dispatchers.Default) {
         userPreferences.clearCredentials()
     }
-
 }

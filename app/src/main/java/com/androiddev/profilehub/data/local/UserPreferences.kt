@@ -24,7 +24,7 @@ class UserPreferences @Inject constructor(
         AuthCredentials(
             email = prefs[EMAIL_KEY].orEmpty(),
             password = prefs[PASSWORD_KEY].orEmpty(),
-            isRememberMe = prefs[REMEMBER_ME_KEY] == true
+            isRememberMe = prefs[REMEMBER_ME_KEY] ?: false
         )
     }
 
