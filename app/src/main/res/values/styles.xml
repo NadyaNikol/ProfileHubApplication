@@ -14,7 +14,7 @@
 
     </style>
 
-    <style name="HintTextSizeStyle" >
+    <style name="HintTextSizeStyle">
         <item name="android:textSize">@dimen/header_three_text_size</item>
     </style>
 
@@ -29,6 +29,16 @@
     <style name="AppButtonStyle.FlatInsetButtonStyle">
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
+    </style>
+
+    <style name="CircularProgressIndicatorStyle" parent="Widget.MaterialComponents.CircularProgressIndicator">
+        <item name="trackThickness">20dp</item>
+        <item name="indicatorColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="CircleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
     </style>
 
 </resources>

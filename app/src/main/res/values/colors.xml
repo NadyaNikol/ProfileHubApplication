@@ -22,6 +22,9 @@
     <color name="colorControlActivated">#FAFAFA</color>
     <color name="buttonBorderPressedColor">#d4dbff</color>
 
+    <!-- overlay -->
+    <color name="colorBackgroundOverlay">#66242235</color>
+
     <!--    button strokes -->
     <color name="colorOutlineOnLight">#242235</color>
     <color name="colorOutlineOnDark">#B2B2B3</color>

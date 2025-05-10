@@ -62,7 +62,7 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="tvSettings,btnLogOut" />
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivPhotoProfile"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -75,7 +75,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrierBottomGroupSettingsLogout"
         app:layout_constraintVertical_bias="0.4"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_chainStyle="packed"
+        app:shapeAppearanceOverlay="@style/CircleImageView" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvNameProfile"

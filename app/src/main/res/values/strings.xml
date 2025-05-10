@@ -14,6 +14,18 @@
     <string name="text_input_layout_hint_e_mail">E-mail</string>
     <string name="text_input_layout_hint_password">Password</string>
 
+    <!--    validation -->
+    <string name="e_mail_address_can_t_be_blank">E-Mail address can\'t be blank</string>
+    <string name="incorrect_e_mail_address">Incorrect E-Mail address</string>
+
+    <string name="password_must_not_be_blank">Password must not be blank</string>
+    <string name="password_must_include_a_minimum_characters">Your password must include a minimum of 8 characters</string>
+    <string name="password_need_to_contain_at_least_one_letter">Your password need to contain at least one letter</string>
+    <string name="password_must_contain_at_least_one_digit">Password must contain at least one digit</string>
+    <string name="password_must_contain_only_english_letters_and_digits">Your password must contain only English letters and digits</string>
+    <string name="password_must_contain_at_least_one_uppercase_letter">Your password must contain at least one uppercase letter</string>
+    <string name="password_must_not_contain_spaces">Your password must not contain spaces</string>
+
     <!-- main -->
     <string name="btn_log_out">Log out</string>
     <string name="iv_photo_profile">photo profile</string>
