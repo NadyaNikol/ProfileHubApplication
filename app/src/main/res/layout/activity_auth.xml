@@ -222,4 +222,32 @@
         app:layout_constraintStart_toEndOf="@id/tvAlreadyHaveAnAccount"
         app:layout_constraintTop_toTopOf="@id/tvAlreadyHaveAnAccount" />
 
+    <View
+        android:id="@+id/viewBlockingOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackgroundOverlay"
+        android:clickable="true"
+        android:elevation="10dp"
+        android:focusable="true" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progressBarAuth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:indeterminate="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="viewBlockingOverlay,progressBarAuth" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
