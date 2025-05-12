@@ -13,6 +13,19 @@
     <string name="text_input_layout_hint_e_mail">Електронна пошта</string>
     <string name="text_input_layout_hint_password">Пароль</string>
 
+    <!--    validation -->
+    <string name="e_mail_address_can_t_be_blank">Адреса електронної пошти не може бути порожньою</string>
+    <string name="incorrect_e_mail_address">Неправильна адреса електронної пошти</string>
+
+    <string name="password_must_not_be_blank">Пароль не може бути порожнім</string>
+    <string name="password_must_include_a_minimum_characters">Пароль має містити щонайменше 8 символів</string>
+    <string name="password_need_to_contain_at_least_one_letter">Пароль повинен містити принаймні одну літеру</string>
+    <string name="password_must_contain_at_least_one_digit">Пароль повинен містити принаймні одну цифру</string>
+    <string name="password_must_contain_only_english_letters_and_digits">Пароль повинен містити лише англійські літери та цифри</string>
+    <string name="password_must_contain_at_least_one_uppercase_letter">Пароль повинен містити принаймні одну велику літеру</string>
+    <string name="password_must_not_contain_spaces">Пароль не повинен містити пробілів</string>
+
+
     <!-- main -->
     <string name="btn_log_out">Вийти</string>
     <string name="iv_photo_profile">Фото профілю</string>
