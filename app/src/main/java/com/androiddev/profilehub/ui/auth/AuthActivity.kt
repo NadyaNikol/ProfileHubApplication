@@ -75,7 +75,7 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>(ActivityAuthBinding::infl
                             authErrorMessageResolver.resolve(state.emailError)
                         textInputLayoutPassword.helperText =
                             authErrorMessageResolver.resolve(state.passwordError)
-                        groupProgressBar.isGone = !state.isLoading
+                        groupProgressBar?.isGone = !state.isLoading
 
                         if (editTextEmailAddress.text.toString() != state.email) {
                             editTextEmailAddress.setText(state.email)
