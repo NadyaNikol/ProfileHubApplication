@@ -22,7 +22,7 @@ class ValidationPasswordUseCaseImpl @Inject constructor() : ValidationPasswordUs
     private val noSpacePattern = Regex("^\\S*$")
 
     private fun Char.isAsciiLetterOrDigit(): Boolean {
-        return this.isLetterOrDigit() && this.code < 128
+        return this in '0'..'9' || this in 'A'..'Z' || this in 'a'..'z'
     }
 
     private fun containsOnlyEnglishLettersAndDigits(password: String): Boolean {
