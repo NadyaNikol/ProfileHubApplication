@@ -9,7 +9,6 @@ import com.androiddev.profilehub.domain.useCases.ValidationEmailUseCase
 import com.androiddev.profilehub.domain.useCases.ValidationPasswordUseCase
 import com.androiddev.profilehub.ui.auth.AuthState
 import com.androiddev.profilehub.ui.auth.events.AuthFormEvent
-import com.androiddev.profilehub.utils.mappers.AuthErrorMessageResolver
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

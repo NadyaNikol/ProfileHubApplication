@@ -13,7 +13,7 @@ import javax.inject.Singleton
  */
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class RepositoryModule {
+abstract class UserPreferencesModule {
 
     @Binds
     @Singleton
