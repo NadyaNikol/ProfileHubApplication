@@ -41,4 +41,8 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="OpenSansTextRegular" parent="TextAppearance.AppCompat.Body1">
+        <item name="fontFamily">@font/open_sans_regular</item>
+    </style>
+
 </resources>

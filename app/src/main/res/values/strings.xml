@@ -35,4 +35,10 @@
     <string name="iv_instagram_icon">Instagram icon</string>
     <string name="btn_edit_profile">Edit profile</string>
     <string name="btn_view_my_contacts">View my contacts</string>
+
+    <!-- contacts   -->
+    <string name="tv_contacts">Contacts</string>
+    <string name="iv_arrow_back_icon">Arrow back icon</string>
+    <string name="iv_search_icon">Search icon</string>
+    <string name="tv_add_contacts">Add contacts</string>
 </resources>
