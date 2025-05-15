@@ -7,6 +7,8 @@ import com.androiddev.profilehub.ui.contacts.ContactsState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,18 +24,28 @@ class ContactViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(ContactsState())
     val uiState = _uiState.asStateFlow()
 
+    val contactsFlow = getContactsUseCase.contactsFlow.onEach {
+        _uiState.update { state ->
+            state.copy(
+                items = it
+            )
+        }
+    }
 
     init {
+        contactsFlow.launchIn(viewModelScope)
         loadContacts()
     }
 
     fun loadContacts() {
         viewModelScope.launch {
-            _uiState.update { state ->
-                state.copy(
-                    items = getContactsUseCase()
-                )
-            }
+            getContactsUseCase.loadContacts()
+        }
+    }
+
+    fun deleteContactById(id: Long) {
+        viewModelScope.launch {
+            getContactsUseCase.deleteContactById(id)
         }
     }
 

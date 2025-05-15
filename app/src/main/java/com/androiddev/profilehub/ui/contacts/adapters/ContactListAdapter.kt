@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.androiddev.profilehub.databinding.ListItemContactBinding
 import com.androiddev.profilehub.domain.entities.ContactUIEntity
-import com.androiddev.profilehub.ui.imageLoader.ImageLoader
+import com.androiddev.profilehub.ui.contacts.events.ViewHolderClickListener
+import com.androiddev.profilehub.utils.mappers.loadImage
 import javax.inject.Inject
 
 
@@ -15,8 +16,12 @@ import javax.inject.Inject
  * Created by Nadya N. on 08.05.2025.
  */
 class ContactListAdapter @Inject constructor(
-    private val imageLoader: ImageLoader,
+    var callback: ViewHolderClickListener? = null
 ) : ListAdapter<ContactUIEntity, RecyclerView.ViewHolder>(ContactItemsCallback) {
+
+    fun getObject(position: Int): ContactUIEntity {
+        return currentList[position]
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ContactItemHolder(
@@ -25,7 +30,7 @@ class ContactListAdapter @Inject constructor(
                 parent,
                 false
             ),
-            imageLoader = imageLoader
+            callback = callback
         )
     }
 
@@ -35,8 +40,14 @@ class ContactListAdapter @Inject constructor(
 
     private class ContactItemHolder(
         private val binding: ListItemContactBinding,
-        private val imageLoader: ImageLoader,
+        val callback: ViewHolderClickListener? = null
     ) : RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.imgBtnDeleteIcon.setOnClickListener {
+                callback?.onClick(adapterPosition)
+            }
+        }
 
         fun bind(entity: ContactUIEntity) {
             binding.apply {

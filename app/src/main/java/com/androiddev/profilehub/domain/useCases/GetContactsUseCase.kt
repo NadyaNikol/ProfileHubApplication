@@ -2,6 +2,7 @@ package com.androiddev.profilehub.domain.useCases
 
 import com.androiddev.profilehub.domain.entities.ContactUIEntity
 import com.androiddev.profilehub.domain.repositories.ContactsRepository
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 /**
@@ -10,7 +11,7 @@ import javax.inject.Inject
 class GetContactsUseCase @Inject constructor(
     private val repository: ContactsRepository,
 ) {
-    suspend operator fun invoke(): List<ContactUIEntity> {
-        return repository.getContacts()
-    }
+    val contactsFlow: Flow<List<ContactUIEntity>> = repository.contactsFlow
+    suspend fun loadContacts() = repository.loadContacts()
+    fun deleteContactById(id: Long) = repository.deleteContactById(id)
 }
