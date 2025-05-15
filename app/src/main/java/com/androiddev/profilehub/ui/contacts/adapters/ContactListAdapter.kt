@@ -53,7 +53,7 @@ class ContactListAdapter @Inject constructor(
             binding.apply {
                 tvNameContact.text = entity.name
                 tvCareerContact.text = entity.career
-                imageLoader.load(itemView, entity.image, ivContact)
+                ivContact.loadImage(itemView, entity.image)
             }
         }
     }
