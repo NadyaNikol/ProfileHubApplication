@@ -18,6 +18,7 @@ import com.androiddev.profilehub.ui.main.MainActivity
 import com.androiddev.profilehub.utils.EmailParser
 import com.androiddev.profilehub.utils.IntentKeys.EXTRA_USER_NAME
 import com.androiddev.profilehub.utils.mappers.AuthErrorMessageResolver
+import com.androiddev.profilehub.utils.mappers.updateIfDifferent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -77,17 +78,7 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>(ActivityAuthBinding::infl
                             authErrorMessageResolver.resolve(state.passwordError)
                         groupProgressBar.isGone = !state.isLoading
 
-                        if (editTextEmailAddress.text.toString() != state.email) {
-                            editTextEmailAddress.setText(state.email)
-                        }
-
-                        if (editTextPassword.text.toString() != state.password) {
-                            editTextPassword.setText(state.password)
-                        }
-
-                        if (checkBoxRememberMe.isChecked != state.isRememberMe) {
-                            checkBoxRememberMe.isChecked = state.isRememberMe
-                        }
+                        fillUiFromStoredData(state)
 
                         if (state.submitDataEvent != null) {
                             val intent = newIntentToMain(
@@ -101,6 +92,15 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>(ActivityAuthBinding::infl
             }
         }
     }
+
+    private fun fillUiFromStoredData(state: AuthState) {
+        binding.apply {
+            editTextEmailAddress.updateIfDifferent(state.email)
+            editTextPassword.updateIfDifferent(state.password)
+            checkBoxRememberMe.updateIfDifferent(state.isRememberMe)
+        }
+    }
+
 
     companion object {
         fun newIntentToMain(context: Context, userName: String): Intent {
