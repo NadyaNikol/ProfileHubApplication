@@ -5,12 +5,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 import kotlin.random.Random
 
 /**
  * Created by Nadya N. on 14.05.2025.
  */
-class ContactRepositoryLocalImpl() : ContactsRepository {
+class ContactRepositoryLocalImpl @Inject constructor() : ContactsRepository {
     private val _contactsFlow = MutableStateFlow<List<ContactUIEntity>>(emptyList())
     override val contactsFlow = _contactsFlow.asStateFlow()
 
@@ -42,5 +43,9 @@ class ContactRepositoryLocalImpl() : ContactsRepository {
 
     override fun deleteContactById(id: Long) {
         _contactsFlow.value = _contactsFlow.value.filterNot { it.id == id }
+    }
+
+    override fun saveContact(contact: ContactUIEntity) {
+        _contactsFlow.value = _contactsFlow.value.plus(contact)
     }
 }

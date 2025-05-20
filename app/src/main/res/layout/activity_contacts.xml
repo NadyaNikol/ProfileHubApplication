@@ -61,6 +61,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAddContacts"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start"
@@ -69,6 +70,7 @@
         android:text="@string/tv_add_contacts"
         android:textColor="@color/colorOnBackground"
         android:textSize="@dimen/header_three_text_size"
+        android:clickable="true"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@id/view_toolbar"
         app:layout_constraintEnd_toEndOf="parent"

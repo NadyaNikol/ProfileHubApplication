@@ -11,4 +11,5 @@ interface ContactsRepository {
     val contactsFlow: StateFlow<List<ContactUIEntity>>
     suspend fun loadContacts()
     fun deleteContactById(id: Long)
+    fun saveContact(contact: ContactUIEntity)
 }
