@@ -1,5 +1,12 @@
 package com.androiddev.profilehub.di
 
+import com.androiddev.profilehub.domain.repositories.ContactsRepository
+import com.androiddev.profilehub.domain.useCases.AddContactsUseCase
+import com.androiddev.profilehub.domain.useCases.AddContactsUseCaseImpl
+import com.androiddev.profilehub.domain.useCases.DeleteContactsUseCase
+import com.androiddev.profilehub.domain.useCases.DeleteContactsUseCaseImpl
+import com.androiddev.profilehub.domain.useCases.GetContactsUseCase
+import com.androiddev.profilehub.domain.useCases.GetContactsUseCaseImpl
 import com.androiddev.profilehub.domain.useCases.ValidationEmailUseCase
 import com.androiddev.profilehub.domain.useCases.ValidationEmailUseCaseImpl
 import com.androiddev.profilehub.domain.useCases.ValidationPasswordUseCase
@@ -26,5 +33,21 @@ class UseCaseModule {
     @Singleton
     fun provideValidationEmailUseCase(): ValidationEmailUseCase =
         ValidationEmailUseCaseImpl()
+
+    @Provides
+    @Singleton
+    fun provideGetContactsUseCase(repository: ContactsRepository): GetContactsUseCase =
+        GetContactsUseCaseImpl(repository)
+
+    @Provides
+    @Singleton
+    fun provideAddContactsUseCase(repository: ContactsRepository): AddContactsUseCase =
+        AddContactsUseCaseImpl(repository)
+
+
+    @Provides
+    @Singleton
+    fun provideDeleteContactsUseCase(repository: ContactsRepository): DeleteContactsUseCase =
+        DeleteContactsUseCaseImpl(repository)
 
 }

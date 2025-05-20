@@ -19,6 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ContactViewModel @Inject constructor(
     private val getContactsUseCase: GetContactsUseCase,
+    private val deleteContactsUseCase: DeleteContactsUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(ContactsState())
@@ -45,7 +46,7 @@ class ContactViewModel @Inject constructor(
 
     fun deleteContactById(id: Long) {
         viewModelScope.launch {
-            getContactsUseCase.deleteContactById(id)
+            deleteContactsUseCase.deleteContactById(id)
         }
     }
 
