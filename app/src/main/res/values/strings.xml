@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Profile Hub</string>
+    <string name="app_name" translatable="false">Profile Hub</string>
 
     <!--    auth -->
     <string name="tv_lets_get_acquainted">Let\'s get acquainted</string>
