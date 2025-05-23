@@ -8,7 +8,7 @@ import com.androiddev.profilehub.domain.errors.AuthError
  * Created by Nadya N. on 09.05.2025.
  */
 
-class AuthErrorMessageResolver(private val context: Context) {
+class UIMessageResolver(private val context: Context) {
 
     fun resolve(error: AuthError): String {
         return when (error) {

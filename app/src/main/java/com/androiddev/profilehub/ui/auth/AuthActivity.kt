@@ -17,7 +17,7 @@ import com.androiddev.profilehub.ui.auth.viewModels.AuthViewModel
 import com.androiddev.profilehub.ui.main.MainActivity
 import com.androiddev.profilehub.utils.EmailParser
 import com.androiddev.profilehub.utils.IntentKeys.EXTRA_USER_NAME
-import com.androiddev.profilehub.utils.mappers.AuthErrorMessageResolver
+import com.androiddev.profilehub.utils.UIMessageResolver
 import com.androiddev.profilehub.utils.mappers.updateIfDifferent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -31,12 +31,12 @@ import kotlinx.coroutines.launch
 class AuthActivity : BaseActivity<ActivityAuthBinding>(ActivityAuthBinding::inflate) {
 
     private val viewModel: AuthViewModel by viewModels()
-    private lateinit var authErrorMessageResolver: AuthErrorMessageResolver
+    private lateinit var messageResolver: UIMessageResolver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        authErrorMessageResolver = AuthErrorMessageResolver(this)
+        messageResolver = UIMessageResolver(this)
         initListeners()
         initObserves()
     }
@@ -73,9 +73,9 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>(ActivityAuthBinding::infl
                 viewModel.uiState.onEach { state ->
                     binding.apply {
                         textInputLayoutEmail.helperText =
-                            authErrorMessageResolver.resolve(state.emailError)
+                            messageResolver.resolveAuthError(state.emailError)
                         textInputLayoutPassword.helperText =
-                            authErrorMessageResolver.resolve(state.passwordError)
+                            messageResolver.resolveAuthError(state.passwordError)
                         groupProgressBar.isGone = !state.isLoading
 
                         fillUiFromStoredData(state)
