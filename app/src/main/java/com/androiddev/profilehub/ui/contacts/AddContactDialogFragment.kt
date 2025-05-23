@@ -10,7 +10,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.androiddev.profilehub.databinding.DialogFragmentAddContactBinding
 import com.androiddev.profilehub.domain.entities.ContactUIEntity
-import com.androiddev.profilehub.ui.contacts.events.ContactEvent
+import com.androiddev.profilehub.ui.contacts.events.UiEvent
 import com.androiddev.profilehub.ui.contacts.viewModels.ContactViewModel
 import kotlin.random.Random
 
@@ -54,8 +54,8 @@ class AddContactDialogFragment : DialogFragment() {
                 val name = editTextName.text.toString().trim()
                 val career = editTextCareer.text.toString().trim()
 
-                viewModel.onEvent(
-                    ContactEvent.SaveContact(
+                viewModel.onUiEvent(
+                    UiEvent.ContactDialog.Save(
                         ContactUIEntity(
                             id = Random.nextLong(),
                             name = name,
@@ -68,7 +68,7 @@ class AddContactDialogFragment : DialogFragment() {
             }
 
             btnCancelAddContact.setOnClickListener {
-                viewModel.onEvent(ContactEvent.CancelSaveContact)
+                viewModel.onUiEvent(UiEvent.ContactDialog.Cancel)
                 dismiss()
             }
         }

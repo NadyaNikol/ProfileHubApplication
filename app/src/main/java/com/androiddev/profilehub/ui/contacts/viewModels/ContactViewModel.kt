@@ -59,11 +59,43 @@ class ContactViewModel @Inject constructor(
         }
     }
 
-    fun deleteContactById(id: Long) {
-        viewModelScope.launch {
-            deleteContactsUseCase.deleteContactById(id)
-        }
-    }
+    private var contactIndexed: ContactIndexed? = null
+
+    fun onUiEvent(event: UiEvent) {
+        when (event) {
+            is UiEvent.ContactDialog.Save -> {
+                saveContact(event.contact)
+                _uiState.update { it.copy(snackbarMessage = SnackbarMessage.ContactSaved) }
+            }
+
+            UiEvent.ContactDialog.Cancel -> {
+                _uiState.update { it.copy(snackbarMessage = SnackbarMessage.ContactCancelSaved) }
+            }
+
+            is UiEvent.SwipeDelete -> {
+                val currentItems = uiState.value.items
+                val contactToRemove = currentItems.find { it.id == event.id } ?: return
+                val indexToRemove = currentItems.indexOf(contactToRemove)
+
+                contactIndexed = ContactIndexed(contact = contactToRemove, index = indexToRemove)
+
+                _uiState.update {
+                    it.copy(
+                        items = currentItems.removeAtIndex(indexToRemove),
+                        snackbarMessage = SnackbarMessage.ContactUndoDeleted
+                    )
+                }
+            }
+
+            UiEvent.Undo.Clicked -> {
+                val currentItems = uiState.value.items
+                val contact = contactIndexed?.contact ?: return
+                val index = contactIndexed?.index ?: currentItems.size
+
+                _uiState.update { it.copy(items = currentItems.addByIndex(index = index, obj = contact)) }
+
+                contactIndexed = null
+            }
 
     fun saveContact(contact: ContactUIEntity) {
         viewModelScope.launch {
