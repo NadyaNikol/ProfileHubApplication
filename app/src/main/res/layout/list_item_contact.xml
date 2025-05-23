@@ -41,7 +41,7 @@
             android:textSize="@dimen/header_two_text_size"
             app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toTopOf="@id/tvCareerContact"
-            app:layout_constraintEnd_toStartOf="@id/imgBtnDeleteIcon"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivContact"
             app:layout_constraintTop_toTopOf="@id/ivContact"
             app:layout_constraintVertical_chainStyle="packed"
@@ -57,23 +57,11 @@
             android:textColor="@color/colorCareerText"
             android:textSize="@dimen/header_four_text_size"
             app:layout_constrainedWidth="true"
-            app:layout_constraintEnd_toStartOf="@id/imgBtnDeleteIcon"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/ivContact"
             app:layout_constraintStart_toEndOf="@id/ivContact"
             app:layout_constraintTop_toBottomOf="@id/tvNameContact"
             tools:text="Photograph" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/imgBtnDeleteIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="12dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/iv_arrow_back_icon"
-            android:src="@drawable/delete_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

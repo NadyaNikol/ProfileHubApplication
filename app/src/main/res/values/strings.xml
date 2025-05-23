@@ -50,4 +50,9 @@
     <string name="btn_save">Save</string>
     <string name="btn_cancel">Cancel</string>
 
+
+    <string name="contact_saved_success">Contact saved success</string>
+    <string name="contact_does_not_save">Contact doesn\'t save</string>
+    <string name="contact_undo_deleted">Contact was deleted success</string>
+    <string name="contact_undo">Undo</string>
 </resources>

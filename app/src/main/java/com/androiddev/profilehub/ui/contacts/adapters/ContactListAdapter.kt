@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.androiddev.profilehub.databinding.ListItemContactBinding
 import com.androiddev.profilehub.domain.entities.ContactUIEntity
-import com.androiddev.profilehub.ui.contacts.events.ViewHolderClickListener
 import com.androiddev.profilehub.utils.mappers.loadImage
 import javax.inject.Inject
 
@@ -15,12 +14,15 @@ import javax.inject.Inject
 /**
  * Created by Nadya N. on 08.05.2025.
  */
-class ContactListAdapter @Inject constructor(
-    var callback: ViewHolderClickListener? = null
-) : ListAdapter<ContactUIEntity, RecyclerView.ViewHolder>(ContactItemsCallback) {
+class ContactListAdapter @Inject constructor() :
+    ListAdapter<ContactUIEntity, RecyclerView.ViewHolder>(ContactItemsCallback) {
 
-    fun getObject(position: Int): ContactUIEntity {
-        return currentList[position]
+    init {
+        setHasStableIds(true)
+    }
+
+    override fun getItemId(position: Int): Long {
+        return currentList[position].id
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -30,7 +32,6 @@ class ContactListAdapter @Inject constructor(
                 parent,
                 false
             ),
-            callback = callback
         )
     }
 
@@ -40,14 +41,7 @@ class ContactListAdapter @Inject constructor(
 
     private class ContactItemHolder(
         private val binding: ListItemContactBinding,
-        val callback: ViewHolderClickListener? = null
     ) : RecyclerView.ViewHolder(binding.root) {
-
-        init {
-            binding.imgBtnDeleteIcon.setOnClickListener {
-                callback?.onClick(adapterPosition)
-            }
-        }
 
         fun bind(entity: ContactUIEntity) {
             binding.apply {

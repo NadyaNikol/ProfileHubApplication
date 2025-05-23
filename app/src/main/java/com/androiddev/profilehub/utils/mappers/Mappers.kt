@@ -19,3 +19,13 @@ fun CheckBox.updateIfDifferent(newChecked: Boolean) {
     }
 }
 
+fun <T> List<T>.removeAtIndex(index: Int): List<T> {
+    return toMutableList().apply { removeAt(index) }
+}
+
+fun <T> List<T>.addByIndex(index: Int, obj: T): List<T> {
+    return toMutableList().apply {
+        add(index, obj)
+    }
+}
+

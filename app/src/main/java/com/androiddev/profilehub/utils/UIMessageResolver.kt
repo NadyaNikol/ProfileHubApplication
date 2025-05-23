@@ -1,8 +1,9 @@
-package com.androiddev.profilehub.utils.mappers
+package com.androiddev.profilehub.utils
 
 import android.content.Context
 import com.androiddev.profilehub.R
 import com.androiddev.profilehub.domain.errors.AuthError
+import com.androiddev.profilehub.domain.messages.SnackbarMessage
 
 /**
  * Created by Nadya N. on 09.05.2025.
@@ -10,7 +11,15 @@ import com.androiddev.profilehub.domain.errors.AuthError
 
 class UIMessageResolver(private val context: Context) {
 
-    fun resolve(error: AuthError): String {
+    fun resolveSnackbarMessage(message: SnackbarMessage): String {
+        return when (message) {
+            SnackbarMessage.ContactSaved -> context.getString(R.string.contact_saved_success)
+            SnackbarMessage.ContactCancelSaved -> context.getString(R.string.contact_does_not_save)
+            is SnackbarMessage.ContactUndoDeleted -> context.getString(R.string.contact_undo_deleted)
+        }
+    }
+
+    fun resolveAuthError(error: AuthError): String {
         return when (error) {
             is AuthError.None -> ""
             is AuthError.Password -> resolvePasswordError(error)

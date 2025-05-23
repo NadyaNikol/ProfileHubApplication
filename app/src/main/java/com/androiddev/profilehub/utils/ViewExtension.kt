@@ -38,3 +38,8 @@ fun View.customSnackbar(
         }
     return snackbar
 }
+
+fun View.snackbarBuilder(
+    message: String,
+    duration: Int,
+): SnackbarBuilder = SnackbarBuilder(this, message = message, duration = duration)
