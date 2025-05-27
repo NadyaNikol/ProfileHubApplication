@@ -39,10 +39,12 @@ class ContactViewModel @Inject constructor(
             _uiState.update { state ->
                 state.copy(
                     items = it.sortedBy { it.name }
+                    isLoading = false,
                 )
             }
         }.launchIn(viewModelScope)
         loadContacts()
+        _uiState.update { state -> state.copy(isLoading = true) }
     }
 
     fun loadContacts() {

@@ -8,7 +8,7 @@
     tools:context=".ui.contacts.ContactsActivity">
 
     <View
-        android:id="@+id/view_toolbar"
+        android:id="@+id/viewToolbar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/colorBackground"
@@ -72,9 +72,33 @@
         android:textSize="@dimen/header_three_text_size"
         android:clickable="true"
         app:layout_constrainedWidth="true"
-        app:layout_constraintBottom_toBottomOf="@id/view_toolbar"
+        app:layout_constraintBottom_toBottomOf="@id/viewToolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progressBarLoadData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:indeterminate="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewToolbar" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivNoData"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.6"
+        android:src="@drawable/no_data_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewToolbar"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvContacts"
@@ -84,6 +108,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/viewToolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

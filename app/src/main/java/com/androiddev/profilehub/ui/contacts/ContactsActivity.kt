@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.core.view.isGone
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.androiddev.profilehub.R
 import com.androiddev.profilehub.databinding.ActivityContactsBinding
+import com.androiddev.profilehub.domain.entities.ContactIndexed
 import com.androiddev.profilehub.domain.messages.SnackbarMessage
 import com.androiddev.profilehub.ui.BaseActivity
 import com.androiddev.profilehub.ui.contacts.AddContactDialogFragment.Companion.ADD_CONTACT_DIALOG_TAG
@@ -69,6 +71,11 @@ class ContactsActivity : BaseActivity<ActivityContactsBinding>(ActivityContactsB
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.onEach { state ->
                     listAdapter.submitList(state.items)
+
+                    binding.apply {
+                        progressBarLoadData.isGone = !state.isLoading
+                        ivNoData.isGone = state.isLoading || !state.isEmptyListVisible
+                    }
 
                     state.snackbarMessage?.let { message ->
                         when (message) {

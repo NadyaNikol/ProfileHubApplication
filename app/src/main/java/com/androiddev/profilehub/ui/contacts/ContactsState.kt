@@ -10,8 +10,7 @@ data class ContactsState(
     val items: List<ContactUIEntity> = listOf(),
     val snackbarMessage: SnackbarMessage? = null,
     val isLoading: Boolean = false,
-    val isEndOfList: Boolean = false,
-)
 
 ) {
+    val isEmptyListVisible get() = items.isEmpty()
 }
