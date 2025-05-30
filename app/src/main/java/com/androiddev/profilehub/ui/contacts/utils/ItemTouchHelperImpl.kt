@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
  * Created by Nadya N. on 23.05.2025.
  */
 class ItemTouchHelperImpl(
-    private val onDelete: (itemId: Long) -> Unit
-): ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+    private val onDelete: (itemId: Long) -> Unit,
+) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
     override fun onMove(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,
         target: RecyclerView.ViewHolder,
     ): Boolean {
-        return  false
+        return false
     }
 
     override fun onSwiped(

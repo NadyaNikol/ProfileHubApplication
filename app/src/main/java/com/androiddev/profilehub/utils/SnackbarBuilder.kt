@@ -6,10 +6,14 @@ import com.google.android.material.snackbar.Snackbar
 /**
  * Created by Nadya N. on 23.05.2025.
  */
+
+/**
+ * Use View.snackbarBuilder instead SnackbarBuilder
+ */
 class SnackbarBuilder(
-    private val parentView: View,
-    private val message: String,
-    private val duration: Int = Snackbar.LENGTH_LONG,
+    parentView: View,
+    message: String,
+    duration: Int = Snackbar.LENGTH_LONG,
 ) {
     private var snackbar = Snackbar.make(parentView, message, duration)
 

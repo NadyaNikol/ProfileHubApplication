@@ -2,8 +2,8 @@ package com.androiddev.profilehub.utils
 
 import android.content.Context
 import com.androiddev.profilehub.R
-import com.androiddev.profilehub.domain.errors.AuthError
-import com.androiddev.profilehub.domain.messages.SnackbarMessage
+import com.androiddev.profilehub.ui.auth.errors.AuthError
+import com.androiddev.profilehub.ui.contacts.events.SnackbarEvent
 
 /**
  * Created by Nadya N. on 09.05.2025.
@@ -11,11 +11,11 @@ import com.androiddev.profilehub.domain.messages.SnackbarMessage
 
 class UIMessageResolver(private val context: Context) {
 
-    fun resolveSnackbarMessage(message: SnackbarMessage): String {
+    fun resolveSnackbarMessage(message: SnackbarEvent): String {
         return when (message) {
-            SnackbarMessage.ContactSaved -> context.getString(R.string.contact_saved_success)
-            SnackbarMessage.ContactCancelSaved -> context.getString(R.string.contact_does_not_save)
-            is SnackbarMessage.ContactUndoDeleted -> context.getString(R.string.contact_undo_deleted)
+            is SnackbarEvent.ContactSaved -> context.getString(R.string.contact_saved_success)
+            is SnackbarEvent.ContactCancelSaved -> context.getString(R.string.contact_does_not_save)
+            is SnackbarEvent.ContactUndoDeleted -> context.getString(R.string.contact_undo_deleted)
         }
     }
 

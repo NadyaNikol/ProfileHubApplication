@@ -8,6 +8,6 @@ import javax.inject.Inject
  */
 class DeleteContactsUseCaseImpl @Inject constructor(
     private val repository: ContactsRepository,
-): DeleteContactsUseCase {
+) : DeleteContactsUseCase {
     override fun deleteContactById(id: Long) = repository.deleteContactById(id)
 }

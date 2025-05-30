@@ -1,6 +1,6 @@
 package com.androiddev.profilehub.ui.auth
 
-import com.androiddev.profilehub.domain.errors.AuthError
+import com.androiddev.profilehub.ui.auth.errors.AuthError
 
 /**
  * Created by Nadya N. on 07.04.2025.

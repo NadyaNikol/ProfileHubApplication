@@ -2,13 +2,13 @@ package com.androiddev.profilehub.ui.contacts.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.androiddev.profilehub.domain.entities.ContactIndexed
+import com.androiddev.profilehub.domain.entities.ContactIndexedUIEntity
 import com.androiddev.profilehub.domain.entities.ContactUIEntity
-import com.androiddev.profilehub.domain.messages.SnackbarMessage
 import com.androiddev.profilehub.domain.useCases.AddContactsUseCase
 import com.androiddev.profilehub.domain.useCases.DeleteContactsUseCase
 import com.androiddev.profilehub.domain.useCases.GetContactsUseCase
 import com.androiddev.profilehub.ui.contacts.ContactsState
+import com.androiddev.profilehub.ui.contacts.events.SnackbarEvent
 import com.androiddev.profilehub.ui.contacts.events.UiEvent
 import com.androiddev.profilehub.utils.mappers.addByIndex
 import com.androiddev.profilehub.utils.mappers.removeAtIndex
@@ -33,6 +33,8 @@ class ContactViewModel @Inject constructor(
 
     private val _uiState = MutableStateFlow(ContactsState())
     val uiState = _uiState.asStateFlow()
+
+    private var contactIndexed: ContactIndexedUIEntity? = null
 
     init {
         getContactsUseCase.contactsFlow.onEach {
@@ -59,11 +61,11 @@ class ContactViewModel @Inject constructor(
         when (event) {
             is UiEvent.ContactDialog.Save -> {
                 saveContact(event.contact)
-                _uiState.update { it.copy(snackbarMessage = SnackbarMessage.ContactSaved) }
+                _uiState.update { it.copy(snackbarEvent = SnackbarEvent.ContactSaved) }
             }
 
             UiEvent.ContactDialog.Cancel -> {
-                _uiState.update { it.copy(snackbarMessage = SnackbarMessage.ContactCancelSaved) }
+                _uiState.update { it.copy(snackbarEvent = SnackbarEvent.ContactCancelSaved) }
             }
 
             is UiEvent.SwipeDelete -> {
@@ -71,17 +73,17 @@ class ContactViewModel @Inject constructor(
                 val contactToRemove = currentItems.find { it.id == event.id } ?: return
                 val indexToRemove = currentItems.indexOf(contactToRemove)
 
-                contactIndexed = ContactIndexed(contact = contactToRemove, index = indexToRemove)
+                contactIndexed = ContactIndexedUIEntity(contact = contactToRemove, index = indexToRemove)
 
                 _uiState.update {
                     it.copy(
                         items = currentItems.removeAtIndex(indexToRemove),
-                        snackbarMessage = SnackbarMessage.ContactUndoDeleted
+                        snackbarEvent = SnackbarEvent.ContactUndoDeleted
                     )
                 }
             }
 
-            UiEvent.Undo.Clicked -> {
+            is UiEvent.Undo.Clicked -> {
                 val currentItems = uiState.value.items
                 val contact = contactIndexed?.contact ?: return
                 val index = contactIndexed?.index ?: currentItems.size
@@ -97,7 +99,7 @@ class ContactViewModel @Inject constructor(
             }
 
             UiEvent.ClearSnackbarMessage -> {
-                _uiState.update { it.copy(snackbarMessage = null) }
+                _uiState.update { it.copy(snackbarEvent = null) }
             }
         }
     }

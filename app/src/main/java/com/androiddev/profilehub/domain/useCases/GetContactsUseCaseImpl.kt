@@ -10,7 +10,7 @@ import javax.inject.Inject
  */
 class GetContactsUseCaseImpl @Inject constructor(
     private val repository: ContactsRepository,
-): GetContactsUseCase {
+) : GetContactsUseCase {
     override val contactsFlow: Flow<List<ContactUIEntity>> = repository.contactsFlow
     override suspend fun loadContacts() = repository.loadContacts()
 }

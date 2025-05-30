@@ -2,7 +2,6 @@ package com.androiddev.profilehub.domain.useCases
 
 import com.androiddev.profilehub.domain.entities.ContactUIEntity
 import com.androiddev.profilehub.domain.repositories.ContactsRepository
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 /**
@@ -10,6 +9,6 @@ import javax.inject.Inject
  */
 class AddContactsUseCaseImpl @Inject constructor(
     private val repository: ContactsRepository,
-): AddContactsUseCase {
+) : AddContactsUseCase {
     override fun saveContact(contact: ContactUIEntity) = repository.saveContact(contact)
 }

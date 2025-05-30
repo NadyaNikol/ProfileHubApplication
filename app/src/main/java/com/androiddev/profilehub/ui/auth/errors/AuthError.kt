@@ -1,4 +1,4 @@
-package com.androiddev.profilehub.domain.errors
+package com.androiddev.profilehub.ui.auth.errors
 
 /**
  * Created by Nadya N. on 09.05.2025.

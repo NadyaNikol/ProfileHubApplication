@@ -1,6 +1,6 @@
 package com.androiddev.profilehub.domain.useCases
 
-import com.androiddev.profilehub.domain.errors.AuthError
+import com.androiddev.profilehub.ui.auth.errors.AuthError
 import javax.inject.Inject
 
 

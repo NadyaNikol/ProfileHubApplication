@@ -39,7 +39,7 @@
             app:layout_constraintBottom_toBottomOf="@id/ivPhotoProfile"
             app:layout_constraintStart_toEndOf="@id/ivPhotoProfile"
             app:layout_constraintTop_toTopOf="@id/ivPhotoProfile"
-            app:shapeAppearanceOverlay="@style/CircleImageView"/>
+            app:shapeAppearanceOverlay="@style/CircleImageView" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutName"

@@ -81,9 +81,4 @@ class AddContactDialogFragment : DialogFragment() {
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
     }
-
-    companion object {
-        const val ADD_CONTACT_DIALOG_TAG = "AddContactDialog"
-    }
-
 }

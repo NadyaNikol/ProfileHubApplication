@@ -12,14 +12,13 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.androiddev.profilehub.R
 import com.androiddev.profilehub.databinding.ActivityContactsBinding
-import com.androiddev.profilehub.domain.entities.ContactIndexed
-import com.androiddev.profilehub.domain.messages.SnackbarMessage
 import com.androiddev.profilehub.ui.BaseActivity
-import com.androiddev.profilehub.ui.contacts.AddContactDialogFragment.Companion.ADD_CONTACT_DIALOG_TAG
 import com.androiddev.profilehub.ui.contacts.adapters.ContactListAdapter
+import com.androiddev.profilehub.ui.contacts.events.SnackbarEvent
 import com.androiddev.profilehub.ui.contacts.events.UiEvent
 import com.androiddev.profilehub.ui.contacts.utils.ItemTouchHelperImpl
 import com.androiddev.profilehub.ui.contacts.viewModels.ContactViewModel
+import com.androiddev.profilehub.utils.ADD_CONTACT_DIALOG_TAG
 import com.androiddev.profilehub.utils.UIMessageResolver
 import com.androiddev.profilehub.utils.snackbarBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -77,15 +76,15 @@ class ContactsActivity : BaseActivity<ActivityContactsBinding>(ActivityContactsB
                         ivNoData.isGone = state.isLoading || !state.isEmptyListVisible
                     }
 
-                    state.snackbarMessage?.let { message ->
+                    state.snackbarEvent?.let { message ->
                         when (message) {
-                            is SnackbarMessage.ContactSaved,
-                            is SnackbarMessage.ContactCancelSaved,
+                            is SnackbarEvent.ContactSaved,
+                            is SnackbarEvent.ContactCancelSaved,
                                 -> {
                                 showInfoSnackbar(messageResolver.resolveSnackbarMessage(message))
                             }
 
-                            is SnackbarMessage.ContactUndoDeleted -> {
+                            is SnackbarEvent.ContactUndoDeleted -> {
                                 showUndoSnackbar(messageResolver.resolveSnackbarMessage(message))
                             }
                         }
@@ -136,7 +135,6 @@ class ContactsActivity : BaseActivity<ActivityContactsBinding>(ActivityContactsB
     private fun handleSnackbarShown() {
         viewModel.onUiEvent(UiEvent.ClearSnackbarMessage)
     }
-
 
 
     private fun showSnackbar(context: Context, view: View, message: String) {
