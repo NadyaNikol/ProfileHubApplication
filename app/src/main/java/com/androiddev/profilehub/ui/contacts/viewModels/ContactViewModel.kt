@@ -7,11 +7,12 @@ import com.androiddev.profilehub.domain.entities.ContactUIEntity
 import com.androiddev.profilehub.domain.useCases.AddContactsUseCase
 import com.androiddev.profilehub.domain.useCases.DeleteContactsUseCase
 import com.androiddev.profilehub.domain.useCases.GetContactsUseCase
+import com.androiddev.profilehub.domain.useCases.ObserveContactsEventsUseCase
 import com.androiddev.profilehub.ui.contacts.ContactsState
+import com.androiddev.profilehub.ui.contacts.LoadingState
+import com.androiddev.profilehub.ui.contacts.events.ContactsEvent
 import com.androiddev.profilehub.ui.contacts.events.SnackbarEvent
 import com.androiddev.profilehub.ui.contacts.events.UiEvent
-import com.androiddev.profilehub.utils.mappers.addByIndex
-import com.androiddev.profilehub.utils.mappers.removeAtIndex
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -29,24 +30,16 @@ class ContactViewModel @Inject constructor(
     private val getContactsUseCase: GetContactsUseCase,
     private val addContactsUseCase: AddContactsUseCase,
     private val deleteContactsUseCase: DeleteContactsUseCase,
+    private val observeContactsEventsUseCase: ObserveContactsEventsUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(ContactsState())
     val uiState = _uiState.asStateFlow()
 
-    private var contactIndexed: ContactIndexedUIEntity? = null
-
     init {
-        getContactsUseCase.contactsFlow.onEach {
-            _uiState.update { state ->
-                state.copy(
-                    items = it.sortedBy { it.name }
-                    isLoading = false,
-                )
-            }
-        }.launchIn(viewModelScope)
+        observeEvents()
+        observeContacts()
         loadContacts()
-        _uiState.update { state -> state.copy(isLoading = true) }
     }
 
     fun loadContacts() {
@@ -55,48 +48,63 @@ class ContactViewModel @Inject constructor(
         }
     }
 
+    private fun observeContacts() {
+        getContactsUseCase.contactsFlow.onEach { contacts ->
+            _uiState.update { state ->
+                state.copy(
+                    items = contacts.sortedBy { it.name },
+                )
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    private fun observeEvents() {
+        viewModelScope.launch {
+            observeContactsEventsUseCase.eventsFlow.onEach { event ->
+                when (event) {
+                    ContactsEvent.Default -> {
+                        _uiState.update { it.copy(loadingState = LoadingState.LoadingInitial) }
+                    }
+
+                    is ContactsEvent.Loaded -> {
+                        _uiState.update { it.copy(loadingState = LoadingState.Loaded) }
+                    }
+
+                    is ContactsEvent.ContactAdded -> {
+                        _uiState.update { it.copy(snackbarEvent = SnackbarEvent.Info.ContactAdded) }
+                    }
+
+                    is ContactsEvent.ContactDeleted -> {
+                        _uiState.update {
+                            it.copy(
+                                snackbarEvent = SnackbarEvent.Actionable.ContactUndoDeleted(
+                                    onAction = { onUiEvent(UiEvent.Undo.Clicked) }
+                                ))
+                        }
+                    }
+
+                    is ContactsEvent.ContactDeleteUndone ->
+                        _uiState.update { it.copy(snackbarEvent = SnackbarEvent.Info.ContactNotDeleted) }
+                }
+            }.launchIn(viewModelScope)
+        }
+    }
+
     private var contactIndexed: ContactIndexed? = null
 
     fun onUiEvent(event: UiEvent) {
         when (event) {
             is UiEvent.ContactDialog.Save -> {
-                saveContact(event.contact)
-                _uiState.update { it.copy(snackbarEvent = SnackbarEvent.ContactSaved) }
+                addContact(event.contact)
+                _uiState.update { it.copy(snackbarEvent = SnackbarEvent.Info.ContactAdded) }
             }
 
             UiEvent.ContactDialog.Cancel -> {
-                _uiState.update { it.copy(snackbarEvent = SnackbarEvent.ContactCancelSaved) }
+                _uiState.update { it.copy(snackbarEvent = SnackbarEvent.Info.ContactCancelSaved) }
             }
 
-            is UiEvent.SwipeDelete -> {
-                val currentItems = uiState.value.items
-                val contactToRemove = currentItems.find { it.id == event.id } ?: return
-                val indexToRemove = currentItems.indexOf(contactToRemove)
-
-                contactIndexed = ContactIndexedUIEntity(contact = contactToRemove, index = indexToRemove)
-
-                _uiState.update {
-                    it.copy(
-                        items = currentItems.removeAtIndex(indexToRemove),
-                        snackbarEvent = SnackbarEvent.ContactUndoDeleted
-                    )
-                }
-            }
-
-            is UiEvent.Undo.Clicked -> {
-                val currentItems = uiState.value.items
-                val contact = contactIndexed?.contact ?: return
-                val index = contactIndexed?.index ?: currentItems.size
-
-                _uiState.update { it.copy(items = currentItems.addByIndex(index = index, obj = contact)) }
-
-                contactIndexed = null
-            }
-
-            UiEvent.Undo.Dismissed -> {
-                val contact = contactIndexed?.contact ?: return
-                deleteContactById(contact.id)
-            }
+            is UiEvent.SwipeDelete -> deleteContactById(event.id)
+            is UiEvent.Undo.Clicked -> undoDelete()
 
             UiEvent.ClearSnackbarMessage -> {
                 _uiState.update { it.copy(snackbarEvent = null) }
@@ -110,9 +118,15 @@ class ContactViewModel @Inject constructor(
         }
     }
 
-    private fun saveContact(contact: ContactUIEntity) {
+    private fun undoDelete() {
         viewModelScope.launch {
-            addContactsUseCase.saveContact(contact)
+            deleteContactsUseCase.undoDelete()
+        }
+    }
+
+    private fun addContact(contact: ContactUIEntity) {
+        viewModelScope.launch {
+            addContactsUseCase.addContact(contact)
         }
     }
 }

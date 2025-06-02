@@ -9,5 +9,6 @@ import javax.inject.Inject
 class DeleteContactsUseCaseImpl @Inject constructor(
     private val repository: ContactsRepository,
 ) : DeleteContactsUseCase {
-    override fun deleteContactById(id: Long) = repository.deleteContactById(id)
+    override suspend fun deleteContactById(id: Long) = repository.deleteContactById(id)
+    override suspend fun undoDelete() = repository.undoDelete()
 }

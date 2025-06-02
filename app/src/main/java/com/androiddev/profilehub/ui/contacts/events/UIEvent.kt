@@ -8,7 +8,6 @@ import com.androiddev.profilehub.domain.entities.ContactUIEntity
 sealed class UiEvent {
     sealed class Undo : UiEvent() {
         object Clicked : Undo()
-        object Dismissed : Undo()
     }
 
     sealed class ContactDialog : UiEvent() {

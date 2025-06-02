@@ -7,6 +7,8 @@ import com.androiddev.profilehub.domain.useCases.DeleteContactsUseCase
 import com.androiddev.profilehub.domain.useCases.DeleteContactsUseCaseImpl
 import com.androiddev.profilehub.domain.useCases.GetContactsUseCase
 import com.androiddev.profilehub.domain.useCases.GetContactsUseCaseImpl
+import com.androiddev.profilehub.domain.useCases.ObserveContactsEventsUseCase
+import com.androiddev.profilehub.domain.useCases.ObserveContactsEventsUseCaseImpl
 import com.androiddev.profilehub.domain.useCases.ValidationEmailUseCase
 import com.androiddev.profilehub.domain.useCases.ValidationEmailUseCaseImpl
 import com.androiddev.profilehub.domain.useCases.ValidationPasswordUseCase
@@ -49,5 +51,10 @@ class UseCaseModule {
     @Singleton
     fun provideDeleteContactsUseCase(repository: ContactsRepository): DeleteContactsUseCase =
         DeleteContactsUseCaseImpl(repository)
+
+    @Provides
+    @Singleton
+    fun provideObserveContactsEventsUseCase(repository: ContactsRepository): ObserveContactsEventsUseCase =
+        ObserveContactsEventsUseCaseImpl(repository)
 
 }

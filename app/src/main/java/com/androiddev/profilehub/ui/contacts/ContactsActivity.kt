@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
-import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -72,20 +72,22 @@ class ContactsActivity : BaseActivity<ActivityContactsBinding>(ActivityContactsB
                     listAdapter.submitList(state.items)
 
                     binding.apply {
-                        progressBarLoadData.isGone = !state.isLoading
-                        ivNoData.isGone = state.isLoading || !state.isEmptyListVisible
+                        progressBarLoadData.isVisible = state.loadingState is LoadingState.LoadingInitial
+                        ivNoData.isVisible = state.loadingState == LoadingState.Loaded && state.isNoDataVisible
                     }
 
-                    state.snackbarEvent?.let { message ->
-                        when (message) {
-                            is SnackbarEvent.ContactSaved,
-                            is SnackbarEvent.ContactCancelSaved,
-                                -> {
-                                showInfoSnackbar(messageResolver.resolveSnackbarMessage(message))
+                    state.snackbarEvent?.let { event ->
+                        val message = messageResolver.resolveSnackbarMessage(event)
+                        when (event) {
+                            is SnackbarEvent.Info -> {
+                                showInfoSnackbar(message)
                             }
 
-                            is SnackbarEvent.ContactUndoDeleted -> {
-                                showUndoSnackbar(messageResolver.resolveSnackbarMessage(message))
+                            is SnackbarEvent.Actionable -> {
+                                showActionSnackbar(
+                                    message = message,
+                                    textActionResId = event.textActionResId,
+                                    action = event.onAction,)
                             }
                         }
                     }
@@ -107,26 +109,16 @@ class ContactsActivity : BaseActivity<ActivityContactsBinding>(ActivityContactsB
             .show()
     }
 
-    private fun showUndoSnackbar(message: String) {
+    private fun showActionSnackbar(message: String, textActionResId: Int, action: () -> Unit) {
         binding.root.snackbarBuilder(message, Snackbar.LENGTH_LONG)
             .setStyle()
-            .setAction(getString(R.string.contact_undo)) {
-                viewModel.onUiEvent(UiEvent.Undo.Clicked)
+            .setAction(getString(textActionResId)) {
+                action()
             }
             .setCallback(object : Snackbar.Callback() {
                 override fun onShown(sb: Snackbar?) {
                     super.onShown(sb)
                     handleSnackbarShown()
-                }
-
-                override fun onDismissed(
-                    transientBottomBar: Snackbar?,
-                    event: Int,
-                ) {
-                    super.onDismissed(transientBottomBar, event)
-                    if (event != DISMISS_EVENT_ACTION) {
-                        viewModel.onUiEvent(UiEvent.Undo.Dismissed)
-                    }
                 }
             })
             .show()
@@ -134,23 +126,5 @@ class ContactsActivity : BaseActivity<ActivityContactsBinding>(ActivityContactsB
 
     private fun handleSnackbarShown() {
         viewModel.onUiEvent(UiEvent.ClearSnackbarMessage)
-    }
-
-
-    private fun showSnackbar(context: Context, view: View, message: String) {
-        Snackbar.make(view, message, Snackbar.LENGTH_LONG)
-
-            .setBackgroundTint(
-                ContextCompat.getColor(context, R.color.colorSecondary)
-            )
-            .setTextColor(
-                ContextCompat.getColor(context, R.color.colorOnSecondary)
-            )
-            .apply {
-                view.background = ContextCompat.getDrawable(
-                    context,
-                    R.drawable.snack_bar_shape_round
-                )
-            }.show()
     }
 }

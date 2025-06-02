@@ -1,6 +1,8 @@
 package com.androiddev.profilehub.domain.repositories
 
 import com.androiddev.profilehub.domain.entities.ContactUIEntity
+import com.androiddev.profilehub.ui.contacts.events.ContactsEvent
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 
 /**
@@ -9,7 +11,9 @@ import kotlinx.coroutines.flow.StateFlow
 interface ContactsRepository {
 
     val contactsFlow: StateFlow<List<ContactUIEntity>>
+    val eventsFlow: SharedFlow<ContactsEvent>
     suspend fun loadContacts()
-    fun deleteContactById(id: Long)
-    fun saveContact(contact: ContactUIEntity)
+    suspend fun deleteContactById(id: Long)
+    suspend fun addContact(contact: ContactUIEntity)
+    suspend fun undoDelete()
 }

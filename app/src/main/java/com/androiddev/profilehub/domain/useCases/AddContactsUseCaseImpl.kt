@@ -10,5 +10,5 @@ import javax.inject.Inject
 class AddContactsUseCaseImpl @Inject constructor(
     private val repository: ContactsRepository,
 ) : AddContactsUseCase {
-    override fun saveContact(contact: ContactUIEntity) = repository.saveContact(contact)
+    override suspend fun addContact(contact: ContactUIEntity) = repository.addContact(contact)
 }
