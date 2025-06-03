@@ -1,4 +1,4 @@
-package com.androiddev.profilehub.ui.contacts
+package com.androiddev.profilehub.ui.contacts.fragments
 
 import android.net.Uri
 import android.os.Bundle
@@ -59,8 +59,9 @@ class AddContactDialogFragment : DialogFragment() {
 
                 viewModel.onEvent(
                     ContactDialogEvent.Save(
+                    ContactDialogEvent.Add(
                         ContactUIEntity(
-                            id = Random.nextLong(),
+                            id = Random.Default.nextLong(),
                             name = name,
                             career = career,
                             image = selectedPhotoUri?.toString().orEmpty()

@@ -12,6 +12,7 @@ import com.androiddev.profilehub.ui.BaseActivity
 import com.androiddev.profilehub.ui.contacts.adapters.ContactListAdapter
 import com.androiddev.profilehub.ui.contacts.events.SnackbarEvent
 import com.androiddev.profilehub.ui.contacts.events.UiEvent
+import com.androiddev.profilehub.ui.contacts.fragments.AddContactDialogFragment
 import com.androiddev.profilehub.ui.contacts.utils.ItemTouchHelperImpl
 import com.androiddev.profilehub.ui.contacts.viewModels.ContactViewModel
 import com.androiddev.profilehub.utils.ADD_CONTACT_DIALOG_TAG
@@ -65,31 +66,35 @@ class ContactsActivity : BaseActivity<ActivityContactsBinding>(ActivityContactsB
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.onEach { state ->
-                    listAdapter.submitList(state.items)
 
-                    binding.apply {
-                        progressBarLoadData.isVisible = state.loadingState is LoadingState.LoadingInitial
-                        ivNoData.isVisible = state.loadingState == LoadingState.Loaded && state.isNoDataVisible
-                    }
-
-                    state.snackbarEvent?.let { event ->
-                        val message = messageResolver.resolveSnackbarMessage(event)
-                        when (event) {
-                            is SnackbarEvent.Info -> {
-                                showInfoSnackbar(message)
-                            }
-
-                            is SnackbarEvent.Actionable -> {
-                                showActionSnackbar(
-                                    message = message,
-                                    textActionResId = event.textActionResId,
-                                    action = event.onAction,)
-                            }
-                        }
-                    }
+                    renderList(state)
+                    renderLoadingState(state)
+                    renderSnackbar(state)
 
                 }.launchIn(this)
             }
+        }
+    }
+
+    private fun renderList(state: ContactsState) {
+        listAdapter.submitList(state.items)
+    }
+
+    private fun renderLoadingState(state: ContactsState) = with(binding) {
+        progressBarLoadData.isVisible = state.loadingState is LoadingState.LoadingInitial
+        ivNoData.isVisible = state.loadingState == LoadingState.Loaded && state.isNoDataVisible
+    }
+
+    private fun renderSnackbar(state: ContactsState) {
+        val event = state.snackbarEvent ?: return
+        val message = messageResolver.resolveSnackbarMessage(event)
+        when (event) {
+            is SnackbarEvent.Info -> showInfoSnackbar(message)
+            is SnackbarEvent.Actionable -> showActionSnackbar(
+                message = message,
+                textActionResId = event.textActionResId,
+                action = event.onAction
+            )
         }
     }
 

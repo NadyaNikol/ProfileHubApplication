@@ -39,10 +39,10 @@ class ContactRepositoryLocalImpl @Inject constructor() : ContactsRepository {
     private fun generateContacts(count: Int): List<ContactUIEntity> =
         List(count) { RandomContactGenerator.getRandom() }
 
-    override suspend fun deleteContactById(id: Long) {
+    override suspend fun deleteContactById(id: Long) = withContext(Dispatchers.IO) {
         val currentList = _contactsFlow.value
         val index = currentList.indexOfFirst { it.id == id }
-        if (index == -1) return
+        if (index == -1) return@withContext
 
         recentlyDeletedContact = ContactIndexedUIEntity(
             contact = currentList[index],
@@ -53,8 +53,8 @@ class ContactRepositoryLocalImpl @Inject constructor() : ContactsRepository {
         _eventsFlow.emit(ContactsEvent.ContactDeleted)
     }
 
-    override suspend fun undoDelete() {
-        val contact = recentlyDeletedContact ?: return
+    override suspend fun undoDelete() = withContext(Dispatchers.IO) {
+        val contact = recentlyDeletedContact ?: return@withContext
         val index = contact.index
         val currentList = _contactsFlow.value
 
@@ -66,12 +66,12 @@ class ContactRepositoryLocalImpl @Inject constructor() : ContactsRepository {
         _eventsFlow.emit(ContactsEvent.ContactDeleteUndone)
     }
 
-    override suspend fun addContact(contact: ContactUIEntity) {
+    override suspend fun addContact(contact: ContactUIEntity) = withContext(Dispatchers.IO) {
         _contactsFlow.value = _contactsFlow.value.plus(contact)
         _eventsFlow.emit(ContactsEvent.ContactAdded)
     }
 
-    override suspend fun emitCancelContactSaved() {
+    override suspend fun emitCancelContactSaved() = withContext(Dispatchers.IO) {
         _eventsFlow.emit(ContactsEvent.ContactCancelAdd)
     }
 }

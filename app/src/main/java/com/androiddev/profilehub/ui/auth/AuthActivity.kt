@@ -18,7 +18,7 @@ import com.androiddev.profilehub.ui.main.MainActivity
 import com.androiddev.profilehub.utils.EXTRA_USER_NAME
 import com.androiddev.profilehub.utils.EmailParser
 import com.androiddev.profilehub.utils.UIMessageResolver
-import com.androiddev.profilehub.utils.mappers.updateIfDifferent
+import com.androiddev.profilehub.utils.updateIfDifferent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

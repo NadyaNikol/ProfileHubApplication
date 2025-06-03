@@ -1,6 +1,7 @@
 package com.androiddev.profilehub.domain.useCases
 
 import com.androiddev.profilehub.ui.auth.errors.AuthError
+import com.androiddev.profilehub.utils.MIN_LENGTH_PASSWORD
 import javax.inject.Inject
 
 
@@ -32,7 +33,7 @@ class ValidationPasswordUseCaseImpl @Inject constructor() : ValidationPasswordUs
     override fun validate(password: String): AuthError {
         return when {
             password.isBlank() -> AuthError.Password.EMPTY
-            password.length < 8 -> AuthError.Password.TOO_SHORT
+            password.length < MIN_LENGTH_PASSWORD -> AuthError.Password.TOO_SHORT
             !containsOnlyEnglishLettersAndDigits(password) -> AuthError.Password.NON_ASCII
             !uppercasePattern.containsMatchIn(password) -> AuthError.Password.NO_UPPERCASE
             !englishLetterPattern.containsMatchIn(password) -> AuthError.Password.NO_LETTER

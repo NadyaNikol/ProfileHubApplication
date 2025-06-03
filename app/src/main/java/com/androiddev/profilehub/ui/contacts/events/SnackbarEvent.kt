@@ -20,7 +20,7 @@ sealed class SnackbarEvent {
 
         data class ContactUndoDeleted(
             override val textActionResId: Int = R.string.contact_undo,
-            override val onAction: () -> Unit
+            override val onAction: () -> Unit,
         ) : Actionable()
     }
 

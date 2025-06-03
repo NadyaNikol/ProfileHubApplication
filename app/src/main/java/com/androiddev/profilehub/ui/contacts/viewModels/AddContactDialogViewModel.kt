@@ -18,22 +18,22 @@ import javax.inject.Inject
 class AddContactDialogViewModel @Inject constructor(
     private val addContactUseCase: AddContactUseCase,
     private val cancelContactAddingUseCase: CancelContactAddingUseCase,
-): ViewModel() {
+) : ViewModel() {
 
     fun onEvent(event: ContactDialogEvent) {
-        when(event){
-            is ContactDialogEvent.Save -> addContact(event.contact)
+        when (event) {
+            is ContactDialogEvent.Add -> addContact(event.contact)
             is ContactDialogEvent.Cancel -> onCancelAddContact()
         }
     }
 
-    private fun addContact(contact: ContactUIEntity){
+    private fun addContact(contact: ContactUIEntity) {
         viewModelScope.launch {
             addContactUseCase.addContact(contact)
         }
     }
 
-    private fun onCancelAddContact(){
+    private fun onCancelAddContact() {
         viewModelScope.launch {
             cancelContactAddingUseCase.cancelAdd()
         }

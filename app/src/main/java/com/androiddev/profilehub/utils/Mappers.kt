@@ -1,7 +1,11 @@
-package com.androiddev.profilehub.utils.mappers
+package com.androiddev.profilehub.utils
 
+import android.view.View
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.ImageView
+import com.androiddev.profilehub.R
+import com.bumptech.glide.Glide
 
 /**
  * Created by Nadya N. on 19.05.2025.
@@ -19,13 +23,10 @@ fun CheckBox.updateIfDifferent(newChecked: Boolean) {
     }
 }
 
-fun <T> List<T>.removeAtIndex(index: Int): List<T> {
-    return toMutableList().apply { removeAt(index) }
-}
-
-fun <T> List<T>.addByIndex(index: Int, obj: T): List<T> {
-    return toMutableList().apply {
-        add(index, obj)
-    }
+fun ImageView.loadImage(view: View, url: String) {
+    Glide.with(view)
+        .load(url)
+        .error(R.drawable.person_icon)
+        .into(this)
 }
 

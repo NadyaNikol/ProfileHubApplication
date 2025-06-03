@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.androiddev.profilehub.databinding.ListItemContactBinding
 import com.androiddev.profilehub.domain.entities.ContactUIEntity
-import com.androiddev.profilehub.utils.mappers.loadImage
+import com.androiddev.profilehub.utils.loadImage
 import javax.inject.Inject
 
 
