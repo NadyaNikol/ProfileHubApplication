@@ -1,14 +1,18 @@
 package com.androiddev.profilehub.di
 
 import com.androiddev.profilehub.domain.repositories.ContactsRepository
-import com.androiddev.profilehub.domain.useCases.AddContactsUseCase
-import com.androiddev.profilehub.domain.useCases.AddContactsUseCaseImpl
-import com.androiddev.profilehub.domain.useCases.DeleteContactsUseCase
-import com.androiddev.profilehub.domain.useCases.DeleteContactsUseCaseImpl
+import com.androiddev.profilehub.domain.useCases.AddContactUseCase
+import com.androiddev.profilehub.domain.useCases.AddContactUseCaseImpl
+import com.androiddev.profilehub.domain.useCases.CancelContactAddingUseCase
+import com.androiddev.profilehub.domain.useCases.CancelContactAddingUseCaseImpl
+import com.androiddev.profilehub.domain.useCases.DeleteContactUseCase
+import com.androiddev.profilehub.domain.useCases.DeleteContactUseCaseImpl
 import com.androiddev.profilehub.domain.useCases.GetContactsUseCase
 import com.androiddev.profilehub.domain.useCases.GetContactsUseCaseImpl
 import com.androiddev.profilehub.domain.useCases.ObserveContactsEventsUseCase
 import com.androiddev.profilehub.domain.useCases.ObserveContactsEventsUseCaseImpl
+import com.androiddev.profilehub.domain.useCases.UndoDeleteContactUseCase
+import com.androiddev.profilehub.domain.useCases.UndoDeleteContactUseCaseImpl
 import com.androiddev.profilehub.domain.useCases.ValidationEmailUseCase
 import com.androiddev.profilehub.domain.useCases.ValidationEmailUseCaseImpl
 import com.androiddev.profilehub.domain.useCases.ValidationPasswordUseCase
@@ -43,14 +47,18 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideAddContactsUseCase(repository: ContactsRepository): AddContactsUseCase =
-        AddContactsUseCaseImpl(repository)
-
+    fun provideAddContactsUseCase(repository: ContactsRepository): AddContactUseCase =
+        AddContactUseCaseImpl(repository)
 
     @Provides
     @Singleton
-    fun provideDeleteContactsUseCase(repository: ContactsRepository): DeleteContactsUseCase =
-        DeleteContactsUseCaseImpl(repository)
+    fun provideDeleteContactsUseCase(repository: ContactsRepository): DeleteContactUseCase =
+        DeleteContactUseCaseImpl(repository)
+
+    @Provides
+    @Singleton
+    fun provideUndoDeleteContactsUseCase(repository: ContactsRepository): UndoDeleteContactUseCase =
+        UndoDeleteContactUseCaseImpl(repository)
 
     @Provides
     @Singleton

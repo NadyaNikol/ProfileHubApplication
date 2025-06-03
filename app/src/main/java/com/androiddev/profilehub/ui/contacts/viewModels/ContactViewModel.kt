@@ -2,16 +2,15 @@ package com.androiddev.profilehub.ui.contacts.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.androiddev.profilehub.domain.entities.ContactIndexedUIEntity
-import com.androiddev.profilehub.domain.entities.ContactUIEntity
-import com.androiddev.profilehub.domain.useCases.AddContactsUseCase
-import com.androiddev.profilehub.domain.useCases.DeleteContactsUseCase
+import com.androiddev.profilehub.domain.useCases.DeleteContactUseCase
 import com.androiddev.profilehub.domain.useCases.GetContactsUseCase
 import com.androiddev.profilehub.domain.useCases.ObserveContactsEventsUseCase
+import com.androiddev.profilehub.domain.useCases.UndoDeleteContactUseCase
 import com.androiddev.profilehub.ui.contacts.ContactsState
 import com.androiddev.profilehub.ui.contacts.LoadingState
 import com.androiddev.profilehub.ui.contacts.events.ContactsEvent
 import com.androiddev.profilehub.ui.contacts.events.SnackbarEvent
+import com.androiddev.profilehub.ui.contacts.events.SnackbarEvent.Actionable.ContactUndoDeleted
 import com.androiddev.profilehub.ui.contacts.events.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,8 +27,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ContactViewModel @Inject constructor(
     private val getContactsUseCase: GetContactsUseCase,
-    private val addContactsUseCase: AddContactsUseCase,
-    private val deleteContactsUseCase: DeleteContactsUseCase,
+    private val deleteContactUseCase: DeleteContactUseCase,
+    private val undoDeleteContactUseCase: UndoDeleteContactUseCase,
     private val observeContactsEventsUseCase: ObserveContactsEventsUseCase,
 ) : ViewModel() {
 
@@ -77,7 +76,7 @@ class ContactViewModel @Inject constructor(
                     is ContactsEvent.ContactDeleted -> {
                         _uiState.update {
                             it.copy(
-                                snackbarEvent = SnackbarEvent.Actionable.ContactUndoDeleted(
+                                snackbarEvent = ContactUndoDeleted(
                                     onAction = { onUiEvent(UiEvent.Undo.Clicked) }
                                 ))
                         }
@@ -85,12 +84,13 @@ class ContactViewModel @Inject constructor(
 
                     is ContactsEvent.ContactDeleteUndone ->
                         _uiState.update { it.copy(snackbarEvent = SnackbarEvent.Info.ContactNotDeleted) }
+
+                    ContactsEvent.ContactCancelAdd ->
+                        _uiState.update { it.copy(snackbarEvent = SnackbarEvent.Info.ContactCancelAdd) }
                 }
             }.launchIn(viewModelScope)
         }
     }
-
-    private var contactIndexed: ContactIndexed? = null
 
     fun onUiEvent(event: UiEvent) {
         when (event) {
@@ -114,13 +114,13 @@ class ContactViewModel @Inject constructor(
 
     private fun deleteContactById(id: Long) {
         viewModelScope.launch {
-            deleteContactsUseCase.deleteContactById(id)
+            deleteContactUseCase.deleteContactById(id)
         }
     }
 
     private fun undoDelete() {
         viewModelScope.launch {
-            deleteContactsUseCase.undoDelete()
+            undoDeleteContactUseCase.undoDelete()
         }
     }
 

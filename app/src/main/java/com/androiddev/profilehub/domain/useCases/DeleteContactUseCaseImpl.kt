@@ -6,9 +6,8 @@ import javax.inject.Inject
 /**
  * Created by Nadya N. on 13.05.2025.
  */
-class DeleteContactsUseCaseImpl @Inject constructor(
+class DeleteContactUseCaseImpl @Inject constructor(
     private val repository: ContactsRepository,
-) : DeleteContactsUseCase {
+) : DeleteContactUseCase {
     override suspend fun deleteContactById(id: Long) = repository.deleteContactById(id)
-    override suspend fun undoDelete() = repository.undoDelete()
 }

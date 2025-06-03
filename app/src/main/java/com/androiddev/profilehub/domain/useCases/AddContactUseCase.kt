@@ -5,6 +5,6 @@ import com.androiddev.profilehub.domain.entities.ContactUIEntity
 /**
  * Created by Nadya N. on 13.05.2025.
  */
-interface AddContactsUseCase {
+interface AddContactUseCase {
     suspend fun addContact(contact: ContactUIEntity)
 }

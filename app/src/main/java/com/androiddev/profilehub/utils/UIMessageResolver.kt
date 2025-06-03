@@ -14,7 +14,7 @@ class UIMessageResolver(private val context: Context) {
     fun resolveSnackbarMessage(message: SnackbarEvent): String {
         return when (message) {
             is SnackbarEvent.Info.ContactAdded -> context.getString(R.string.contact_saved_success)
-            is SnackbarEvent.Info.ContactCancelSaved -> context.getString(R.string.contact_does_not_save)
+            is SnackbarEvent.Info.ContactCancelAdd -> context.getString(R.string.contact_does_not_save)
             is SnackbarEvent.Info.ContactNotDeleted -> context.getString(R.string.contact_not_deleted)
 
             is SnackbarEvent.Actionable.ContactUndoDeleted -> context.getString(R.string.contact_undo_deleted)
