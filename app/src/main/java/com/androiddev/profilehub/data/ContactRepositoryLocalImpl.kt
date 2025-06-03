@@ -74,7 +74,6 @@ class ContactRepositoryLocalImpl @Inject constructor() : ContactsRepository {
         val index = contact.index
         val currentList = _contactsFlow.value
 
-
         val newList = currentList.toMutableList().apply {
             add(index.coerceAtMost(size), contact.contact)
         }
@@ -86,5 +85,9 @@ class ContactRepositoryLocalImpl @Inject constructor() : ContactsRepository {
     override suspend fun addContact(contact: ContactUIEntity) {
         _contactsFlow.value = _contactsFlow.value.plus(contact)
         _eventsFlow.emit(ContactsEvent.ContactAdded)
+    }
+
+    override suspend fun emitCancelContactSaved() {
+        _eventsFlow.emit(ContactsEvent.ContactCancelAdd)
     }
 }

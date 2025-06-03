@@ -94,19 +94,11 @@ class ContactViewModel @Inject constructor(
 
     fun onUiEvent(event: UiEvent) {
         when (event) {
-            is UiEvent.ContactDialog.Save -> {
-                addContact(event.contact)
-                _uiState.update { it.copy(snackbarEvent = SnackbarEvent.Info.ContactAdded) }
-            }
-
-            UiEvent.ContactDialog.Cancel -> {
-                _uiState.update { it.copy(snackbarEvent = SnackbarEvent.Info.ContactCancelSaved) }
-            }
 
             is UiEvent.SwipeDelete -> deleteContactById(event.id)
             is UiEvent.Undo.Clicked -> undoDelete()
 
-            UiEvent.ClearSnackbarMessage -> {
+            is UiEvent.ClearSnackbarMessage -> {
                 _uiState.update { it.copy(snackbarEvent = null) }
             }
         }
@@ -124,9 +116,4 @@ class ContactViewModel @Inject constructor(
         }
     }
 
-    private fun addContact(contact: ContactUIEntity) {
-        viewModelScope.launch {
-            addContactsUseCase.addContact(contact)
-        }
-    }
 }

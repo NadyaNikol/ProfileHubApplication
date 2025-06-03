@@ -8,6 +8,7 @@ sealed class ContactsEvent {
 
     object Loaded : ContactsEvent()
     object ContactAdded : ContactsEvent()
+    object ContactCancelAdd : ContactsEvent()
     object ContactDeleted : ContactsEvent()
     object ContactDeleteUndone : ContactsEvent()
 }

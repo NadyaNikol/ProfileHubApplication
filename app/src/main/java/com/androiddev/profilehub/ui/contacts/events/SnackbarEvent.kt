@@ -10,7 +10,7 @@ sealed class SnackbarEvent {
 
     sealed class Info : SnackbarEvent() {
         object ContactAdded : Info()
-        data object ContactCancelSaved : Info()
+        data object ContactCancelAdd : Info()
         data object ContactNotDeleted : Info()
     }
 

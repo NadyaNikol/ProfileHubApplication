@@ -1,16 +1,12 @@
 package com.androiddev.profilehub.ui.contacts
 
-import android.content.Context
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ItemTouchHelper
-import com.androiddev.profilehub.R
 import com.androiddev.profilehub.databinding.ActivityContactsBinding
 import com.androiddev.profilehub.ui.BaseActivity
 import com.androiddev.profilehub.ui.contacts.adapters.ContactListAdapter
@@ -34,7 +30,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class ContactsActivity : BaseActivity<ActivityContactsBinding>(ActivityContactsBinding::inflate) {
 
-    private val viewModel by viewModels<ContactViewModel>()
+    private val viewModel: ContactViewModel by viewModels()
     private lateinit var listAdapter: ContactListAdapter
     private lateinit var messageResolver: UIMessageResolver
 

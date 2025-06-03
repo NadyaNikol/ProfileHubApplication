@@ -65,4 +65,9 @@ class UseCaseModule {
     fun provideObserveContactsEventsUseCase(repository: ContactsRepository): ObserveContactsEventsUseCase =
         ObserveContactsEventsUseCaseImpl(repository)
 
+    @Provides
+    @Singleton
+    fun provideCancelContactAddingUseCase(repository: ContactsRepository): CancelContactAddingUseCase =
+        CancelContactAddingUseCaseImpl(repository)
+
 }

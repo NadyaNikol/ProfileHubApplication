@@ -7,19 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.androiddev.profilehub.databinding.DialogFragmentAddContactBinding
 import com.androiddev.profilehub.domain.entities.ContactUIEntity
-import com.androiddev.profilehub.ui.contacts.events.UiEvent
-import com.androiddev.profilehub.ui.contacts.viewModels.ContactViewModel
+import com.androiddev.profilehub.ui.contacts.events.ContactDialogEvent
+import com.androiddev.profilehub.ui.contacts.viewModels.AddContactDialogViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.random.Random
 
 /**
  * Created by Nadya N. on 20.05.2025.
  */
+
+@AndroidEntryPoint
 class AddContactDialogFragment : DialogFragment() {
 
-    private val viewModel by activityViewModels<ContactViewModel>()
+    private val viewModel: AddContactDialogViewModel by viewModels()
 
     private lateinit var binding: DialogFragmentAddContactBinding
     private var selectedPhotoUri: Uri? = null
@@ -54,8 +57,8 @@ class AddContactDialogFragment : DialogFragment() {
                 val name = editTextName.text.toString().trim()
                 val career = editTextCareer.text.toString().trim()
 
-                viewModel.onUiEvent(
-                    UiEvent.ContactDialog.Save(
+                viewModel.onEvent(
+                    ContactDialogEvent.Save(
                         ContactUIEntity(
                             id = Random.nextLong(),
                             name = name,
@@ -68,7 +71,7 @@ class AddContactDialogFragment : DialogFragment() {
             }
 
             btnCancelAddContact.setOnClickListener {
-                viewModel.onUiEvent(UiEvent.ContactDialog.Cancel)
+                viewModel.onEvent(ContactDialogEvent.Cancel)
                 dismiss()
             }
         }
