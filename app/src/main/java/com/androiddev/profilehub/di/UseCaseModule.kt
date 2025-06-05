@@ -17,6 +17,8 @@ import com.androiddev.profilehub.domain.useCases.ValidationEmailUseCase
 import com.androiddev.profilehub.domain.useCases.ValidationEmailUseCaseImpl
 import com.androiddev.profilehub.domain.useCases.ValidationPasswordUseCase
 import com.androiddev.profilehub.domain.useCases.ValidationPasswordUseCaseImpl
+import com.androiddev.profilehub.domain.useCases.ValidationAuthUseCase
+import com.androiddev.profilehub.domain.useCases.ValidationAuthUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,13 +34,8 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideValidationPasswordUseCase(): ValidationPasswordUseCase =
-        ValidationPasswordUseCaseImpl()
-
-    @Provides
-    @Singleton
-    fun provideValidationEmailUseCase(): ValidationEmailUseCase =
-        ValidationEmailUseCaseImpl()
+    fun provideValidationAuthUseCase(): ValidationAuthUseCase =
+        ValidationAuthUseCaseImpl()
 
     @Provides
     @Singleton

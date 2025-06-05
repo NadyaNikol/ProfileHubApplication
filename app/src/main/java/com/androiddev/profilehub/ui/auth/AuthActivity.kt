@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.core.view.isGone
-import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -18,6 +17,7 @@ import com.androiddev.profilehub.ui.main.MainActivity
 import com.androiddev.profilehub.utils.EXTRA_USER_NAME
 import com.androiddev.profilehub.utils.EmailParser
 import com.androiddev.profilehub.utils.UIMessageResolver
+import com.androiddev.profilehub.utils.setAfterTextChangedListener
 import com.androiddev.profilehub.utils.updateIfDifferent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -60,10 +60,14 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>(ActivityAuthBinding::infl
         }
     }
 
-    private fun setUpTextChangedListener(editText: EditText, event: (String) -> AuthFormEvent) {
-        editText.doAfterTextChanged { editable ->
-            viewModel.onEvent(event(editable.toString()))
-        }
+    private fun setUpTextChangedListener(
+        editText: EditText,
+        event: (String) -> AuthFormEvent,
+    ) {
+        editText.setAfterTextChangedListener(
+            event = { event(it) },
+            onEvent = viewModel::onEvent
+        )
     }
 
     private fun initObserves() {
@@ -71,26 +75,34 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>(ActivityAuthBinding::infl
             repeatOnLifecycle(Lifecycle.State.STARTED) {
 
                 viewModel.uiState.onEach { state ->
-                    binding.apply {
-                        textInputLayoutEmail.helperText =
-                            messageResolver.resolveAuthError(state.emailError)
-                        textInputLayoutPassword.helperText =
-                            messageResolver.resolveAuthError(state.passwordError)
-                        groupProgressBar.isGone = !state.isLoading
-
-                        fillUiFromStoredData(state)
-
-                        if (state.submitDataEvent != null) {
-                            val intent = newIntentToMain(
-                                this@AuthActivity,
-                                EmailParser.extractName(binding.editTextEmailAddress.text.toString())
-                            )
-                            startActivity(intent)
-                        }
-                    }
+                    showFieldErrors(state)
+                    toggleLoading(state)
+                    fillUiFromStoredData(state)
+                    handleSubmitData(state)
                 }.launchIn(this)
             }
         }
+    }
+
+    private fun handleSubmitData(state: AuthState) {
+        if (state.submitDataEvent != null) {
+            val intent = newIntentToMain(
+                this@AuthActivity,
+                EmailParser.extractName(binding.editTextEmailAddress.text.toString())
+            )
+            startActivity(intent)
+        }
+    }
+
+    private fun toggleLoading(state: AuthState) = with(binding) {
+        groupProgressBar.isGone = !state.isLoading
+    }
+
+    private fun showFieldErrors(state: AuthState) = with(binding) {
+        textInputLayoutEmail.helperText =
+            messageResolver.resolveAuthError(state.emailError)
+        textInputLayoutPassword.helperText =
+            messageResolver.resolveAuthError(state.passwordError)
     }
 
     private fun fillUiFromStoredData(state: AuthState) {

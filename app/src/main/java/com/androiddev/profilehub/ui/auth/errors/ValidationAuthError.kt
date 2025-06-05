@@ -3,10 +3,10 @@ package com.androiddev.profilehub.ui.auth.errors
 /**
  * Created by Nadya N. on 09.05.2025.
  */
-sealed interface AuthError {
-    object None : AuthError
+sealed interface ValidationAuthError {
+    object None : ValidationAuthError
 
-    enum class Password : AuthError {
+    enum class Password : ValidationAuthError {
         EMPTY,
         TOO_SHORT,
         NON_ASCII,
@@ -16,7 +16,7 @@ sealed interface AuthError {
         HAS_SPACE
     }
 
-    enum class Email : AuthError {
+    enum class Email : ValidationAuthError {
         EMPTY,
         INVALID
     }

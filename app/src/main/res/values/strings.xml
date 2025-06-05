@@ -19,7 +19,7 @@
     <string name="incorrect_e_mail_address">Incorrect E-Mail address</string>
 
     <string name="password_must_not_be_blank">Password must not be blank</string>
-    <string name="password_must_include_a_minimum_characters">Your password must include a minimum of 8 characters</string>
+    <string name="password_must_include_a_minimum_characters">Your password must include a minimum of %1$d characters</string>
     <string name="password_need_to_contain_at_least_one_letter">Your password need to contain at least one letter</string>
     <string name="password_must_contain_at_least_one_digit">Password must contain at least one digit</string>
     <string name="password_must_contain_only_english_letters_and_digits">Your password must contain only English letters and digits</string>
