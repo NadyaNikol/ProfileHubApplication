@@ -2,8 +2,8 @@ package com.androiddev.profilehub.utils
 
 import android.content.Context
 import com.androiddev.profilehub.R
-import com.androiddev.profilehub.ui.auth.errors.AuthError
 import com.androiddev.profilehub.ui.auth.errors.ValidationAuthError
+import com.androiddev.profilehub.ui.contacts.errors.ValidationAddContactError
 import com.androiddev.profilehub.ui.contacts.events.SnackbarEvent
 
 /**
@@ -22,23 +22,28 @@ class UIMessageResolver(private val context: Context) {
         }
     }
 
-    fun resolveAuthError(error: AuthError): String {
+    fun resolveAddContactError(error: ValidationAddContactError): String {
         return when (error) {
-            is AuthError.None -> ""
-            is AuthError.Password -> resolvePasswordError(error)
-            is AuthError.Email -> resolveEmailError(error)
+            is ValidationAddContactError.None -> ""
+            is ValidationAddContactError.Name -> resolveNameError(error)
+            is ValidationAddContactError.Career -> resolveCareerError(error)
         }
     }
 
-    private fun resolvePasswordError(error: AuthError.Password): String {
+    private fun resolveNameError(error: ValidationAddContactError.Name): String {
         return when (error) {
-            AuthError.Password.EMPTY -> context.getString(R.string.password_must_not_be_blank)
-            AuthError.Password.TOO_SHORT -> context.getString(R.string.password_must_include_a_minimum_characters)
-            AuthError.Password.NON_ASCII -> context.getString(R.string.password_must_contain_only_english_letters_and_digits)
-            AuthError.Password.NO_UPPERCASE -> context.getString(R.string.password_must_contain_at_least_one_uppercase_letter)
-            AuthError.Password.NO_LETTER -> context.getString(R.string.password_need_to_contain_at_least_one_letter)
-            AuthError.Password.NO_DIGIT -> context.getString(R.string.password_must_contain_at_least_one_digit)
-            AuthError.Password.HAS_SPACE -> context.getString(R.string.password_must_not_contain_spaces)
+            ValidationAddContactError.Name.EMPTY -> context.getString(R.string.name_must_not_be_blank)
+            ValidationAddContactError.Name.INVALID -> context.getString(R.string.incorrect_name)
+        }
+    }
+
+    private fun resolveCareerError(error: ValidationAddContactError.Career): String {
+        return when (error) {
+            ValidationAddContactError.Career.EMPTY -> context.getString(R.string.career_must_not_be_blank)
+            ValidationAddContactError.Career.TOO_SHORT -> context.getString(
+                R.string.career_must_include_a_minimum_characters,
+                MIN_LENGTH_CAREER
+            )
         }
     }
 

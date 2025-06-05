@@ -11,3 +11,5 @@ const val ADD_CONTACT_DIALOG_TAG = "AddContactDialog"
 
 
 const val MIN_LENGTH_PASSWORD = 8
+const val MIN_LENGTH_CAREER = 2
+
