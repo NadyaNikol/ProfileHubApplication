@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.androiddev.profilehub.R
 import com.androiddev.profilehub.databinding.ActivityMainBinding
 import com.androiddev.profilehub.ui.BaseActivity
-import com.androiddev.profilehub.utils.IntentKeys.EXTRA_USER_NAME
+import com.androiddev.profilehub.utils.EXTRA_USER_NAME
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

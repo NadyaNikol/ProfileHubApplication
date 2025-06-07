@@ -1,6 +1,5 @@
 <resources>
 
-    <!-- auth -->
     <string name="tv_lets_get_acquainted">Познайомимося</string>
     <string name="tv_fill_out_the_profile">Заповніть профіль і переходьте до застосунку!</string>
     <string name="check_box_remember_me">Запам\'ятати мене</string>
@@ -12,22 +11,37 @@
     <string name="text_input_layout_hint_e_mail">Електронна пошта</string>
     <string name="text_input_layout_hint_password">Пароль</string>
 
-    <!--    validation -->
-    <string name="e_mail_address_can_t_be_blank">Адреса електронної пошти не може бути порожньою</string>
-    <string name="incorrect_e_mail_address">Неправильна адреса електронної пошти</string>
 
+    <string name="e_mail_address_can_t_be_blank">Адреса електронної пошти не може бути порожньою</string>
+    <string name="incorrect_e_mail_address">Неправильний формат адреси електронної пошти</string>
     <string name="password_must_not_be_blank">Пароль не може бути порожнім</string>
-    <string name="password_must_include_a_minimum_characters">Пароль має містити щонайменше 8 символів</string>
+    <string name="password_must_include_a_minimum_characters">Пароль має містити щонайменше %1$d символів</string>
     <string name="password_need_to_contain_at_least_one_letter">Пароль повинен містити принаймні одну літеру</string>
     <string name="password_must_contain_at_least_one_digit">Пароль повинен містити принаймні одну цифру</string>
     <string name="password_must_contain_only_english_letters_and_digits">Пароль повинен містити лише англійські літери та цифри</string>
     <string name="password_must_contain_at_least_one_uppercase_letter">Пароль повинен містити принаймні одну велику літеру</string>
     <string name="password_must_not_contain_spaces">Пароль не повинен містити пробілів</string>
 
-
-    <!-- main -->
+    <string name="career_must_include_a_minimum_characters">Кар\'єра має містити щонайменше  %1$d символів</string>
     <string name="btn_log_out">Вийти</string>
     <string name="tv_settings">Налаштування</string>
     <string name="btn_edit_profile">Редагувати профіль</string>
     <string name="btn_view_my_contacts">Переглянути мої контакти</string>
+    <string name="name_must_not_be_blank">Ім\'я не може бути порожнім</string>
+    <string name="incorrect_name">Неправильний формат імені</string>
+    <string name="career_must_not_be_blank">Кар\'єра не може бути порожньою</string>
+
+
+    <string name="text_input_layout_hint_name">Ім\'я</string>
+    <string name="text_input_layout_hint_career">Кар\'єра</string>
+    <string name="btn_save">Зберегти</string>
+    <string name="btn_cancel">Відміна</string>
+    <string name="contact_saved_success">Контакт був збережений успішно</string>
+    <string name="contact_does_not_save">Контакт не був збережений</string>
+    <string name="contact_undo_deleted">Контакт був видалений успішно</string>
+    <string name="contact_not_deleted">Контакт не був видалений</string>
+    <string name="contact_undo">Відміна</string>
+
+    <string name="tv_contacts">Контакти</string>
+    <string name="tv_add_contacts">Додати контакти</string>
 </resources>

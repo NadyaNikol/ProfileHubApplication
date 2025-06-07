@@ -5,6 +5,7 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.androiddev.profilehub.utils.DATASTORE_NAME
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -13,7 +14,6 @@ import javax.inject.Inject
  * Created by Nadya N. on 18.04.2025.
  */
 
-private const val DATASTORE_NAME = "user_prefs"
 private val Context.dataStore by preferencesDataStore(name = DATASTORE_NAME)
 
 class UserPreferences @Inject constructor(

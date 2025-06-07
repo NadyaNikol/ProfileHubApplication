@@ -50,11 +50,16 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
 
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.datastore.preferences)
 
     // hilt
     ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
+
+    // glide
+    implementation(libs.glide)
+    ksp(libs.compiler)
 
 
     testImplementation(libs.junit)

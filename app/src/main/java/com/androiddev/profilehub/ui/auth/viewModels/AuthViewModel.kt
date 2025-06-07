@@ -3,13 +3,11 @@ package com.androiddev.profilehub.ui.auth.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.androiddev.profilehub.data.local.AuthCredentials
-import com.androiddev.profilehub.domain.errors.AuthError
 import com.androiddev.profilehub.domain.repositories.UserPreferencesRepository
-import com.androiddev.profilehub.domain.useCases.ValidationEmailUseCase
-import com.androiddev.profilehub.domain.useCases.ValidationPasswordUseCase
+import com.androiddev.profilehub.domain.useCases.ValidationAuthUseCase
 import com.androiddev.profilehub.ui.auth.AuthState
+import com.androiddev.profilehub.ui.auth.errors.ValidationAuthError
 import com.androiddev.profilehub.ui.auth.events.AuthFormEvent
-import com.androiddev.profilehub.utils.mappers.AuthErrorMessageResolver
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -22,8 +20,7 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class AuthViewModel @Inject constructor(
-    private val validationEmailUseCase: ValidationEmailUseCase,
-    private val validationPasswordUseCase: ValidationPasswordUseCase,
+    private val validationAuthUseCase: ValidationAuthUseCase,
     private val userPreferencesRepository: UserPreferencesRepository,
 ) : ViewModel() {
 
@@ -82,8 +79,8 @@ class AuthViewModel @Inject constructor(
     }
 
     private fun validateData(): Boolean {
-        val emailError = validationEmailUseCase.validate(uiState.value.email)
-        val passwordError = validationPasswordUseCase.validate(uiState.value.password)
+        val emailError = validationAuthUseCase.validateEmail(uiState.value.email)
+        val passwordError = validationAuthUseCase.validatePassword(uiState.value.password)
 
         _uiState.update {
             it.copy(
@@ -92,7 +89,7 @@ class AuthViewModel @Inject constructor(
             )
         }
 
-        return emailError == AuthError.None && passwordError == AuthError.None
+        return emailError == ValidationAuthError.None && passwordError == ValidationAuthError.None
     }
 
     private suspend fun changeCredentialsByRememberMe() {

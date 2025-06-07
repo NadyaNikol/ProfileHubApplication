@@ -28,6 +28,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/authSubtitle"
+        style="@style/OpenSansTextRegular"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start"
@@ -37,7 +38,6 @@
         android:text="@string/tv_fill_out_the_profile"
         android:textColor="@color/colorOnBackground"
         android:textSize="@dimen/header_four_text_size"
-        app:fontFamily="@font/open_sans_regular"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/textInputLayoutEmail"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,6 +103,7 @@
         android:layout_marginStart="@dimen/margin_start"
         android:layout_marginTop="16dp"
         android:button="@drawable/custom_checkbox"
+        android:minHeight="16dp"
         android:paddingHorizontal="8dp"
         android:text="@string/check_box_remember_me"
         android:textColor="@color/colorOnSurface"
@@ -172,6 +173,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTermsAndConditions"
+        style="@style/OpenSansTextRegular"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start"
@@ -182,7 +184,6 @@
         android:text="@string/tv_terms_and_conditions"
         android:textColor="@color/colorOnBackground"
         android:textSize="@dimen/header_four_text_size"
-        app:fontFamily="@font/open_sans_regular"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/tvAlreadyHaveAnAccount"
         app:layout_constraintEnd_toEndOf="parent"
