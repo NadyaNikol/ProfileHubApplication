@@ -95,7 +95,7 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>(ActivityAuthBinding::infl
     }
 
     private fun toggleLoading(state: AuthState) = with(binding) {
-        groupProgressBar.isGone = !state.isLoading
+        groupProgressBar?.isGone = !state.isLoading
     }
 
     private fun showFieldErrors(state: AuthState) = with(binding) {

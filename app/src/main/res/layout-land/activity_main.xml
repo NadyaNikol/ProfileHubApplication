@@ -8,20 +8,20 @@
     tools:context=".ui.main.MainActivity">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineHorizontal"
+        android:id="@+id/guidelineVertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
 
     <!--    first part -->
     <View
         android:id="@+id/viewProfile"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:background="@color/colorBackground"
-        app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guidelineVertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,15 +56,14 @@
         android:textColor="@color/colorOnSurface"
         android:textSize="@dimen/header_three_text_size"
         app:cornerRadius="@dimen/btn_corner_radius"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvSettings"
+        app:layout_constraintEnd_toStartOf="@id/guidelineVertical"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/colorOutlineOnDark"
         app:strokeWidth="@dimen/btn_stroke_width" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrierBottomGroupSettingsLogout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="tvSettings,btnLogOut" />
@@ -77,11 +76,11 @@
         android:src="@drawable/person_icon"
         app:layout_constraintBottom_toTopOf="@id/tvNameProfile"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.16"
+        app:layout_constraintEnd_toStartOf="@id/guidelineVertical"
+        app:layout_constraintHeight_percent="0.3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrierBottomGroupSettingsLogout"
-        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintVertical_bias="0.5"
         app:layout_constraintVertical_chainStyle="packed"
         app:shapeAppearanceOverlay="@style/CircleImageView" />
 
@@ -97,7 +96,7 @@
         android:textSize="@dimen/header_two_text_size"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/tvCareerProfile"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guidelineVertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivPhotoProfile"
         tools:text="Lucile Alvarado" />
@@ -114,7 +113,7 @@
         android:textSize="@dimen/header_three_text_size"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/tvAddressProfile"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guidelineVertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvNameProfile"
         tools:text="Graphic designer" />
@@ -130,8 +129,8 @@
         android:textColor="@color/colorOnSurface"
         android:textSize="@dimen/header_three_text_size"
         app:layout_constrainedWidth="true"
-        app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guidelineVertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvCareerProfile"
         tools:text="5295 Gaylord Walks Apk. 110" />
@@ -146,7 +145,7 @@
         android:src="@drawable/facebook_icon"
         app:layout_constraintBottom_toBottomOf="@id/imgBtnLinkedinIcon"
         app:layout_constraintEnd_toStartOf="@id/imgBtnLinkedinIcon"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guidelineVertical"
         app:layout_constraintTop_toTopOf="@id/imgBtnLinkedinIcon" />
 
     <androidx.appcompat.widget.AppCompatImageButton
@@ -160,8 +159,7 @@
         app:layout_constraintEnd_toStartOf="@id/imgBtnInstagramIcon"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toEndOf="@id/imgBtnFacebookIcon"
-        app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/imgBtnInstagramIcon"
@@ -175,9 +173,10 @@
         app:layout_constraintStart_toEndOf="@id/imgBtnLinkedinIcon"
         app:layout_constraintTop_toTopOf="@id/imgBtnLinkedinIcon" />
 
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnEditProfile"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start"
         android:layout_marginEnd="@dimen/margin_end"
@@ -192,13 +191,13 @@
         app:cornerRadius="@dimen/btn_corner_radius"
         app:layout_constraintBottom_toTopOf="@id/btnViewContacts"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guidelineVertical"
         app:strokeColor="@color/colorOutlineOnLight"
         app:strokeWidth="@dimen/btn_stroke_width" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnViewContacts"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start"
         android:layout_marginEnd="@dimen/margin_end"
@@ -212,7 +211,6 @@
         app:cornerRadius="@dimen/btn_corner_radius"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toEndOf="@id/guidelineVertical" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,34 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--    main  -->
     <color name="colorPrimary">#FB5E06</color>
     <color name="colorSecondary">#FAFAFA</color>
 
-    <!--    fons -->
     <color name="colorBackground">#242235</color>
     <color name="colorSurface">#B2B2B3</color>
 
-    <!--    text and content-->
     <color name="colorOnPrimary">#FFFFFF</color>
     <color name="colorOnSecondary">#18181F</color>
     <color name="colorOnBackground">#FAFAFA</color>
     <color name="colorOnSurface">#B2B2B3</color>
 
-    <!--    errors -->
     <color name="colorError">#F93E3E</color>
 
-    <!--    states -->
     <color name="colorAccent">#B2B2B3</color>
     <color name="colorControlActivated">#FAFAFA</color>
     <color name="buttonBorderPressedColor">#d4dbff</color>
 
-    <!-- overlay -->
     <color name="colorBackgroundOverlay">#66242235</color>
 
-    <!--    button strokes -->
     <color name="colorOutlineOnLight">#242235</color>
     <color name="colorOutlineOnDark">#B2B2B3</color>
 
     <color name="colorCareerText">#828282</color>
+
+    <color name="colorDeleteBackground">#FDB0AF</color>
 
 </resources>
