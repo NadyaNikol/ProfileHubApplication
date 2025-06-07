@@ -8,7 +8,6 @@
     <string name="tv_already_have_an_account">Вже маєте акаунт?</string>
     <string name="tv_sign_in">Увійти</string>
     <string name="tv_or">або</string>
-    <string name="btn_google">Google</string>
     <string name="btn_register">Зареєструватися</string>
     <string name="text_input_layout_hint_e_mail">Електронна пошта</string>
     <string name="text_input_layout_hint_password">Пароль</string>
@@ -28,11 +27,7 @@
 
     <!-- main -->
     <string name="btn_log_out">Вийти</string>
-    <string name="iv_photo_profile">Фото профілю</string>
     <string name="tv_settings">Налаштування</string>
-    <string name="iv_facebook_icon">Іконка Facebook</string>
-    <string name="iv_linkedin_icon">Іконка LinkedIn</string>
-    <string name="iv_instagram_icon">Іконка Instagram</string>
     <string name="btn_edit_profile">Редагувати профіль</string>
     <string name="btn_view_my_contacts">Переглянути мої контакти</string>
 </resources>

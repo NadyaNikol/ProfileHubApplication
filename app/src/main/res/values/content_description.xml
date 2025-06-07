@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="desc_photo_profile">Photo profile</string>
+
+    <string name="desc_facebook_icon">Facebook icon</string>
+    <string name="desc_linkedin_icon">Linkedin icon</string>
+    <string name="desc_instagram_icon">Instagram icon</string>
+
+    <string name="desc_google" translatable="false">Google</string>
+
+</resources>

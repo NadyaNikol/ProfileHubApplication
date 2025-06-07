@@ -72,7 +72,7 @@
         android:id="@+id/ivPhotoProfile"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:contentDescription="@string/iv_photo_profile"
+        android:contentDescription="@string/desc_photo_profile"
         android:src="@drawable/person_icon"
         app:layout_constraintBottom_toTopOf="@id/tvNameProfile"
         app:layout_constraintDimensionRatio="1:1"
@@ -136,43 +136,43 @@
         tools:text="5295 Gaylord Walks Apk. 110" />
 
     <!--    second part -->
-    <androidx.constraintlayout.helper.widget.Flow
-        android:id="@+id/flowSocialMediaIcons"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="imgBtnFacebookIcon,imgBtnLinkedinIcon,imgBtnInstagramIcon"
-        app:flow_horizontalGap="40dp"
-        app:flow_horizontalStyle="packed"
-        app:flow_wrapMode="chain"
-        app:layout_constraintBottom_toTopOf="@id/btnEditProfile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/guidelineVertical"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
-
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/imgBtnFacebookIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:contentDescription="@string/iv_facebook_icon"
-        android:src="@drawable/facebook_icon" />
+        android:contentDescription="@string/desc_facebook_icon"
+        android:src="@drawable/facebook_icon"
+        app:layout_constraintBottom_toBottomOf="@id/imgBtnLinkedinIcon"
+        app:layout_constraintEnd_toStartOf="@id/imgBtnLinkedinIcon"
+        app:layout_constraintStart_toEndOf="@id/guidelineVertical"
+        app:layout_constraintTop_toTopOf="@id/imgBtnLinkedinIcon" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/imgBtnLinkedinIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:contentDescription="@string/iv_linkedin_icon"
-        android:src="@drawable/linkedin_icon" />
+        android:contentDescription="@string/desc_linkedin_icon"
+        android:src="@drawable/linkedin_icon"
+        app:layout_constraintBottom_toTopOf="@id/btnEditProfile"
+        app:layout_constraintEnd_toStartOf="@id/imgBtnInstagramIcon"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toEndOf="@id/imgBtnFacebookIcon"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/imgBtnInstagramIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:contentDescription="@string/iv_instagram_icon"
-        android:src="@drawable/instagram_icon" />
+        android:contentDescription="@string/desc_instagram_icon"
+        android:src="@drawable/instagram_icon"
+        app:layout_constraintBottom_toBottomOf="@id/imgBtnLinkedinIcon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgBtnLinkedinIcon"
+        app:layout_constraintTop_toTopOf="@id/imgBtnLinkedinIcon" />
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnEditProfile"

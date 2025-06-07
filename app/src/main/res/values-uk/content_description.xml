@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="desc_photo_profile">Фото профілю</string>
+
+    <string name="desc_facebook_icon">Іконка Facebook</string>
+    <string name="desc_linkedin_icon">Іконка LinkedIn</string>
+    <string name="desc_instagram_icon">Іконка Instagram</string>
+    
+</resources>
