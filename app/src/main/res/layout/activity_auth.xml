@@ -113,24 +113,13 @@
         app:useMaterialThemeColors="false"
         tools:checked="true" />
 
-    <com.google.android.material.button.MaterialButton
+    <com.androiddev.profilehub.ui.auth.GoogleSignInButton
         android:id="@+id/btnGoogle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start"
         android:layout_marginEnd="@dimen/margin_end"
         android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/colorSecondary"
-        android:contentDescription="@string/desc_google"
-        android:letterSpacing="@dimen/letter_spacing"
-        android:minHeight="40dp"
-        android:paddingVertical="8dp"
-        android:text="@string/btn_google"
-        android:textColor="@color/colorOnSecondary"
-        app:cornerRadius="@dimen/btn_corner_radius"
-        app:icon="@drawable/google_icon"
-        app:iconGravity="textStart"
-        app:iconTint="@null"
         app:layout_constraintBottom_toTopOf="@id/tvOr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
