@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- text size -->
     <dimen name="header_one_text_size">24sp</dimen>
     <dimen name="header_two_text_size">18sp</dimen>
     <dimen name="header_three_text_size">14sp</dimen>
@@ -9,20 +8,16 @@
 
     <dimen name="btn_large_text_size_upper_case">16sp</dimen>
 
-
-    <!-- margins -->
     <dimen name="margin_start">16dp</dimen>
     <dimen name="margin_end">16dp</dimen>
     <dimen name="margin_bottom">16dp</dimen>
     <dimen name="margin_top">16dp</dimen>
 
-
-    <!-- buttons -->
     <dimen name="btn_corner_radius">6dp</dimen>
     <dimen name="btn_stroke_width">2dp</dimen>
+    <dimen name="btn_narrow_min_height">40dp</dimen>
+    <dimen name="btn_thick_min_height">56dp</dimen>
 
-
-    <!-- letter spacing -->
     <dimen name="letter_spacing">0.15</dimen>
 
 </resources>
