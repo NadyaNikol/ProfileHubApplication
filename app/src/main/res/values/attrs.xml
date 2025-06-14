@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="GoogleSignInButton">
+        <attr name="customText" format="string" />
+        <attr name="customTextSize" format="dimension" />
+        <attr name="customLetterSpacing" format="float" />
+        <attr name="customTextAllCaps" format="boolean" />
+    </declare-styleable>
+</resources>

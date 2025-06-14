@@ -29,4 +29,9 @@
     <color name="colorOutlineOnLight">#242235</color>
     <color name="colorOutlineOnDark">#B2B2B3</color>
 
+    <color name="colorBlueGoogle">#4285F4</color>
+    <color name="colorGreenGoogle">#34A853</color>
+    <color name="colorRedGoogle">#EB4335</color>
+    <color name="colorYellowGoogle">#FBBC05</color>
+
 </resources>
