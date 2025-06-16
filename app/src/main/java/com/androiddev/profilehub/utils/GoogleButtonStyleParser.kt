@@ -17,7 +17,7 @@ object GoogleButtonStyleParser {
             context.obtainStyledAttributes(attrs, R.styleable.GoogleSignInButton, defStyleAttr, 0)
         return try {
             val text =
-                typedArray.getString(R.styleable.GoogleSignInButton_customText) ?: run {
+                typedArray.getString(R.styleable.GoogleSignInButton_text) ?: run {
                     Log.w(
                         this::class.java.name,
                         "parse: customText not found, using default: ${DEFAULT_TEXT_GOOGLE_BUTTON}"
@@ -26,7 +26,7 @@ object GoogleButtonStyleParser {
                 }
 
             val textAllCaps = try {
-                typedArray.getBooleanOrThrow(R.styleable.GoogleSignInButton_customTextAllCaps)
+                typedArray.getBooleanOrThrow(R.styleable.GoogleSignInButton_textAllCaps)
 
             } catch (_: Exception) {
                 Log.w(
@@ -37,7 +37,7 @@ object GoogleButtonStyleParser {
             }
 
             val textSize = try {
-                typedArray.getDimensionOrThrow(R.styleable.GoogleSignInButton_customTextSize)
+                typedArray.getDimensionOrThrow(R.styleable.GoogleSignInButton_textSize)
             } catch (_: Exception) {
                 val textSizeSp = DEFAULT_TEXT_SIZE_GOOGLE_BUTTON.spToPx(context)
                 Log.w(
@@ -48,7 +48,7 @@ object GoogleButtonStyleParser {
             }
 
             val letterSpacingEm = try {
-                typedArray.getFloatOrThrow(R.styleable.GoogleSignInButton_customLetterSpacing)
+                typedArray.getFloatOrThrow(R.styleable.GoogleSignInButton_letterSpacing)
             } catch (_: Exception) {
                 val letterSpacingPx = DEFAULT_LETTER_SPACING_GOOGLE_BUTTON
                 Log.w(

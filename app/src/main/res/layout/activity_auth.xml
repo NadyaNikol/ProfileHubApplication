@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/auth"
     android:layout_width="match_parent"
@@ -115,18 +116,18 @@
 
     <com.androiddev.profilehub.ui.auth.GoogleSignInButton
         android:id="@+id/btnGoogle"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start"
         android:layout_marginEnd="@dimen/margin_end"
         android:layout_marginBottom="8dp"
-        app:customLetterSpacing="@dimen/letter_spacing"
-        app:customText="@string/btn_google"
-        app:customTextAllCaps="true"
-        app:customTextSize="16sp"
         app:layout_constraintBottom_toTopOf="@id/tvOr"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        custom:letterSpacing="@dimen/letter_spacing"
+        custom:text="@string/btn_google"
+        custom:textAllCaps="true"
+        custom:textSize="16sp" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvOr"

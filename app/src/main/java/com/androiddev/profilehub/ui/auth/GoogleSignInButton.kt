@@ -30,23 +30,10 @@ class GoogleSignInButton @JvmOverloads constructor(
     val googleIconBitmap = ContextCompat.getDrawable(context, R.drawable.google_icon)?.toBitmap()
 
     private val bgColor = ContextCompat.getColor(context, R.color.colorSecondary)
+    private val textColor = ContextCompat.getColor(context, R.color.colorOnSecondary)
     private val cornerRadius = context.resources.getDimension(R.dimen.btn_corner_radius)
     private val minHeightPx = context.resources.getDimensionPixelSize(R.dimen.btn_narrow_min_height)
     private val typefaceGoogle = ResourcesCompat.getFont(context, R.font.open_sans_semi_bold)
-
-    private val blueColor = ContextCompat.getColor(context, R.color.colorBlueGoogle)
-    private val redColor = ContextCompat.getColor(context, R.color.colorRedGoogle)
-    private val greenColor = ContextCompat.getColor(context, R.color.colorGreenGoogle)
-    private val yellowColor = ContextCompat.getColor(context, R.color.colorYellowGoogle)
-
-    private val googleColors = listOf(
-        blueColor,
-        redColor,
-        yellowColor,
-        blueColor,
-        greenColor,
-        redColor
-    )
 
     private lateinit var text: String
     private var textSizeGoogleSp by Delegates.notNull<Float>()
@@ -70,7 +57,14 @@ class GoogleSignInButton @JvmOverloads constructor(
         textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
             textSize = textSizeGoogleSp
             typeface = typefaceGoogle
+            color = textColor
         }
+    }
+
+    private fun updateProperty(updateAction: () -> Unit) {
+        updateAction()
+        invalidate()
+        requestLayout()
     }
 
     private fun parseAttributes(
@@ -79,9 +73,9 @@ class GoogleSignInButton @JvmOverloads constructor(
         defStyleAttr: Int,
     ) {
         val style = GoogleButtonStyleParser.parse(context, attrs, defStyleAttr)
-        text = if (style.textAllCaps) style.text.uppercase() else style.text
-        textSizeGoogleSp = style.textSize
-        letterSpacingGooglePx = style.letterSpacing
+        updateProperty { text = if (style.textAllCaps) style.text.uppercase() else style.text }
+        updateProperty { textSizeGoogleSp = style.textSize }
+        updateProperty { letterSpacingGooglePx = style.letterSpacing }
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -130,7 +124,7 @@ class GoogleSignInButton @JvmOverloads constructor(
         val textStartX = getTextStartX()
 
         drawGoogleIcon(canvas, textStartX, centerY)
-        drawColoredText(canvas, textStartX, centerY)
+        drawText(canvas, textStartX, centerY)
     }
 
     private fun drawBackground(canvas: Canvas) {
@@ -149,14 +143,12 @@ class GoogleSignInButton @JvmOverloads constructor(
         }
     }
 
-    private fun drawColoredText(canvas: Canvas, startX: Float, centerY: Float) {
+    private fun drawText(canvas: Canvas, startX: Float, centerY: Float) {
         val textBaseline = centerY - (textPaint.descent() + textPaint.ascent()) / 2
         var x = startX
 
-        for ((index, char) in text.withIndex()) {
-            textPaint.color = googleColors[index % googleColors.size]
+        text.forEach { char ->
             val charStr = char.toString()
-
             canvas.drawText(charStr, x, textBaseline, textPaint)
             x += textPaint.measureText(charStr) + letterSpacingGooglePx
         }
