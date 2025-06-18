@@ -11,9 +11,9 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import com.androiddev.profilehub.R
 import com.androiddev.profilehub.utils.DEFAULT_SPACING_IMAGE_GOOGLE_BUTTON
-import com.androiddev.profilehub.utils.GoogleButtonStyleParser
 import com.androiddev.profilehub.utils.MIN_WIDTH_GOOGLE_BUTTON
 import com.androiddev.profilehub.utils.dpToPx
+import com.androiddev.profilehub.utils.getStyledAttributes
 import kotlin.math.max
 import kotlin.properties.Delegates
 
@@ -24,10 +24,11 @@ import kotlin.properties.Delegates
 class GoogleSignInButton @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0,
-) : View(context, attrs, defStyleAttr) {
+) : View(context, attrs) {
 
-    val googleIconBitmap = ContextCompat.getDrawable(context, R.drawable.google_icon)?.toBitmap()
+    val googleIconBitmap = ContextCompat
+        .getDrawable(context, R.drawable.google_icon)
+        ?.toBitmap()
 
     private val bgColor = ContextCompat.getColor(context, R.color.colorSecondary)
     private val textColor = ContextCompat.getColor(context, R.color.colorOnSecondary)
@@ -36,7 +37,7 @@ class GoogleSignInButton @JvmOverloads constructor(
     private val typefaceGoogle = ResourcesCompat.getFont(context, R.font.open_sans_semi_bold)
 
     private lateinit var text: String
-    private var textSizeGoogleSp by Delegates.notNull<Float>()
+    private var textSizeGooglePx by Delegates.notNull<Float>()
     private var letterSpacingGooglePx by Delegates.notNull<Float>()
     private val textPaint: Paint
 
@@ -49,33 +50,16 @@ class GoogleSignInButton @JvmOverloads constructor(
     }
 
     init {
-        parseAttributes(context, attrs, defStyleAttr)
+        applyStyleFromAttrs(attrs)
 
         isClickable = true
         contentDescription = context.getString(R.string.desc_google)
 
         textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-            textSize = textSizeGoogleSp
+            textSize = textSizeGooglePx
             typeface = typefaceGoogle
             color = textColor
         }
-    }
-
-    private fun updateProperty(updateAction: () -> Unit) {
-        updateAction()
-        invalidate()
-        requestLayout()
-    }
-
-    private fun parseAttributes(
-        context: Context,
-        attrs: AttributeSet?,
-        defStyleAttr: Int,
-    ) {
-        val style = GoogleButtonStyleParser.parse(context, attrs, defStyleAttr)
-        updateProperty { text = if (style.textAllCaps) style.text.uppercase() else style.text }
-        updateProperty { textSizeGoogleSp = style.textSize }
-        updateProperty { letterSpacingGooglePx = style.letterSpacing }
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -84,10 +68,33 @@ class GoogleSignInButton @JvmOverloads constructor(
         setMeasuredDimension(width, height)
     }
 
-    private fun measureWidth(widthMeasureSpec: Int): Int {
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+
+        drawBackground(canvas)
+
+        val centerY = height / 2f
+        val textStartX = (width - textPaint.measureText(text)) / 2f
+
+        drawGoogleIcon(canvas, textStartX, centerY)
+        drawText(canvas, textStartX, centerY)
+    }
+
+    private fun applyStyleFromAttrs(
+        attrs: AttributeSet?,
+    ) {
+        val style = getStyledAttributes(context, attrs)
+        text = style.text
+        textSizeGooglePx = style.textSize
+        letterSpacingGooglePx = style.letterSpacing
+
+        invalidate()
+    }
+
+    private fun measureWidth(widthSpec: Int): Int {
         val minWidth = MIN_WIDTH_GOOGLE_BUTTON.dpToPx(context).toInt()
-        val mode = MeasureSpec.getMode(widthMeasureSpec)
-        val size = MeasureSpec.getSize(widthMeasureSpec)
+        val mode = MeasureSpec.getMode(widthSpec)
+        val size = MeasureSpec.getSize(widthSpec)
         return when (mode) {
             MeasureSpec.EXACTLY -> size
             MeasureSpec.AT_MOST -> minWidth.coerceAtMost(size)
@@ -96,35 +103,16 @@ class GoogleSignInButton @JvmOverloads constructor(
         }
     }
 
-    private fun measureHeight(heightMeasureSpec: Int): Int {
+    private fun measureHeight(heightSpec: Int): Int {
         val minHeight = max(minHeightPx, suggestedMinimumHeight)
-        val mode = MeasureSpec.getMode(heightMeasureSpec)
-        val size = MeasureSpec.getSize(heightMeasureSpec)
+        val mode = MeasureSpec.getMode(heightSpec)
+        val size = MeasureSpec.getSize(heightSpec)
         return when (mode) {
             MeasureSpec.EXACTLY -> size
             MeasureSpec.AT_MOST -> minHeight.coerceAtMost(size)
             MeasureSpec.UNSPECIFIED -> minHeight
             else -> minHeight
         }
-    }
-
-    private fun getCenterY() = height / 2f
-
-    private fun getTextStartX(): Float {
-        val textWidth = textPaint.measureText(text)
-        return (width - textWidth) / 2f
-    }
-
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
-
-        drawBackground(canvas)
-
-        val centerY = getCenterY()
-        val textStartX = getTextStartX()
-
-        drawGoogleIcon(canvas, textStartX, centerY)
-        drawText(canvas, textStartX, centerY)
     }
 
     private fun drawBackground(canvas: Canvas) {

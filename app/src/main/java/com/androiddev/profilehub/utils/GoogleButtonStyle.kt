@@ -7,5 +7,4 @@ data class GoogleButtonStyle(
     val text: String,
     val textSize: Float,
     val letterSpacing: Float,
-    val textAllCaps: Boolean,
 )
