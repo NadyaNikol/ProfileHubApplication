@@ -5,15 +5,25 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.content.res.getBooleanOrThrow
+import androidx.core.content.res.getDimensionOrThrow
+import androidx.core.content.res.getFloatOrThrow
+import androidx.core.content.res.getStringOrThrow
 import androidx.core.graphics.drawable.toBitmap
 import com.androiddev.profilehub.R
+import com.androiddev.profilehub.utils.DEFAULT_LETTER_SPACING_GOOGLE_BUTTON
 import com.androiddev.profilehub.utils.DEFAULT_SPACING_IMAGE_GOOGLE_BUTTON
+import com.androiddev.profilehub.utils.DEFAULT_TEXT_All_CAPS_GOOGLE_BUTTON
+import com.androiddev.profilehub.utils.DEFAULT_TEXT_GOOGLE_BUTTON
+import com.androiddev.profilehub.utils.DEFAULT_TEXT_SIZE_GOOGLE_BUTTON
+import com.androiddev.profilehub.utils.GoogleButtonStyle
 import com.androiddev.profilehub.utils.MIN_WIDTH_GOOGLE_BUTTON
 import com.androiddev.profilehub.utils.dpToPx
-import com.androiddev.profilehub.utils.getStyledAttributes
+import com.androiddev.profilehub.utils.spToPx
 import kotlin.math.max
 import kotlin.properties.Delegates
 
@@ -140,5 +150,63 @@ class GoogleSignInButton @JvmOverloads constructor(
             canvas.drawText(charStr, x, textBaseline, textPaint)
             x += textPaint.measureText(charStr) + letterSpacingGooglePx
         }
+    }
+
+    private fun getStyledAttributes(context: Context, attrs: AttributeSet?): GoogleButtonStyle {
+
+        val typedArray =
+            context.obtainStyledAttributes(attrs, R.styleable.GoogleSignInButton)
+
+        val text = try {
+            typedArray.getStringOrThrow(R.styleable.GoogleSignInButton_text)
+        } catch (_: Exception) {
+            Log.w(
+                this::class.java.name,
+                "parse: customText not found, using default: $DEFAULT_TEXT_GOOGLE_BUTTON"
+            )
+            DEFAULT_TEXT_GOOGLE_BUTTON
+        }
+
+        val textAllCaps = try {
+            typedArray.getBooleanOrThrow(R.styleable.GoogleSignInButton_textAllCaps)
+
+        } catch (_: Exception) {
+            Log.w(
+                this::class.java.name,
+                "parse: customTextAllCaps not found, using default: $DEFAULT_TEXT_All_CAPS_GOOGLE_BUTTON"
+            )
+            DEFAULT_TEXT_All_CAPS_GOOGLE_BUTTON
+        }
+
+        val textSizePx = try {
+            typedArray.getDimensionOrThrow(R.styleable.GoogleSignInButton_textSize)
+        } catch (_: Exception) {
+            val textSize = DEFAULT_TEXT_SIZE_GOOGLE_BUTTON.spToPx(context)
+            Log.w(
+                this::class.java.name,
+                "parse: customTextSize not found, using default: $textSize px"
+            )
+            textSize
+        }
+
+        val letterSpacingEm = try {
+            typedArray.getFloatOrThrow(R.styleable.GoogleSignInButton_letterSpacing)
+        } catch (_: Exception) {
+            val letterSpacingPx = DEFAULT_LETTER_SPACING_GOOGLE_BUTTON
+            Log.w(
+                this::class.java.name,
+                "parse: customLetterSpacing not found, using default: $letterSpacingPx px"
+            )
+            letterSpacingPx
+        }
+
+        typedArray.recycle()
+
+        val letterSpacingPx = letterSpacingEm * textSizePx
+        return GoogleButtonStyle(
+            text = if (textAllCaps) text.uppercase() else text,
+            textSize = textSizePx,
+            letterSpacing = letterSpacingPx
+        )
     }
 }
