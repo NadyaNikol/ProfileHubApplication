@@ -1,6 +1,6 @@
 package com.androiddev.profilehub.ui.auth
 
-import com.androiddev.profilehub.ui.auth.errors.ValidationAuthError
+import com.androiddev.profilehub.domain.error.ValidationAuthError
 
 /**
  * Created by Nadya N. on 07.04.2025.

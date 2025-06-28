@@ -11,18 +11,18 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.androiddev.profilehub.databinding.ActivityAuthBinding
 import com.androiddev.profilehub.ui.BaseActivity
-import com.androiddev.profilehub.ui.auth.events.AuthFormEvent
-import com.androiddev.profilehub.ui.auth.viewModels.AuthViewModel
+import com.androiddev.profilehub.ui.auth.event.AuthFormEvent
+import com.androiddev.profilehub.ui.auth.viewModel.AuthViewModel
 import com.androiddev.profilehub.ui.main.MainActivity
-import com.androiddev.profilehub.utils.EXTRA_USER_NAME
-import com.androiddev.profilehub.utils.EmailParser
-import com.androiddev.profilehub.utils.UIMessageResolver
-import com.androiddev.profilehub.utils.setAfterTextChangedListener
-import com.androiddev.profilehub.utils.updateIfDifferent
+import com.androiddev.profilehub.util.EmailParser
+import com.androiddev.profilehub.util.UIMessageResolver
+import com.androiddev.profilehub.util.setAfterTextChangedListener
+import com.androiddev.profilehub.util.updateIfDifferent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * Created by Nadya N. on 06.04.2025.
@@ -31,12 +31,13 @@ import kotlinx.coroutines.launch
 class AuthActivity : BaseActivity<ActivityAuthBinding>(ActivityAuthBinding::inflate) {
 
     private val viewModel: AuthViewModel by viewModels()
-    private lateinit var messageResolver: UIMessageResolver
+
+    @Inject
+    lateinit var messageResolver: UIMessageResolver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        messageResolver = UIMessageResolver(this)
         initListeners()
         initObserves()
     }
@@ -115,6 +116,8 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>(ActivityAuthBinding::infl
 
 
     companion object {
+        const val EXTRA_USER_NAME = "extra_user_name"
+
         fun newIntentToMain(context: Context, userName: String): Intent {
             return Intent(context, MainActivity::class.java).apply {
                 putExtra(EXTRA_USER_NAME, userName)

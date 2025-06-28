@@ -2,27 +2,33 @@ package com.androiddev.profilehub.ui.contacts
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ItemTouchHelper
+import com.androiddev.profilehub.R
 import com.androiddev.profilehub.databinding.ActivityContactsBinding
 import com.androiddev.profilehub.ui.BaseActivity
-import com.androiddev.profilehub.ui.contacts.adapters.ContactListAdapter
-import com.androiddev.profilehub.ui.contacts.events.SnackbarEvent
-import com.androiddev.profilehub.ui.contacts.events.UiEvent
-import com.androiddev.profilehub.ui.contacts.fragments.AddContactDialogFragment
-import com.androiddev.profilehub.ui.contacts.utils.ItemTouchHelperImpl
-import com.androiddev.profilehub.ui.contacts.viewModels.ContactViewModel
-import com.androiddev.profilehub.utils.ADD_CONTACT_DIALOG_TAG
-import com.androiddev.profilehub.utils.UIMessageResolver
-import com.androiddev.profilehub.utils.snackbarBuilder
+import com.androiddev.profilehub.ui.contacts.adapter.ContactListAdapter
+import com.androiddev.profilehub.ui.contacts.event.SnackbarEvent
+import com.androiddev.profilehub.ui.contacts.event.UiEvent
+import com.androiddev.profilehub.ui.contacts.fragment.AddContactDialogFragment
+import com.androiddev.profilehub.ui.contacts.fragment.AddContactDialogFragment.Companion.ADD_CONTACT_DIALOG_TAG
+import com.androiddev.profilehub.ui.contacts.viewModel.ContactViewModel
+import com.androiddev.profilehub.util.ContactsItemTouchHelperImpl
+import com.androiddev.profilehub.util.SpaceItemDecoration
+import com.androiddev.profilehub.util.UIMessageResolver
+import com.androiddev.profilehub.util.snackbarBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * Created by Nadya N. on 08.05.2025.
@@ -33,17 +39,47 @@ class ContactsActivity : BaseActivity<ActivityContactsBinding>(ActivityContactsB
 
     private val viewModel: ContactViewModel by viewModels()
     private lateinit var listAdapter: ContactListAdapter
-    private lateinit var messageResolver: UIMessageResolver
+
+    @Inject
+    lateinit var messageResolver: UIMessageResolver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        messageResolver = UIMessageResolver(this)
-        listAdapter = ContactListAdapter()
+        setupAdapter()
+        setupToolbarInsets()
 
         initRecyclerView()
         initObserves()
         initListeners()
+        initToolbar()
+    }
+
+    private fun setupAdapter() {
+        listAdapter = ContactListAdapter { id ->
+            viewModel.onUiEvent(UiEvent.SwipeDelete(id))
+        }
+    }
+
+    private fun setupToolbarInsets() {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+            val statusBarInsets = insets.getInsets(WindowInsetsCompat.Type.statusBars())
+
+            binding.toolBarContacts.setPadding(
+                binding.toolBarContacts.paddingLeft,
+                statusBarInsets.top,
+                binding.toolBarContacts.paddingRight,
+                0
+            )
+
+            WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = false
+
+            insets
+        }
+    }
+
+    private fun initToolbar() {
+        binding.toolBarContacts.inflateMenu(R.menu.menu_toolbar)
     }
 
     private fun initListeners() {
@@ -53,9 +89,12 @@ class ContactsActivity : BaseActivity<ActivityContactsBinding>(ActivityContactsB
     }
 
     private fun initRecyclerView() {
-        binding.rvContacts.adapter = listAdapter
+        binding.rvContacts.apply {
+            adapter = listAdapter
+            addItemDecoration(SpaceItemDecoration(this@ContactsActivity))
+        }
 
-        val itemTouchHelper = ItemTouchHelperImpl { id ->
+        val itemTouchHelper = ContactsItemTouchHelperImpl(this@ContactsActivity) { id ->
             viewModel.onUiEvent(UiEvent.SwipeDelete(id))
         }
 

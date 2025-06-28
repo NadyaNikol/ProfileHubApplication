@@ -12,4 +12,6 @@
 
     <string name="desc_add_photo_profile">Додати фото профілю</string>
 
+    <string name="desc_delete_icon">Іконка видалення</string>
+
 </resources>

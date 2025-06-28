@@ -2,8 +2,8 @@ package com.androiddev.profilehub.di
 
 import com.androiddev.profilehub.data.ContactRepositoryLocalImpl
 import com.androiddev.profilehub.data.UserPreferencesRepositoryImpl
-import com.androiddev.profilehub.domain.repositories.ContactsRepository
-import com.androiddev.profilehub.domain.repositories.UserPreferencesRepository
+import com.androiddev.profilehub.domain.repository.ContactsRepository
+import com.androiddev.profilehub.domain.repository.UserPreferencesRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
