@@ -1,10 +1,10 @@
 package com.androiddev.profilehub.data
 
-import com.androiddev.profilehub.domain.entities.ContactIndexedUIEntity
-import com.androiddev.profilehub.domain.entities.ContactUIEntity
-import com.androiddev.profilehub.domain.repositories.ContactsRepository
-import com.androiddev.profilehub.ui.contacts.events.ContactsEvent
-import com.androiddev.profilehub.utils.RandomContactGenerator
+import com.androiddev.profilehub.domain.entity.ContactIndexedUIEntity
+import com.androiddev.profilehub.domain.entity.ContactUIEntity
+import com.androiddev.profilehub.domain.repository.ContactsRepository
+import com.androiddev.profilehub.ui.contacts.event.ContactsEvent
+import com.androiddev.profilehub.util.RandomContactGenerator
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,8 +17,6 @@ import javax.inject.Inject
 /**
  * Created by Nadya N. on 14.05.2025.
  */
-
-private const val CONTACTS_COUNT = 10
 
 class ContactRepositoryLocalImpl @Inject constructor() : ContactsRepository {
     private val _contactsFlow = MutableStateFlow<List<ContactUIEntity>>(emptyList())
@@ -73,5 +71,9 @@ class ContactRepositoryLocalImpl @Inject constructor() : ContactsRepository {
 
     override suspend fun emitCancelContactSaved() = withContext(Dispatchers.IO) {
         _eventsFlow.emit(ContactsEvent.ContactCancelAdd)
+    }
+
+    companion object {
+        private const val CONTACTS_COUNT = 10
     }
 }

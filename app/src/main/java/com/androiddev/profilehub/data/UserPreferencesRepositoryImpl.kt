@@ -1,8 +1,6 @@
 package com.androiddev.profilehub.data
 
-import com.androiddev.profilehub.data.local.AuthCredentials
-import com.androiddev.profilehub.data.local.UserPreferences
-import com.androiddev.profilehub.domain.repositories.UserPreferencesRepository
+import com.androiddev.profilehub.domain.repository.UserPreferencesRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext

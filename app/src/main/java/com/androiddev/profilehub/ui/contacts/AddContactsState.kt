@@ -1,6 +1,6 @@
 package com.androiddev.profilehub.ui.contacts
 
-import com.androiddev.profilehub.ui.contacts.errors.ValidationAddContactError
+import com.androiddev.profilehub.domain.error.ValidationAddContactError
 
 /**
  * Created by Nadya N. on 03.06.2025.
