@@ -2,6 +2,8 @@ package com.androiddev.profilehub.util
 
 import android.view.Gravity
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.androiddev.profilehub.R
 import com.google.android.material.snackbar.Snackbar
 
@@ -23,12 +25,13 @@ data class SnackbarStyleImpl(
             view.setBackgroundResource(viewBackground)
 
             setGravity(Gravity.CENTER or Gravity.TOP)
-            setMargins(
-                left = 16,
-                top = 24,
-                right = 16,
-                bottom = 0
-            )
+
+            ViewCompat.setOnApplyWindowInsetsListener(view) { view, insets ->
+                val statusBarInsets = insets.getInsets(WindowInsetsCompat.Type.statusBars())
+
+                snackbar.setMargins(0, statusBarInsets.top, 0, 0)
+                insets
+            }
         }
 
         return snackbar

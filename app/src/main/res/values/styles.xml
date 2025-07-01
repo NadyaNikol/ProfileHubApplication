@@ -22,6 +22,10 @@
         <item name="android:textSize">@dimen/header_four_text_size</item>
     </style>
 
+    <style name="ToolbarTextSizeStyle">
+        <item name="android:textSize">@dimen/header_one_text_size</item>
+    </style>
+
     <style name="AppButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:letterSpacing">0</item>
     </style>

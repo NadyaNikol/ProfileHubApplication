@@ -2,8 +2,11 @@ package com.androiddev.profilehub.ui.contacts
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
+import com.androiddev.profilehub.R
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -42,11 +45,29 @@ class ContactsActivity : BaseActivity<ActivityContactsBinding>(ActivityContactsB
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+            val statusBarInsets = insets.getInsets(WindowInsetsCompat.Type.statusBars())
+
+            binding.toolBarContacts.setPadding(
+                binding.toolBarContacts.paddingLeft,
+                statusBarInsets.top,
+                binding.toolBarContacts.paddingRight,
+                0
+            )
+
+            insets
+        }
+
         listAdapter = ContactListAdapter()
 
         initRecyclerView()
         initObserves()
         initListeners()
+        initToolbar()
+    }
+
+    private fun initToolbar() {
+        binding.toolBarContacts.inflateMenu(R.menu.menu_toolbar)
     }
 
     private fun initListeners() {
