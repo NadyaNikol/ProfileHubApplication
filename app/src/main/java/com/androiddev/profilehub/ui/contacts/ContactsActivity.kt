@@ -3,13 +3,14 @@ package com.androiddev.profilehub.ui.contacts
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
-import com.androiddev.profilehub.R
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ItemTouchHelper
+import com.androiddev.profilehub.R
 import com.androiddev.profilehub.databinding.ActivityContactsBinding
 import com.androiddev.profilehub.ui.BaseActivity
 import com.androiddev.profilehub.ui.contacts.adapter.ContactListAdapter
@@ -17,10 +18,10 @@ import com.androiddev.profilehub.ui.contacts.event.SnackbarEvent
 import com.androiddev.profilehub.ui.contacts.event.UiEvent
 import com.androiddev.profilehub.ui.contacts.fragment.AddContactDialogFragment
 import com.androiddev.profilehub.ui.contacts.fragment.AddContactDialogFragment.Companion.ADD_CONTACT_DIALOG_TAG
-import com.androiddev.profilehub.util.ContactsItemTouchHelperImpl
 import com.androiddev.profilehub.ui.contacts.viewModel.ContactViewModel
-import com.androiddev.profilehub.util.UIMessageResolver
+import com.androiddev.profilehub.util.ContactsItemTouchHelperImpl
 import com.androiddev.profilehub.util.SpaceItemDecoration
+import com.androiddev.profilehub.util.UIMessageResolver
 import com.androiddev.profilehub.util.snackbarBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,6 +46,22 @@ class ContactsActivity : BaseActivity<ActivityContactsBinding>(ActivityContactsB
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setupAdapter()
+        setupToolbarInsets()
+
+        initRecyclerView()
+        initObserves()
+        initListeners()
+        initToolbar()
+    }
+
+    private fun setupAdapter() {
+        listAdapter = ContactListAdapter { id ->
+            viewModel.onUiEvent(UiEvent.SwipeDelete(id))
+        }
+    }
+
+    private fun setupToolbarInsets() {
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
             val statusBarInsets = insets.getInsets(WindowInsetsCompat.Type.statusBars())
 
@@ -55,15 +72,10 @@ class ContactsActivity : BaseActivity<ActivityContactsBinding>(ActivityContactsB
                 0
             )
 
+            WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = false
+
             insets
         }
-
-        listAdapter = ContactListAdapter()
-
-        initRecyclerView()
-        initObserves()
-        initListeners()
-        initToolbar()
     }
 
     private fun initToolbar() {

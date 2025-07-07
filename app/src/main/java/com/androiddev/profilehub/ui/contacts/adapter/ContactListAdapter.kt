@@ -14,7 +14,9 @@ import javax.inject.Inject
 /**
  * Created by Nadya N. on 08.05.2025.
  */
-class ContactListAdapter @Inject constructor() :
+class ContactListAdapter @Inject constructor(
+    private val onDeleteClick: (itemId: Long) -> Unit,
+) :
     ListAdapter<ContactUIEntity, RecyclerView.ViewHolder>(ContactItemsCallback) {
 
     init {
@@ -32,6 +34,7 @@ class ContactListAdapter @Inject constructor() :
                 parent,
                 false
             ),
+            onDeleteClick = onDeleteClick
         )
     }
 
@@ -41,7 +44,14 @@ class ContactListAdapter @Inject constructor() :
 
     private class ContactItemHolder(
         private val binding: ListItemContactBinding,
+        private val onDeleteClick: (itemId: Long) -> Unit,
     ) : RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.imgBtnDeleteIcon.setOnClickListener {
+                onDeleteClick.invoke(itemId)
+            }
+        }
 
         fun bind(entity: ContactUIEntity) {
             binding.apply {
