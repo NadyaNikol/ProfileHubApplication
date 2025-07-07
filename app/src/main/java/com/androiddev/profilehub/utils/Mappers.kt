@@ -1,13 +1,22 @@
 package com.androiddev.profilehub.utils
 
 import android.content.Context
+import android.util.TypedValue
 
 /**
  * Created by Nadya N. on 14.06.2025.
  */
 
-fun Int.dpToPx(context: Context): Float =
-    this * context.resources.displayMetrics.density
+fun Context.dpToPx(dp: Float): Float =
+    TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        dp,
+        this.resources.displayMetrics
+    )
 
-fun Float.spToPx(context: Context): Float =
-    this * context.resources.displayMetrics.density
+fun Context.spToPx(sp: Float): Float =
+    TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_SP,
+        sp,
+        this.resources.displayMetrics
+    )

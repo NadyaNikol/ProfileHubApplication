@@ -102,7 +102,7 @@ class GoogleSignInButton @JvmOverloads constructor(
     }
 
     private fun measureWidth(widthSpec: Int): Int {
-        val minWidth = MIN_WIDTH_GOOGLE_BUTTON.dpToPx(context).toInt()
+        val minWidth = context.dpToPx(MIN_WIDTH_GOOGLE_BUTTON).toInt()
         val mode = MeasureSpec.getMode(widthSpec)
         val size = MeasureSpec.getSize(widthSpec)
         return when (mode) {
@@ -181,7 +181,7 @@ class GoogleSignInButton @JvmOverloads constructor(
         val textSizePx = try {
             typedArray.getDimensionOrThrow(R.styleable.GoogleSignInButton_textSize)
         } catch (_: Exception) {
-            val textSize = DEFAULT_TEXT_SIZE_GOOGLE_BUTTON.spToPx(context)
+            val textSize = context.spToPx(DEFAULT_TEXT_SIZE_GOOGLE_BUTTON)
             Log.w(
                 this::class.java.name,
                 "parse: customTextSize not found, using default: $textSize px"
