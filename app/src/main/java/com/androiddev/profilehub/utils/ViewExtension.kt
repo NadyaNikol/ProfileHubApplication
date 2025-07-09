@@ -1,17 +1,10 @@
 package com.androiddev.profilehub.utils
 
 import android.content.Context
-import android.util.AttributeSet
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.getBooleanOrThrow
-import androidx.core.content.res.getDimensionOrThrow
-import androidx.core.content.res.getFloatOrThrow
-import androidx.core.content.res.getStringOrThrow
 import com.androiddev.profilehub.R
-import com.androiddev.profilehub.ui.auth.GoogleSignInButton
 import com.google.android.material.snackbar.Snackbar
 
 /**

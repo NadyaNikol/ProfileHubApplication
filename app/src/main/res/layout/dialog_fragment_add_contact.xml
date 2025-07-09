@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/colorBackground"
+    app:cardCornerRadius="6dp"
+    app:strokeColor="@color/colorOutlineOnDark"
+    app:strokeWidth="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivPhotoProfile"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_top"
+            android:contentDescription="@string/desc_photo_profile"
+            android:src="@drawable/person_icon"
+            app:layout_constraintBottom_toTopOf="@id/textInputLayoutName"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintWidth_percent="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/CircleImageView"
+            app:layout_constraintVertical_chainStyle="spread"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/imgBtnAddPhotoProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/desc_add_photo_profile"
+            android:src="@drawable/add_photo_profile_icon"
+            app:layout_constraintBottom_toBottomOf="@id/ivPhotoProfile"
+            app:layout_constraintStart_toEndOf="@id/ivPhotoProfile"
+            app:layout_constraintTop_toTopOf="@id/ivPhotoProfile"
+            app:shapeAppearanceOverlay="@style/CircleImageView" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutName"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_start"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/margin_end"
+            android:hint="@string/text_input_layout_hint_name"
+            app:helperTextTextAppearance="@style/HelperTextSizeStyle"
+            app:hintTextAppearance="@style/HintTextSizeStyle"
+            app:layout_constraintBottom_toTopOf="@id/textInputLayoutCareer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivPhotoProfile">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/colorOnBackground"
+                android:textSize="@dimen/header_two_text_size"
+                tools:text="Ava Smitch" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutCareer"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_start"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="@dimen/margin_end"
+            android:hint="@string/text_input_layout_hint_career"
+            app:helperTextTextAppearance="@style/HelperTextSizeStyle"
+            app:hintTextAppearance="@style/HintTextSizeStyle"
+            app:layout_constraintBottom_toTopOf="@id/btnCancelAddContact"
+            app:layout_constraintEnd_toEndOf="@id/textInputLayoutName"
+            app:layout_constraintStart_toStartOf="@id/textInputLayoutName"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayoutName">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextCareer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/colorOnBackground"
+                android:textSize="@dimen/header_two_text_size"
+                tools:text="Photograph" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancelAddContact"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="@dimen/margin_bottom"
+            android:paddingHorizontal="36dp"
+            android:paddingVertical="12dp"
+            android:text="@string/btn_cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/colorOnSurface"
+            android:textSize="@dimen/header_three_text_size"
+            app:cornerRadius="@dimen/btn_corner_radius"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnSaveContact"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayoutCareer"
+            app:layout_constraintWidth_percent="0.4"
+            app:strokeColor="@color/colorOutlineOnDark"
+            app:strokeWidth="@dimen/btn_stroke_width" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSaveContact"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="36dp"
+            android:paddingVertical="12dp"
+            android:text="@string/btn_save"
+            android:textAllCaps="false"
+            android:textColor="@color/colorOnSurface"
+            android:textSize="@dimen/header_three_text_size"
+            app:cornerRadius="@dimen/btn_corner_radius"
+            app:layout_constraintBottom_toBottomOf="@id/btnCancelAddContact"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnCancelAddContact"
+            app:layout_constraintTop_toTopOf="@id/btnCancelAddContact"
+            app:layout_constraintWidth_percent="0.4"
+            app:strokeColor="@color/colorOutlineOnDark"
+            app:strokeWidth="@dimen/btn_stroke_width" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
