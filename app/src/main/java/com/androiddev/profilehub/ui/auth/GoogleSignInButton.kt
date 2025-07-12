@@ -15,15 +15,9 @@ import androidx.core.content.res.getFloatOrThrow
 import androidx.core.content.res.getStringOrThrow
 import androidx.core.graphics.drawable.toBitmap
 import com.androiddev.profilehub.R
-import com.androiddev.profilehub.utils.DEFAULT_LETTER_SPACING_GOOGLE_BUTTON
-import com.androiddev.profilehub.utils.DEFAULT_SPACING_IMAGE_GOOGLE_BUTTON
-import com.androiddev.profilehub.utils.DEFAULT_TEXT_All_CAPS_GOOGLE_BUTTON
-import com.androiddev.profilehub.utils.DEFAULT_TEXT_GOOGLE_BUTTON
-import com.androiddev.profilehub.utils.DEFAULT_TEXT_SIZE_GOOGLE_BUTTON
-import com.androiddev.profilehub.utils.GoogleButtonStyle
-import com.androiddev.profilehub.utils.MIN_WIDTH_GOOGLE_BUTTON
-import com.androiddev.profilehub.utils.dpToPx
-import com.androiddev.profilehub.utils.spToPx
+import com.androiddev.profilehub.util.GoogleButtonStyle
+import com.androiddev.profilehub.util.dpToPx
+import com.androiddev.profilehub.util.spToPx
 import kotlin.math.max
 import kotlin.properties.Delegates
 
@@ -209,4 +203,14 @@ class GoogleSignInButton @JvmOverloads constructor(
             letterSpacing = letterSpacingPx
         )
     }
+
+    companion object {
+        const val MIN_WIDTH_GOOGLE_BUTTON = 328F
+        const val DEFAULT_TEXT_SIZE_GOOGLE_BUTTON = 16f
+        const val DEFAULT_LETTER_SPACING_GOOGLE_BUTTON = 1.5f
+        const val DEFAULT_TEXT_GOOGLE_BUTTON = "Google"
+        const val DEFAULT_TEXT_All_CAPS_GOOGLE_BUTTON = true
+        const val DEFAULT_SPACING_IMAGE_GOOGLE_BUTTON = 16f
+    }
+
 }

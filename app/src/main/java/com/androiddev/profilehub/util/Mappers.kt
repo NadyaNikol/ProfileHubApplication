@@ -1,4 +1,4 @@
-package com.androiddev.profilehub.utils
+package com.androiddev.profilehub.util
 
 import android.content.Context
 import android.util.TypedValue

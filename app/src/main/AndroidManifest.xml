@@ -16,7 +16,7 @@
         android:theme="@style/Base.Theme.ProfileHub"
         tools:targetApi="31">
         <activity
-            android:name=".ui.contacts.ContactsActivity"
+            android:name=".ui.auth.AuthActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
