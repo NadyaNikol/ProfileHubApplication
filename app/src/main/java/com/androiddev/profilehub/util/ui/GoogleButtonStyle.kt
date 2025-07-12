@@ -1,4 +1,4 @@
-package com.androiddev.profilehub.util
+package com.androiddev.profilehub.util.ui
 
 /**
  * Created by Nadya N. on 14.06.2025.

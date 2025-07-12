@@ -1,4 +1,4 @@
-package com.androiddev.profilehub.util
+package com.androiddev.profilehub.util.snackbar
 
 import com.google.android.material.snackbar.Snackbar
 

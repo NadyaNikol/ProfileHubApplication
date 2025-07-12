@@ -19,14 +19,12 @@ import com.androiddev.profilehub.ui.contacts.event.UiEvent
 import com.androiddev.profilehub.ui.contacts.fragment.AddContactDialogFragment
 import com.androiddev.profilehub.ui.contacts.fragment.AddContactDialogFragment.Companion.ADD_CONTACT_DIALOG_TAG
 import com.androiddev.profilehub.ui.contacts.viewModel.ContactViewModel
-import com.androiddev.profilehub.util.ContactsItemTouchHelperImpl
-import com.androiddev.profilehub.util.SpaceItemDecoration
 import com.androiddev.profilehub.util.UIMessageResolver
-import com.androiddev.profilehub.util.snackbarBuilder
+import com.androiddev.profilehub.util.extension.snackbarBuilder
+import com.androiddev.profilehub.util.touch.ContactsItemTouchHelperImpl
+import com.androiddev.profilehub.util.ui.SpaceItemDecoration
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -104,13 +102,13 @@ class ContactsActivity : BaseActivity<ActivityContactsBinding>(ActivityContactsB
     private fun initObserves() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.onEach { state ->
+                viewModel.uiState.collect { state ->
 
                     renderList(state)
                     renderLoadingState(state)
                     renderSnackbar(state)
 
-                }.launchIn(this)
+                }
             }
         }
     }

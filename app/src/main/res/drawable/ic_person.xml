@@ -9,5 +9,5 @@
         android:width="48dp"
         android:height="48dp"
         android:gravity="center"
-        android:drawable="@drawable/person_icon_transparent" />
+        android:drawable="@drawable/ic_person_transparent" />
 </layer-list>

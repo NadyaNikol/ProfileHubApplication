@@ -19,10 +19,8 @@ import com.androiddev.profilehub.ui.contacts.event.AddContactFormEvent
 import com.androiddev.profilehub.ui.contacts.event.ContactDialogEvent
 import com.androiddev.profilehub.ui.contacts.viewModel.AddContactDialogViewModel
 import com.androiddev.profilehub.util.UIMessageResolver
-import com.androiddev.profilehub.util.setAfterTextChangedListener
+import com.androiddev.profilehub.util.extension.setAfterTextChangedListener
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.random.Random
@@ -106,12 +104,12 @@ class AddContactDialogFragment @Inject constructor(
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
 
-                viewModel.uiState.onEach { state ->
+                viewModel.uiState.collect { state ->
                     binding.apply {
                         showFieldErrors(state)
                         handleSubmit(state)
                     }
-                }.launchIn(this)
+                }
             }
         }
     }

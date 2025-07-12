@@ -15,9 +15,9 @@ import androidx.core.content.res.getFloatOrThrow
 import androidx.core.content.res.getStringOrThrow
 import androidx.core.graphics.drawable.toBitmap
 import com.androiddev.profilehub.R
-import com.androiddev.profilehub.util.GoogleButtonStyle
-import com.androiddev.profilehub.util.dpToPx
-import com.androiddev.profilehub.util.spToPx
+import com.androiddev.profilehub.util.ui.GoogleButtonStyle
+import com.androiddev.profilehub.util.mapper.dpToPx
+import com.androiddev.profilehub.util.mapper.spToPx
 import kotlin.math.max
 import kotlin.properties.Delegates
 
@@ -31,7 +31,7 @@ class GoogleSignInButton @JvmOverloads constructor(
 ) : View(context, attrs) {
 
     val googleIconBitmap = ContextCompat
-        .getDrawable(context, R.drawable.google_icon)
+        .getDrawable(context, R.drawable.ic_google)
         ?.toBitmap()
 
     private val bgColor = ContextCompat.getColor(context, R.color.colorSecondary)

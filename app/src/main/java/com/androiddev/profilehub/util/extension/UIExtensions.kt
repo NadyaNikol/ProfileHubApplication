@@ -1,4 +1,4 @@
-package com.androiddev.profilehub.util
+package com.androiddev.profilehub.util.extension
 
 import android.view.View
 import android.widget.CheckBox
@@ -7,6 +7,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.core.widget.doAfterTextChanged
 import com.androiddev.profilehub.R
+import com.androiddev.profilehub.util.snackbar.SnackbarBuilder
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 
@@ -39,7 +40,7 @@ fun CheckBox.updateIfDifferent(newChecked: Boolean) {
 fun ImageView.loadImage(view: View, url: String) {
     Glide.with(view)
         .load(url)
-        .error(R.drawable.person_icon)
+        .error(R.drawable.ic_person)
         .into(this)
 }
 

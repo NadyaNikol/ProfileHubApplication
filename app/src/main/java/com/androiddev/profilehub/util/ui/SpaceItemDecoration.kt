@@ -1,4 +1,4 @@
-package com.androiddev.profilehub.util
+package com.androiddev.profilehub.util.ui
 
 import android.content.Context
 import android.graphics.Rect

@@ -1,4 +1,4 @@
-package com.androiddev.profilehub.util
+package com.androiddev.profilehub.util.mapper
 
 import android.content.Context
 import android.util.TypedValue

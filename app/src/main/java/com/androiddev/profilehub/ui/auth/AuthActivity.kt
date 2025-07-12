@@ -16,11 +16,9 @@ import com.androiddev.profilehub.ui.auth.viewModel.AuthViewModel
 import com.androiddev.profilehub.ui.main.MainActivity
 import com.androiddev.profilehub.util.EmailParser
 import com.androiddev.profilehub.util.UIMessageResolver
-import com.androiddev.profilehub.util.setAfterTextChangedListener
-import com.androiddev.profilehub.util.updateIfDifferent
+import com.androiddev.profilehub.util.extension.setAfterTextChangedListener
+import com.androiddev.profilehub.util.extension.updateIfDifferent
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -75,12 +73,12 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>(ActivityAuthBinding::infl
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
 
-                viewModel.uiState.onEach { state ->
+                viewModel.uiState.collect { state ->
                     showFieldErrors(state)
                     toggleLoading(state)
                     fillUiFromStoredData(state)
                     handleSubmitData(state)
-                }.launchIn(this)
+                }
             }
         }
     }

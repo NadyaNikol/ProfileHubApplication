@@ -1,4 +1,4 @@
-package com.androiddev.profilehub.util
+package com.androiddev.profilehub.util.snackbar
 
 import androidx.core.content.ContextCompat
 import com.androiddev.profilehub.R
