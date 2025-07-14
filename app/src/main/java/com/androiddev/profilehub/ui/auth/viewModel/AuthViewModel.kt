@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.androiddev.profilehub.data.AuthCredentials
 import com.androiddev.profilehub.domain.repository.UserPreferencesRepository
 import com.androiddev.profilehub.domain.useCase.ValidationAuthUseCase
-import com.androiddev.profilehub.ui.auth.AuthState
+import com.androiddev.profilehub.ui.auth.AuthUIState
 import com.androiddev.profilehub.domain.error.ValidationAuthError
 import com.androiddev.profilehub.ui.auth.event.AuthFormEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,7 +24,7 @@ class AuthViewModel @Inject constructor(
     private val userPreferencesRepository: UserPreferencesRepository,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(AuthState())
+    private val _uiState = MutableStateFlow(AuthUIState())
     val uiState = _uiState.asStateFlow()
 
     init {

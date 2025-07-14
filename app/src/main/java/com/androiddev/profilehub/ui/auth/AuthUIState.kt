@@ -5,7 +5,7 @@ import com.androiddev.profilehub.domain.error.ValidationAuthError
 /**
  * Created by Nadya N. on 07.04.2025.
  */
-data class AuthState(
+data class AuthUIState(
     val email: String = "",
     val emailError: ValidationAuthError = ValidationAuthError.None,
     val password: String = "",

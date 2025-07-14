@@ -17,4 +17,5 @@ interface ContactsRepository {
     suspend fun addContact(contact: ContactUIEntity)
     suspend fun undoDelete()
     suspend fun emitCancelContactSaved()
+    suspend fun getContactById(itemId: Long): ContactUIEntity?
 }

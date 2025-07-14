@@ -73,6 +73,11 @@ class ContactRepositoryLocalImpl @Inject constructor() : ContactsRepository {
         _eventsFlow.emit(ContactsEvent.ContactCancelAdd)
     }
 
+    override suspend fun getContactById(itemId: Long): ContactUIEntity? =
+        withContext(Dispatchers.IO) {
+            _contactsFlow.value.find { it.id == itemId }
+        }
+
     companion object {
         private const val CONTACTS_COUNT = 10
     }

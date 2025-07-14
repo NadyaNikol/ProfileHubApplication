@@ -83,7 +83,7 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>(ActivityAuthBinding::infl
         }
     }
 
-    private fun handleSubmitData(state: AuthState) {
+    private fun handleSubmitData(state: AuthUIState) {
         if (state.submitDataEvent != null) {
             val intent = newIntentToMain(
                 this@AuthActivity,
@@ -93,18 +93,18 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>(ActivityAuthBinding::infl
         }
     }
 
-    private fun toggleLoading(state: AuthState) = with(binding) {
+    private fun toggleLoading(state: AuthUIState) = with(binding) {
         groupProgressBar?.isGone = !state.isLoading
     }
 
-    private fun showFieldErrors(state: AuthState) = with(binding) {
+    private fun showFieldErrors(state: AuthUIState) = with(binding) {
         textInputLayoutEmail.helperText =
             messageResolver.resolveAuthError(state.emailError)
         textInputLayoutPassword.helperText =
             messageResolver.resolveAuthError(state.passwordError)
     }
 
-    private fun fillUiFromStoredData(state: AuthState) {
+    private fun fillUiFromStoredData(state: AuthUIState) {
         binding.apply {
             editTextEmailAddress.updateIfDifferent(state.email)
             editTextPassword.updateIfDifferent(state.password)

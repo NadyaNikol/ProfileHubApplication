@@ -7,6 +7,8 @@ import com.androiddev.profilehub.domain.useCase.CancelContactAddingUseCase
 import com.androiddev.profilehub.domain.useCase.CancelContactAddingUseCaseImpl
 import com.androiddev.profilehub.domain.useCase.DeleteContactUseCase
 import com.androiddev.profilehub.domain.useCase.DeleteContactUseCaseImpl
+import com.androiddev.profilehub.domain.useCase.GetContactUseCase
+import com.androiddev.profilehub.domain.useCase.GetContactUseCaseImpl
 import com.androiddev.profilehub.domain.useCase.GetContactsUseCase
 import com.androiddev.profilehub.domain.useCase.GetContactsUseCaseImpl
 import com.androiddev.profilehub.domain.useCase.ObserveContactsEventsUseCase
@@ -48,5 +50,9 @@ object UseCaseProvideModule {
     @Provides
     fun provideCancelContactAddingUseCase(repository: ContactsRepository): CancelContactAddingUseCase =
         CancelContactAddingUseCaseImpl(repository)
+
+    @Provides
+    fun provideGetContactUseCase(repository: ContactsRepository): GetContactUseCase =
+        GetContactUseCaseImpl(repository)
 
 }

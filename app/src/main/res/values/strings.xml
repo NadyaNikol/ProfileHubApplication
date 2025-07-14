@@ -45,6 +45,11 @@
     <string name="contact_not_deleted">Contact wasn\'t deleted</string>
     <string name="contact_undo">Undo</string>
 
-    <string name="tv_contacts">Contacts</string>
+    <string name="tool_bar_contacts_title">Contacts</string>
     <string name="tv_add_contacts">Add contacts</string>
+
+    <string name="tool_bar_profile_title">Profile</string>
+    <string name="btn_message">Message</string>
+    <string name="tv_something_went_wrong">Oops..Something went wrong</string>
+
 </resources>

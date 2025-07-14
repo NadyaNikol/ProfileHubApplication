@@ -14,6 +14,7 @@ navigationKtx = "2.8.9"
 ksp = "2.1.20-2.0.1"
 hiltAndroidCompiler = "2.56.2"
 glide = "4.16.0"
+safeArgs = "2.9.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,4 +39,5 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 android-hilt = {id = "com.google.dagger.hilt.android", version.ref = "hiltAndroidCompiler"}
+safe-args = {id = 'androidx.navigation.safeargs.kotlin', version.ref = "safeArgs"}
 

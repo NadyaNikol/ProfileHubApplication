@@ -6,7 +6,7 @@ import com.androiddev.profilehub.domain.useCase.DeleteContactUseCase
 import com.androiddev.profilehub.domain.useCase.GetContactsUseCase
 import com.androiddev.profilehub.domain.useCase.ObserveContactsEventsUseCase
 import com.androiddev.profilehub.domain.useCase.UndoDeleteContactUseCase
-import com.androiddev.profilehub.ui.contacts.ContactsState
+import com.androiddev.profilehub.ui.contacts.ContactsUIState
 import com.androiddev.profilehub.ui.contacts.LoadingState
 import com.androiddev.profilehub.ui.contacts.event.ContactsEvent
 import com.androiddev.profilehub.ui.contacts.event.SnackbarEvent
@@ -32,7 +32,7 @@ class ContactViewModel @Inject constructor(
     private val observeContactsEventsUseCase: ObserveContactsEventsUseCase,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(ContactsState())
+    private val _uiState = MutableStateFlow(ContactsUIState())
     val uiState = _uiState.asStateFlow()
 
     init {
