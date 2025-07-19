@@ -14,7 +14,6 @@ import com.androiddev.profilehub.databinding.FragmentContactsBinding
 import com.androiddev.profilehub.ui.BaseFragment
 import com.androiddev.profilehub.ui.contacts.ContactsActivity
 import com.androiddev.profilehub.ui.contacts.ContactsUIState
-import com.androiddev.profilehub.ui.contacts.LoadingState
 import com.androiddev.profilehub.ui.contacts.adapter.ContactListAdapter
 import com.androiddev.profilehub.ui.contacts.event.SnackbarEvent
 import com.androiddev.profilehub.ui.contacts.event.UiEvent
@@ -121,24 +120,25 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(
     }
 
     private fun renderLoadingState(state: ContactsUIState) = with(binding) {
-        progressBarLoadData.isVisible = state.loadingState is LoadingState.LoadingInitial
-        ivNoData.isVisible = state.loadingState == LoadingState.Loaded && state.isNoDataVisible
+        progressBarLoadData.isVisible = state.isLoading
+        ivNoData.isVisible = !state.isLoading && state.isNoDataVisible
     }
 
     private fun renderSnackbar(state: ContactsUIState) {
-        val event = state.snackbarEvent ?: return
-        val message = messageResolver.resolveSnackbarMessage(event)
-        when (event) {
-            is SnackbarEvent.Info -> showInfoSnackbar(message)
-            is SnackbarEvent.Actionable -> showActionSnackbar(
-                message = message,
-                textActionResId = event.textActionResId,
-                action = event.onAction
-            )
+        state.snackbarEvent?.let { event ->
+            val message = messageResolver.resolveSnackbarMessage(event)
+            when (event) {
+                is SnackbarEvent.Info -> showSnackbar(message)
+                is SnackbarEvent.Actionable -> showSnackbar(
+                    message = message,
+                    textActionResId = event.textActionResId,
+                    action = event.onAction
+                )
+            }
         }
     }
 
-    private fun showInfoSnackbar(message: String) {
+    private fun showSnackbar(message: String) {
         binding.root.snackbarBuilder(message, Snackbar.LENGTH_SHORT)
             .setStyle()
             .setCallback(object : Snackbar.Callback() {
@@ -150,7 +150,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(
             .show()
     }
 
-    private fun showActionSnackbar(message: String, textActionResId: Int, action: () -> Unit) {
+    private fun showSnackbar(message: String, textActionResId: Int, action: () -> Unit) {
         binding.root.snackbarBuilder(message, Snackbar.LENGTH_LONG)
             .setStyle()
             .setAction(getString(textActionResId)) {

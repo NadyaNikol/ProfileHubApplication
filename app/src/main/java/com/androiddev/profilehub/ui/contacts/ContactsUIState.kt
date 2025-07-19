@@ -9,7 +9,7 @@ import com.androiddev.profilehub.ui.contacts.event.SnackbarEvent
 data class ContactsUIState(
     val items: List<ContactUIEntity> = listOf(),
     val snackbarEvent: SnackbarEvent? = null,
-    val loadingState: LoadingState = LoadingState.Idle,
+    val isLoading: Boolean = false,
 ) {
     val isNoDataVisible
         get() = items.isEmpty()

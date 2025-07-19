@@ -55,15 +55,19 @@
         app:layout_constraintTop_toBottomOf="@id/viewToolbar"
         app:layout_constraintWidth_percent="0.6" />
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvContacts"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="@dimen/margin_start"
+        android:layout_marginEnd="@dimen/margin_end"
+        android:layout_marginTop="@dimen/item_margin_top"
+        android:layout_marginBottom="@dimen/margin_bottom"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewToolbar" />
+        app:layout_constraintTop_toBottomOf="@id/viewToolbar"
+        tools:listitem="@layout/list_item_contact"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

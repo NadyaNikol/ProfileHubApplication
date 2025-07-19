@@ -25,6 +25,13 @@ class ContactsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         applyInsets()
+        handleToolbarBackPress()
+    }
+
+    private fun handleToolbarBackPress() {
+        binding.toolBarContacts.setNavigationOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
     }
 
     private fun applyInsets() {
