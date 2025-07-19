@@ -19,6 +19,8 @@ import javax.inject.Inject
  */
 
 class ContactRepositoryLocalImpl @Inject constructor() : ContactsRepository {
+    private val contactsCount = 10
+
     private val _contactsFlow = MutableStateFlow<List<ContactUIEntity>>(emptyList())
     override val contactsFlow: StateFlow<List<ContactUIEntity>> = _contactsFlow.asStateFlow()
 
@@ -28,10 +30,7 @@ class ContactRepositoryLocalImpl @Inject constructor() : ContactsRepository {
     private var recentlyDeletedContact: ContactIndexedUIEntity? = null
 
     override suspend fun loadContacts() = withContext(Dispatchers.IO) {
-        _eventsFlow.emit(ContactsEvent.Default)
-
-        _contactsFlow.value = generateContacts(CONTACTS_COUNT)
-        _eventsFlow.emit(ContactsEvent.Loaded)
+        _contactsFlow.value = generateContacts(contactsCount)
     }
 
     private fun generateContacts(count: Int): List<ContactUIEntity> =
@@ -41,27 +40,29 @@ class ContactRepositoryLocalImpl @Inject constructor() : ContactsRepository {
         val currentList = _contactsFlow.value
         val index = currentList.indexOfFirst { it.id == id }
         if (index == -1) return@withContext
+        val contact = currentList[index]
 
         recentlyDeletedContact = ContactIndexedUIEntity(
-            contact = currentList[index],
+            contact = contact,
             index = index
         )
 
-        _contactsFlow.value = currentList.filterNot { it.id == id }
+        _contactsFlow.value = currentList.minusElement(contact)
         _eventsFlow.emit(ContactsEvent.ContactDeleted)
     }
 
-    override suspend fun undoDelete() = withContext(Dispatchers.IO) {
-        val contact = recentlyDeletedContact ?: return@withContext
-        val index = contact.index
-        val currentList = _contactsFlow.value
+    override suspend fun undoDelete(): Unit = withContext(Dispatchers.IO) {
+        recentlyDeletedContact?.let { contact ->
+            val index = contact.index
+            val currentList = _contactsFlow.value
 
-        val newList = currentList.toMutableList().apply {
-            add(index.coerceAtMost(size), contact.contact)
+            val newList = currentList.toMutableList().apply {
+                add(index.coerceAtMost(size), contact.contact)
+            }
+            _contactsFlow.value = newList
+            recentlyDeletedContact = null
+            _eventsFlow.emit(ContactsEvent.ContactDeleteUndone)
         }
-        _contactsFlow.value = newList
-        recentlyDeletedContact = null
-        _eventsFlow.emit(ContactsEvent.ContactDeleteUndone)
     }
 
     override suspend fun addContact(contact: ContactUIEntity) = withContext(Dispatchers.IO) {
@@ -73,7 +74,8 @@ class ContactRepositoryLocalImpl @Inject constructor() : ContactsRepository {
         _eventsFlow.emit(ContactsEvent.ContactCancelAdd)
     }
 
-    companion object {
-        private const val CONTACTS_COUNT = 10
-    }
+    override suspend fun getContactById(itemId: Long): ContactUIEntity? =
+        withContext(Dispatchers.IO) {
+            _contactsFlow.value.find { it.id == itemId }
+        }
 }

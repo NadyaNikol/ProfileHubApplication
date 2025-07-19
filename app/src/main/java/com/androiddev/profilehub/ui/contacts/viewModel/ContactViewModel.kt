@@ -6,8 +6,7 @@ import com.androiddev.profilehub.domain.useCase.DeleteContactUseCase
 import com.androiddev.profilehub.domain.useCase.GetContactsUseCase
 import com.androiddev.profilehub.domain.useCase.ObserveContactsEventsUseCase
 import com.androiddev.profilehub.domain.useCase.UndoDeleteContactUseCase
-import com.androiddev.profilehub.ui.contacts.ContactsState
-import com.androiddev.profilehub.ui.contacts.LoadingState
+import com.androiddev.profilehub.ui.contacts.ContactsUIState
 import com.androiddev.profilehub.ui.contacts.event.ContactsEvent
 import com.androiddev.profilehub.ui.contacts.event.SnackbarEvent
 import com.androiddev.profilehub.ui.contacts.event.SnackbarEvent.Actionable.ContactUndoDeleted
@@ -32,7 +31,7 @@ class ContactViewModel @Inject constructor(
     private val observeContactsEventsUseCase: ObserveContactsEventsUseCase,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(ContactsState())
+    private val _uiState = MutableStateFlow(ContactsUIState())
     val uiState = _uiState.asStateFlow()
 
     init {
@@ -43,6 +42,8 @@ class ContactViewModel @Inject constructor(
 
     fun loadContacts() {
         viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true) }
+
             getContactsUseCase.loadContacts()
         }
     }
@@ -52,6 +53,7 @@ class ContactViewModel @Inject constructor(
             _uiState.update { state ->
                 state.copy(
                     items = contacts.sortedBy { it.name },
+                    isLoading = false
                 )
             }
         }.launchIn(viewModelScope)
@@ -61,14 +63,6 @@ class ContactViewModel @Inject constructor(
         viewModelScope.launch {
             observeContactsEventsUseCase.eventsFlow.onEach { event ->
                 when (event) {
-                    ContactsEvent.Default -> {
-                        _uiState.update { it.copy(loadingState = LoadingState.LoadingInitial) }
-                    }
-
-                    is ContactsEvent.Loaded -> {
-                        _uiState.update { it.copy(loadingState = LoadingState.Loaded) }
-                    }
-
                     is ContactsEvent.ContactAdded -> {
                         _uiState.update { it.copy(snackbarEvent = SnackbarEvent.Info.ContactAdded) }
                     }

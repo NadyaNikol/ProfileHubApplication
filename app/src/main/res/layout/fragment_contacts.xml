@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contacts"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.contacts.fragment.ContactsFragment">
+
+    <View
+        android:id="@+id/viewToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAddContacts"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/margin_start"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="12dp"
+        android:clickable="true"
+        android:text="@string/tv_add_contacts"
+        android:textColor="@color/colorOnBackground"
+        android:textSize="@dimen/header_three_text_size"
+        app:layout_constraintBottom_toBottomOf="@id/viewToolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.6" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progressBarLoadData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:indeterminate="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewToolbar" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivNoData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_no_data"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewToolbar"
+        app:layout_constraintWidth_percent="0.6" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvContacts"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/margin_start"
+        android:layout_marginEnd="@dimen/margin_end"
+        android:layout_marginTop="@dimen/item_margin_top"
+        android:layout_marginBottom="@dimen/margin_bottom"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewToolbar"
+        tools:listitem="@layout/list_item_contact"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

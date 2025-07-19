@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
 import androidx.activity.viewModels
-import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -75,16 +75,16 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>(ActivityAuthBinding::infl
 
                 viewModel.uiState.collect { state ->
                     showFieldErrors(state)
-                    toggleLoading(state)
+                    toggleLoading(state.isLoading)
                     fillUiFromStoredData(state)
-                    handleSubmitData(state)
+                    handleSubmitData(state.submitDataEvent)
                 }
             }
         }
     }
 
-    private fun handleSubmitData(state: AuthState) {
-        if (state.submitDataEvent != null) {
+    private fun handleSubmitData(submitDataEvent: Unit?) {
+        if (submitDataEvent != null) {
             val intent = newIntentToMain(
                 this@AuthActivity,
                 EmailParser.extractName(binding.editTextEmailAddress.text.toString())
@@ -93,18 +93,18 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>(ActivityAuthBinding::infl
         }
     }
 
-    private fun toggleLoading(state: AuthState) = with(binding) {
-        groupProgressBar?.isGone = !state.isLoading
+    private fun toggleLoading(isLoading: Boolean) = with(binding) {
+        groupProgressBar.isVisible = isLoading
     }
 
-    private fun showFieldErrors(state: AuthState) = with(binding) {
+    private fun showFieldErrors(state: AuthUIState) = with(binding) {
         textInputLayoutEmail.helperText =
             messageResolver.resolveAuthError(state.emailError)
         textInputLayoutPassword.helperText =
             messageResolver.resolveAuthError(state.passwordError)
     }
 
-    private fun fillUiFromStoredData(state: AuthState) {
+    private fun fillUiFromStoredData(state: AuthUIState) {
         binding.apply {
             editTextEmailAddress.updateIfDifferent(state.email)
             editTextPassword.updateIfDifferent(state.password)

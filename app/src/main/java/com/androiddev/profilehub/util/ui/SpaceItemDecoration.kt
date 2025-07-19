@@ -12,12 +12,6 @@ import com.androiddev.profilehub.R
 
 class SpaceItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
 
-    private val marginStart: Int =
-        context.resources.getDimensionPixelSize(R.dimen.margin_start)
-    private val marginEnd: Int =
-        context.resources.getDimensionPixelSize(R.dimen.margin_end)
-    private val itemMarginTop: Int =
-        context.resources.getDimensionPixelSize(R.dimen.item_margin_top)
     private val itemMarginBottom: Int =
         context.resources.getDimensionPixelSize(R.dimen.item_margin_bottom)
 
@@ -28,11 +22,9 @@ class SpaceItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
         state: RecyclerView.State,
     ) {
         val position = parent.getChildAdapterPosition(view)
-        if (position == RecyclerView.NO_POSITION) return
+        val itemCount = parent.adapter?.itemCount ?: 0
+        if (position == RecyclerView.NO_POSITION || position == itemCount - 1) return
 
-        outRect.left = marginStart
-        outRect.right = marginEnd
-        outRect.top = if (position == 0) itemMarginTop else 0
         outRect.bottom = itemMarginBottom
     }
 }

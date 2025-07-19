@@ -42,6 +42,9 @@
     <string name="contact_not_deleted">Контакт не був видалений</string>
     <string name="contact_undo">Відміна</string>
 
-    <string name="tv_contacts">Контакти</string>
+    <string name="tool_bar_contacts_title">Контакти</string>
     <string name="tv_add_contacts">Додати контакти</string>
+    <string name="tool_bar_profile_title">Профіль</string>
+    <string name="btn_message">Повідомлення</string>
+    <string name="tv_something_went_wrong">Упс..Щось пішло не так</string>
 </resources>

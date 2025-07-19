@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.androiddev.profilehub.databinding.ListItemContactBinding
 import com.androiddev.profilehub.domain.entity.ContactUIEntity
+import com.androiddev.profilehub.ui.contacts.listener.ContactClickListener
 import com.androiddev.profilehub.util.extension.loadImage
 import javax.inject.Inject
 
@@ -15,7 +16,7 @@ import javax.inject.Inject
  * Created by Nadya N. on 08.05.2025.
  */
 class ContactListAdapter @Inject constructor(
-    private val onDeleteClick: (itemId: Long) -> Unit,
+    private val listener: ContactClickListener,
 ) :
     ListAdapter<ContactUIEntity, RecyclerView.ViewHolder>(ContactItemsCallback) {
 
@@ -34,7 +35,7 @@ class ContactListAdapter @Inject constructor(
                 parent,
                 false
             ),
-            onDeleteClick = onDeleteClick
+            listener = listener
         )
     }
 
@@ -44,12 +45,15 @@ class ContactListAdapter @Inject constructor(
 
     private class ContactItemHolder(
         private val binding: ListItemContactBinding,
-        private val onDeleteClick: (itemId: Long) -> Unit,
+        private val listener: ContactClickListener,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.imgBtnDeleteIcon.setOnClickListener {
-                onDeleteClick.invoke(itemId)
+                listener.onDeleteClick(itemId)
+            }
+            binding.root.setOnClickListener {
+                listener.onItemClick(itemId)
             }
         }
 

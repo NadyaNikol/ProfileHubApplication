@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.android.hilt)
+    alias(libs.plugins.safe.args)
 }
 
 android {

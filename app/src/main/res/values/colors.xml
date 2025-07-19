@@ -26,4 +26,6 @@
 
     <color name="colorDeleteBackground">#FDB0AF</color>
 
+    <color name="colorIconErrorTint">#121212</color>
+
 </resources>
