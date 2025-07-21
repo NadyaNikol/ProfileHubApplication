@@ -3,24 +3,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/contacts_navigation"
-    app:startDestination="@id/contactsFragment">
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.androiddev.profilehub.ui.main.home.fragment.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main">
+        <argument
+            android:name="userName"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_mainFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/contactsFragment"
         android:name="com.androiddev.profilehub.ui.contacts.fragment.ContactsFragment"
         android:label="fragment_contacts"
-        tools:layout="@layout/fragment_contacts" >
+        tools:layout="@layout/fragment_contacts">
         <action
             android:id="@+id/action_contactsFragment_to_contactsDetailViewFragment"
             app:destination="@id/contactsDetailViewFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/contactsDetailViewFragment"
         android:name="com.androiddev.profilehub.ui.contacts.fragment.ContactsDetailViewFragment"
         android:label="fragment_contacts_detail_view"
-        tools:layout="@layout/fragment_contacts_detail_view" >
+        tools:layout="@layout/fragment_contacts_detail_view">
         <argument
             android:name="itemId"
-            app:argType="long"/>
+            app:argType="long" />
     </fragment>
 </navigation>

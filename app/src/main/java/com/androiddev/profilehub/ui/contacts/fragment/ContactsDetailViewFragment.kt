@@ -12,7 +12,7 @@ import com.androiddev.profilehub.databinding.FragmentContactsDetailViewBinding
 import com.androiddev.profilehub.domain.entity.ContactUIEntity
 import com.androiddev.profilehub.ui.BaseFragment
 import com.androiddev.profilehub.ui.contacts.ContactDetailUIState
-import com.androiddev.profilehub.ui.contacts.ContactsActivity
+import com.androiddev.profilehub.ui.contacts.MainActivity
 import com.androiddev.profilehub.ui.contacts.viewModel.ContactDetailViewModel
 import com.androiddev.profilehub.util.extension.loadImage
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,7 +37,7 @@ class ContactsDetailViewFragment : BaseFragment<FragmentContactsDetailViewBindin
     }
 
     private fun initToolbar() {
-        val toolbar = (requireActivity() as ContactsActivity).binding.toolBarContacts
+        val toolbar = (requireActivity() as MainActivity).binding.toolBarContacts
 
         toolbar.title = getString(R.string.tool_bar_profile_title)
         toolbar.menu.clear()

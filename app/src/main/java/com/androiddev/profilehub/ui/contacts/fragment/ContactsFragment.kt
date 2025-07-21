@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import com.androiddev.profilehub.R
 import com.androiddev.profilehub.databinding.FragmentContactsBinding
 import com.androiddev.profilehub.ui.BaseFragment
-import com.androiddev.profilehub.ui.contacts.ContactsActivity
 import com.androiddev.profilehub.ui.contacts.ContactsUIState
+import com.androiddev.profilehub.ui.contacts.MainActivity
 import com.androiddev.profilehub.ui.contacts.adapter.ContactListAdapter
 import com.androiddev.profilehub.ui.contacts.event.SnackbarEvent
 import com.androiddev.profilehub.ui.contacts.event.UiEvent
@@ -56,7 +56,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(
     }
 
     private fun setupAdapter() {
-        listAdapter = ContactListAdapter(object: ContactClickListener {
+        listAdapter = ContactListAdapter(object : ContactClickListener {
 
             override fun onDeleteClick(itemId: Long) {
                 viewModel.onUiEvent(UiEvent.SwipeDelete(itemId))
@@ -75,7 +75,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(
 
 
     private fun initToolbar() {
-        val toolbar = (requireActivity() as ContactsActivity).binding.toolBarContacts
+        val toolbar = (requireActivity() as MainActivity).binding.toolBarContacts
 
         toolbar.title = getString(R.string.tool_bar_contacts_title)
         toolbar.menu.clear()
