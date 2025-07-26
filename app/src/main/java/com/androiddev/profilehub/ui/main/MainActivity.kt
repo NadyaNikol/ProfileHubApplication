@@ -3,8 +3,8 @@ package com.androiddev.profilehub.ui.main
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -12,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.androiddev.profilehub.R
 import com.androiddev.profilehub.databinding.ActivityMainBinding
 import com.androiddev.profilehub.ui.auth.fragment.SignUpFragment
+import com.androiddev.profilehub.ui.main.viewModel.SharedMainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -21,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     internal lateinit var binding: ActivityMainBinding
+    private val viewModel: SharedMainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,27 +34,13 @@ class MainActivity : AppCompatActivity() {
         applyInsets()
         handleToolbarBackPress()
 
-        setupNavGraphWithUserName()
+        setupUserName()
         setupToolbarVisibilityWithNavController()
     }
 
-    private fun setupNavGraphWithUserName() {
+    private fun setupUserName() {
         val userName = intent.getStringExtra(SignUpFragment.Companion.EXTRA_USER_NAME) ?: ""
-
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.mainNavHostFragment) as NavHostFragment
-        val navController = navHostFragment.navController
-
-        val navGraph = navController.navInflater.inflate(R.navigation.main_navigation)
-
-        navGraph.setStartDestination(R.id.mainFragment)
-
-        val args = bundleOf(
-            "userName" to userName
-        )
-
-        navGraph.setStartDestination(R.id.mainFragment)
-        navController.setGraph(navGraph, args)
+        viewModel.setUserName(userName)
     }
 
     private fun setupToolbarVisibilityWithNavController() {

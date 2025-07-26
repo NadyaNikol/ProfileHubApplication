@@ -2,12 +2,17 @@ package com.androiddev.profilehub.ui.main.home.fragment
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.androiddev.profilehub.R
 import com.androiddev.profilehub.databinding.FragmentMainBinding
 import com.androiddev.profilehub.ui.BaseFragment
+import com.androiddev.profilehub.ui.main.viewModel.SharedMainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -18,19 +23,30 @@ import javax.inject.Inject
 class MainFragment @Inject constructor() :
     BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate) {
 
-    val args: MainFragmentArgs by navArgs()
+    private val sharedUserViewModel: SharedMainViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initListeners()
         setupData()
+
+        initObserves()
+    }
+
+    private fun initObserves() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+                sharedUserViewModel.state.collect { state ->
+                    binding.tvNameProfile.text = state.userName
+                }
+            }
+        }
     }
 
     private fun setupData() {
-        val userName = args.userName
         binding.apply {
-            tvNameProfile.text = userName
             ivPhotoProfile.setImageResource(R.drawable.user_photo)
         }
     }

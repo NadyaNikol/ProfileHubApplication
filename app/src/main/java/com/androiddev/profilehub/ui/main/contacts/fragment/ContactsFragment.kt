@@ -12,13 +12,12 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import com.androiddev.profilehub.R
 import com.androiddev.profilehub.databinding.FragmentContactsBinding
 import com.androiddev.profilehub.ui.BaseFragment
-import com.androiddev.profilehub.ui.main.contacts.ContactsUIState
 import com.androiddev.profilehub.ui.main.MainActivity
+import com.androiddev.profilehub.ui.main.contacts.ContactsUIState
 import com.androiddev.profilehub.ui.main.contacts.adapter.ContactListAdapter
 import com.androiddev.profilehub.ui.main.contacts.event.SnackbarEvent
 import com.androiddev.profilehub.ui.main.contacts.event.UiEvent
 import com.androiddev.profilehub.ui.main.contacts.fragment.AddContactDialogFragment.Companion.ADD_CONTACT_DIALOG_TAG
-import com.androiddev.profilehub.ui.main.contacts.fragment.ContactsFragmentDirections
 import com.androiddev.profilehub.ui.main.contacts.listener.ContactClickListener
 import com.androiddev.profilehub.ui.main.contacts.viewModel.ContactViewModel
 import com.androiddev.profilehub.util.UIMessageResolver
