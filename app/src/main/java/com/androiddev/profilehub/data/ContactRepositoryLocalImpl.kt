@@ -3,7 +3,7 @@ package com.androiddev.profilehub.data
 import com.androiddev.profilehub.domain.entity.ContactIndexedUIEntity
 import com.androiddev.profilehub.domain.entity.ContactUIEntity
 import com.androiddev.profilehub.domain.repository.ContactsRepository
-import com.androiddev.profilehub.ui.contacts.event.ContactsEvent
+import com.androiddev.profilehub.ui.main.contacts.event.ContactsEvent
 import com.androiddev.profilehub.util.RandomContactGenerator
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -19,7 +19,7 @@ import javax.inject.Inject
  */
 
 class ContactRepositoryLocalImpl @Inject constructor() : ContactsRepository {
-    private val contactsCount = 10
+    private val contactsCount = 20
 
     private val _contactsFlow = MutableStateFlow<List<ContactUIEntity>>(emptyList())
     override val contactsFlow: StateFlow<List<ContactUIEntity>> = _contactsFlow.asStateFlow()

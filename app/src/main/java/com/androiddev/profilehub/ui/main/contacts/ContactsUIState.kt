@@ -1,7 +1,7 @@
-package com.androiddev.profilehub.ui.contacts
+package com.androiddev.profilehub.ui.main.contacts
 
 import com.androiddev.profilehub.domain.entity.ContactUIEntity
-import com.androiddev.profilehub.ui.contacts.event.SnackbarEvent
+import com.androiddev.profilehub.ui.main.contacts.event.SnackbarEvent
 
 /**
  * Created by Nadya N. on 08.05.2025.

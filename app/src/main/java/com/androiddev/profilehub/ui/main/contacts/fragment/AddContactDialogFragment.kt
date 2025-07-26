@@ -1,4 +1,4 @@
-package com.androiddev.profilehub.ui.contacts.fragment
+package com.androiddev.profilehub.ui.main.contacts.fragment
 
 import android.net.Uri
 import android.os.Bundle
@@ -14,10 +14,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.androiddev.profilehub.databinding.DialogFragmentAddContactBinding
 import com.androiddev.profilehub.domain.entity.ContactUIEntity
-import com.androiddev.profilehub.ui.contacts.AddContactsState
-import com.androiddev.profilehub.ui.contacts.event.AddContactFormEvent
-import com.androiddev.profilehub.ui.contacts.event.ContactDialogEvent
-import com.androiddev.profilehub.ui.contacts.viewModel.AddContactDialogViewModel
+import com.androiddev.profilehub.ui.main.contacts.AddContactsState
+import com.androiddev.profilehub.ui.main.contacts.event.AddContactFormEvent
+import com.androiddev.profilehub.ui.main.contacts.event.ContactDialogEvent
+import com.androiddev.profilehub.ui.main.contacts.viewModel.AddContactDialogViewModel
 import com.androiddev.profilehub.util.UIMessageResolver
 import com.androiddev.profilehub.util.extension.setAfterTextChangedListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -101,8 +101,8 @@ class AddContactDialogFragment @Inject constructor(
     }
 
     private fun initObserves() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
 
                 viewModel.uiState.collect { state ->
                     binding.apply {

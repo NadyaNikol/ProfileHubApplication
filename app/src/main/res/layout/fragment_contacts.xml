@@ -5,7 +5,7 @@
     android:id="@+id/contacts"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.contacts.fragment.ContactsFragment">
+    tools:context=".ui.main.contacts.fragment.ContactsFragment">
 
     <View
         android:id="@+id/viewToolbar"

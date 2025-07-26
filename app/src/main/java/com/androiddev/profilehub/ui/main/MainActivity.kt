@@ -1,6 +1,7 @@
-package com.androiddev.profilehub.ui.contacts
+package com.androiddev.profilehub.ui.main
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
@@ -10,8 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 import com.androiddev.profilehub.R
 import com.androiddev.profilehub.databinding.ActivityMainBinding
-import com.androiddev.profilehub.ui.auth.fragment.SignUpFragment.Companion.EXTRA_USER_NAME
-import com.androiddev.profilehub.ui.main.home.fragment.MainFragmentArgs
+import com.androiddev.profilehub.ui.auth.fragment.SignUpFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -32,7 +32,12 @@ class MainActivity : AppCompatActivity() {
         applyInsets()
         handleToolbarBackPress()
 
-        val userName = intent.getStringExtra(EXTRA_USER_NAME) ?: ""
+        setupNavGraphWithUserName()
+        setupToolbarVisibilityWithNavController()
+    }
+
+    private fun setupNavGraphWithUserName() {
+        val userName = intent.getStringExtra(SignUpFragment.Companion.EXTRA_USER_NAME) ?: ""
 
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.mainNavHostFragment) as NavHostFragment
@@ -43,11 +48,31 @@ class MainActivity : AppCompatActivity() {
         navGraph.setStartDestination(R.id.mainFragment)
 
         val args = bundleOf(
-            MainFragmentArgs::userName.name to userName
+            "userName" to userName
         )
 
         navGraph.setStartDestination(R.id.mainFragment)
         navController.setGraph(navGraph, args)
+    }
+
+    private fun setupToolbarVisibilityWithNavController() {
+        val navController = (supportFragmentManager
+            .findFragmentById(R.id.mainNavHostFragment) as NavHostFragment)
+            .navController
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.contactsFragment,
+                R.id.contactsDetailViewFragment,
+                    -> {
+                    binding.toolBarContacts.visibility = View.VISIBLE
+                }
+
+                else -> {
+                    binding.toolBarContacts.visibility = View.GONE
+                }
+            }
+        }
     }
 
     private fun handleToolbarBackPress() {

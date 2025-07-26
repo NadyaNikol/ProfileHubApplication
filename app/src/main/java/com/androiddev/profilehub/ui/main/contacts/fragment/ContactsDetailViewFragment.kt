@@ -1,4 +1,4 @@
-package com.androiddev.profilehub.ui.contacts.fragment
+package com.androiddev.profilehub.ui.main.contacts.fragment
 
 import android.os.Bundle
 import android.view.View
@@ -11,9 +11,9 @@ import com.androiddev.profilehub.R
 import com.androiddev.profilehub.databinding.FragmentContactsDetailViewBinding
 import com.androiddev.profilehub.domain.entity.ContactUIEntity
 import com.androiddev.profilehub.ui.BaseFragment
-import com.androiddev.profilehub.ui.contacts.ContactDetailUIState
-import com.androiddev.profilehub.ui.contacts.MainActivity
-import com.androiddev.profilehub.ui.contacts.viewModel.ContactDetailViewModel
+import com.androiddev.profilehub.ui.main.contacts.ContactDetailUIState
+import com.androiddev.profilehub.ui.main.MainActivity
+import com.androiddev.profilehub.ui.main.contacts.viewModel.ContactDetailViewModel
 import com.androiddev.profilehub.util.extension.loadImage
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -44,8 +44,8 @@ class ContactsDetailViewFragment : BaseFragment<FragmentContactsDetailViewBindin
     }
 
     private fun initObserves() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { state ->
 
                     renderLoadingOrNoData(state)

@@ -1,5 +1,6 @@
-package com.androiddev.profilehub.ui.contacts.adapter
+package com.androiddev.profilehub.ui.main.contacts.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -7,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.androiddev.profilehub.databinding.ListItemContactBinding
 import com.androiddev.profilehub.domain.entity.ContactUIEntity
-import com.androiddev.profilehub.ui.contacts.listener.ContactClickListener
+import com.androiddev.profilehub.ui.main.contacts.listener.ContactClickListener
 import com.androiddev.profilehub.util.extension.loadImage
 import javax.inject.Inject
 
@@ -68,7 +69,7 @@ class ContactListAdapter @Inject constructor(
 
     private object ContactItemsCallback : DiffUtil.ItemCallback<ContactUIEntity>() {
         override fun areItemsTheSame(oldItem: ContactUIEntity, newItem: ContactUIEntity): Boolean {
-            return oldItem.name == newItem.name
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(

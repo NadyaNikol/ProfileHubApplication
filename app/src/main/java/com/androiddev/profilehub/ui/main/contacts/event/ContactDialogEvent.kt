@@ -1,4 +1,4 @@
-package com.androiddev.profilehub.ui.contacts.event
+package com.androiddev.profilehub.ui.main.contacts.event
 
 import com.androiddev.profilehub.domain.entity.ContactUIEntity
 

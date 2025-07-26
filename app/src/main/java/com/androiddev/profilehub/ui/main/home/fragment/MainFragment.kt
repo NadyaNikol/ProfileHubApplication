@@ -3,6 +3,7 @@ package com.androiddev.profilehub.ui.main.home.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.androiddev.profilehub.R
 import com.androiddev.profilehub.databinding.FragmentMainBinding
 import com.androiddev.profilehub.ui.BaseFragment
@@ -17,6 +18,8 @@ import javax.inject.Inject
 class MainFragment @Inject constructor() :
     BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate) {
 
+    val args: MainFragmentArgs by navArgs()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -25,7 +28,7 @@ class MainFragment @Inject constructor() :
     }
 
     private fun setupData() {
-        val userName = MainFragmentArgs.fromBundle(requireArguments()).userName
+        val userName = args.userName
         binding.apply {
             tvNameProfile.text = userName
             ivPhotoProfile.setImageResource(R.drawable.user_photo)

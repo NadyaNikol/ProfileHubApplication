@@ -15,7 +15,7 @@ import com.androiddev.profilehub.ui.BaseFragment
 import com.androiddev.profilehub.ui.auth.AuthUIState
 import com.androiddev.profilehub.ui.auth.event.AuthFormEvent
 import com.androiddev.profilehub.ui.auth.viewModel.AuthViewModel
-import com.androiddev.profilehub.ui.contacts.MainActivity
+import com.androiddev.profilehub.ui.main.MainActivity
 import com.androiddev.profilehub.util.EmailParser
 import com.androiddev.profilehub.util.UIMessageResolver
 import com.androiddev.profilehub.util.extension.setAfterTextChangedListener
@@ -74,8 +74,8 @@ class SignUpFragment @Inject constructor() :
     }
 
     private fun initObserves() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
 
                 viewModel.uiState.collect { state ->
                     showFieldErrors(state)

@@ -5,13 +5,14 @@
     android:id="@+id/contacts"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.contacts.MainActivity">
+    tools:context=".ui.main.MainActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolBarContacts"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/colorBackground"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

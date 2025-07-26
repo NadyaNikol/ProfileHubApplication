@@ -1,10 +1,10 @@
-package com.androiddev.profilehub.ui.contacts.viewModel
+package com.androiddev.profilehub.ui.main.contacts.viewModel
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.androiddev.profilehub.domain.useCase.GetContactUseCase
-import com.androiddev.profilehub.ui.contacts.ContactDetailUIState
+import com.androiddev.profilehub.ui.main.contacts.ContactDetailUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

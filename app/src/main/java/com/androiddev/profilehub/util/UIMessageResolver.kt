@@ -6,7 +6,7 @@ import com.androiddev.profilehub.domain.useCase.ValidationAddContactUseCaseImpl.
 import com.androiddev.profilehub.domain.useCase.ValidationAuthUseCaseImpl.Companion.MIN_LENGTH_PASSWORD
 import com.androiddev.profilehub.domain.error.ValidationAuthError
 import com.androiddev.profilehub.domain.error.ValidationAddContactError
-import com.androiddev.profilehub.ui.contacts.event.SnackbarEvent
+import com.androiddev.profilehub.ui.main.contacts.event.SnackbarEvent
 
 /**
  * Created by Nadya N. on 09.05.2025.

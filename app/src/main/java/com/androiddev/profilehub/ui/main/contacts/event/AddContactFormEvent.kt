@@ -1,4 +1,4 @@
-package com.androiddev.profilehub.ui.contacts.event
+package com.androiddev.profilehub.ui.main.contacts.event
 
 /**
  * Created by Nadya N. on 07.04.2025.

@@ -1,7 +1,7 @@
 package com.androiddev.profilehub.domain.useCase
 
 import com.androiddev.profilehub.domain.repository.ContactsRepository
-import com.androiddev.profilehub.ui.contacts.event.ContactsEvent
+import com.androiddev.profilehub.ui.main.contacts.event.ContactsEvent
 import kotlinx.coroutines.flow.SharedFlow
 import javax.inject.Inject
 

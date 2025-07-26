@@ -1,4 +1,4 @@
-package com.androiddev.profilehub.ui.contacts
+package com.androiddev.profilehub.ui.main.contacts
 
 import com.androiddev.profilehub.domain.error.ValidationAddContactError
 

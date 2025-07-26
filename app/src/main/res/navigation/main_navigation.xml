@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/contactsFragment"
-        android:name="com.androiddev.profilehub.ui.contacts.fragment.ContactsFragment"
+        android:name="com.androiddev.profilehub.ui.main.contacts.fragment.ContactsFragment"
         android:label="fragment_contacts"
         tools:layout="@layout/fragment_contacts">
         <action
@@ -32,7 +32,7 @@
 
     <fragment
         android:id="@+id/contactsDetailViewFragment"
-        android:name="com.androiddev.profilehub.ui.contacts.fragment.ContactsDetailViewFragment"
+        android:name="com.androiddev.profilehub.ui.main.contacts.fragment.ContactsDetailViewFragment"
         android:label="fragment_contacts_detail_view"
         tools:layout="@layout/fragment_contacts_detail_view">
         <argument

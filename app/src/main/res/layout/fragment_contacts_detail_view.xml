@@ -5,7 +5,7 @@
     android:id="@+id/contacts_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.contacts.fragment.ContactsDetailViewFragment">
+    tools:context=".ui.main.contacts.fragment.ContactsDetailViewFragment">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontal"

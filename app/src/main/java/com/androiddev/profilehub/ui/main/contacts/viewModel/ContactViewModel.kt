@@ -1,4 +1,4 @@
-package com.androiddev.profilehub.ui.contacts.viewModel
+package com.androiddev.profilehub.ui.main.contacts.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,11 +6,11 @@ import com.androiddev.profilehub.domain.useCase.DeleteContactUseCase
 import com.androiddev.profilehub.domain.useCase.GetContactsUseCase
 import com.androiddev.profilehub.domain.useCase.ObserveContactsEventsUseCase
 import com.androiddev.profilehub.domain.useCase.UndoDeleteContactUseCase
-import com.androiddev.profilehub.ui.contacts.ContactsUIState
-import com.androiddev.profilehub.ui.contacts.event.ContactsEvent
-import com.androiddev.profilehub.ui.contacts.event.SnackbarEvent
-import com.androiddev.profilehub.ui.contacts.event.SnackbarEvent.Actionable.ContactUndoDeleted
-import com.androiddev.profilehub.ui.contacts.event.UiEvent
+import com.androiddev.profilehub.ui.main.contacts.ContactsUIState
+import com.androiddev.profilehub.ui.main.contacts.event.ContactsEvent
+import com.androiddev.profilehub.ui.main.contacts.event.SnackbarEvent
+import com.androiddev.profilehub.ui.main.contacts.event.SnackbarEvent.Actionable.ContactUndoDeleted
+import com.androiddev.profilehub.ui.main.contacts.event.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

@@ -1,15 +1,15 @@
-package com.androiddev.profilehub.ui.contacts.viewModel
+package com.androiddev.profilehub.ui.main.contacts.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.androiddev.profilehub.domain.entity.ContactUIEntity
+import com.androiddev.profilehub.domain.error.ValidationAddContactError
 import com.androiddev.profilehub.domain.useCase.AddContactUseCase
 import com.androiddev.profilehub.domain.useCase.CancelContactAddingUseCase
 import com.androiddev.profilehub.domain.useCase.ValidationAddContactUseCase
-import com.androiddev.profilehub.ui.contacts.AddContactsState
-import com.androiddev.profilehub.domain.error.ValidationAddContactError
-import com.androiddev.profilehub.ui.contacts.event.AddContactFormEvent
-import com.androiddev.profilehub.ui.contacts.event.ContactDialogEvent
+import com.androiddev.profilehub.ui.main.contacts.AddContactsState
+import com.androiddev.profilehub.ui.main.contacts.event.AddContactFormEvent
+import com.androiddev.profilehub.ui.main.contacts.event.ContactDialogEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
